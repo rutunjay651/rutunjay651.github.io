@@ -22,9 +22,9 @@
     }
     html{scroll-behavior:smooth;}
     body{font-family:'Poppins',sans-serif;background:var(--light);color:var(--dark);overflow-x:hidden;}
-    .announcement-bar{background:var(--primary);color:#fff;text-align:center;font-size:.78rem;font-weight:500;padding:8px 16px;letter-spacing:.4px;}
-    .announcement-bar span{margin:0 16px;}
-    .announcement-bar i{margin-right:6px;}
+
+    /* ANNOUNCEMENT BAR REMOVED */
+
     header{position:sticky;top:0;z-index:1000;background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,.08);}
     .header-inner{max-width:1300px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;gap:20px;}
     .logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
@@ -231,9 +231,13 @@
     .footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.35);}
     .footer-bottom .pay-icons{display:flex;gap:8px;}
     .pay-icon{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);padding:4px 10px;border-radius:6px;font-size:.7rem;font-weight:600;}
-    .floating-cart{position:fixed;bottom:28px;right:28px;z-index:999;background:var(--secondary);color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;box-shadow:0 6px 24px rgba(74,222,128,.45);border:none;font-family:inherit;transition:transform .25s;}
+
+    /* FLOATING CART - now matches header cart (no background, just icon + badge) */
+    .floating-cart{position:fixed;bottom:28px;right:28px;z-index:999;background:transparent;color:var(--dark);width:auto;height:auto;border-radius:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;box-shadow:none;border:none;font-family:inherit;transition:transform .25s;padding:0;}
+    .floating-cart i{font-size:1.5rem;color:var(--dark);}
     .floating-cart:hover{transform:scale(1.1);}
-    .floating-badge{position:absolute;top:-4px;right:-4px;background:#e63329;color:#fff;width:20px;height:20px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;}
+    .floating-badge{position:absolute;top:-8px;right:-10px;background:#e63329;color:#fff;border-radius:50%;width:20px;height:20px;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;pointer-events:none;border:2px solid #fff;}
+
     .toast{position:fixed;bottom:100px;right:28px;z-index:2000;background:var(--dark);color:#fff;padding:12px 20px;border-radius:10px;font-size:.82rem;font-weight:500;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translateX(120%);transition:transform .35s;border-left:4px solid #e63329;}
     .toast.show{transform:translateX(0);}
     .toast i{color:#10b981;}
@@ -253,19 +257,12 @@
 </head>
 <body>
 
-<div class="announcement-bar">
-  <span><i class="fas fa-shield-halved"></i>Authorized Dealer of DOMS &amp; Youva</span>
-  <span>&nbsp;|&nbsp;</span>
-  <span><i class="fas fa-star"></i>Quality Stationery for Students, Artists &amp; Professionals</span>
-  <span>&nbsp;|&nbsp;</span>
-  <span><i class="fas fa-store"></i>Serving Since 2008 — Jalna, Maharashtra</span>
-</div>
-
 <header>
   <div class="header-inner">
     <a href="#" class="logo-wrap">
       <div class="logo-icon">
-        <img src="https://www.navneetstore.com/cdn/shop/files/youva_logo.png?v=1683Views"
+        <!-- Updated Youva logo -->
+        <img src="https://rutunjay651.github.io/resources/logo/youva.png"
              onerror="this.onerror=null;this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';"
              alt="Shrikant Paper Products"/>
       </div>
@@ -413,7 +410,10 @@
     </div>
     <div class="brand-cards">
       <div class="brand-card" id="doms-section">
-        <div class="brand-card-bg"><img src="https://domsindia.com/wp-content/uploads/2023/03/DOMS-Web-Banner-scaled.jpg" onerror="this.src='https://placehold.co/700x220/1a1a2e/ffffff?text=DOMS+Stationery';" alt="DOMS"/></div>
+        <div class="brand-card-bg">
+          <!-- Updated DOMS brand card image -->
+          <img src="https://domsindia.com/wp-content/uploads/2025/07/Range-Shots-scaled.webp" onerror="this.src='https://placehold.co/700x220/1a1a2e/ffffff?text=DOMS+Stationery';" alt="DOMS"/>
+        </div>
         <div class="brand-card-info">
           <div class="bc-name">DOMS Industries</div>
           <div class="bc-desc">Pioneer in stationery manufacturing since 1976. Pencils, colour pencils, sketch pens, erasers, mathematical instruments, and a wide range of art materials.</div>
@@ -490,11 +490,18 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <a href="#" class="logo-wrap"><div class="footer-logo-icon"><img src="https://www.navneetstore.com/cdn/shop/files/youva_logo.png?v=1683Views" onerror="this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';" alt=""/></div><div class="logo-text" style="margin-left:12px;"><div class="brand-name" style="color:#fff;">Shrikant Paper Products</div><div class="brand-sub">Your Stationery Destination</div></div></a>
+      <a href="#" class="logo-wrap"><div class="footer-logo-icon"><img src="https://rutunjay651.github.io/resources/logo/youva.png" onerror="this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';" alt=""/></div><div class="logo-text" style="margin-left:12px;"><div class="brand-name" style="color:#fff;">Shrikant Paper Products</div><div class="brand-sub">Your Stationery Destination</div></div></a>
       <div class="footer-about">Authorized dealer of DOMS and Youva stationery brands. Serving students, teachers, and artists in Jalna, Maharashtra since 2008.</div>
       <div class="footer-social">
         <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-        <a href="#" class="social-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none"/><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" fill="none"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg></a>
+        <!-- Fixed Instagram icon -->
+        <a href="#" class="social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="none"/>
+            <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" fill="currentColor"/>
+            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+          </svg>
+        </a>
         <a href="https://wa.me/919422218909" class="social-btn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
         <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a1a2e"/></svg></a>
         <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
@@ -507,17 +514,22 @@
   <div class="footer-bottom"><p>2025 Shrikant Paper Products, Jalna. All rights reserved. | Serving Since 2008</p><div class="pay-icons"><span class="pay-icon">UPI</span><span class="pay-icon">Visa</span><span class="pay-icon">MC</span><span class="pay-icon">RuPay</span><span class="pay-icon">COD</span></div></div>
 </footer>
 
-<button class="floating-cart" onclick="openCart()"><i class="fas fa-shopping-cart"></i><span class="floating-badge" id="floatBadge">0</span></button>
+<!-- Floating cart – now matches header cart style -->
+<button class="floating-cart" onclick="openCart()">
+  <i class="fas fa-shopping-cart"></i>
+  <span class="floating-badge" id="floatBadge">0</span>
+</button>
+
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Done!</span></div>
 
 <script>
 /* ============================================================
-   BRAND LOGOS
+   BRAND LOGOS (updated)
    ============================================================ */
 const BRAND_LOGOS = {
-  doms:  'https://domsindia.com/wp-content/uploads/2023/08/NEW-2024-DOMS-LOGO-CORRECTION.webp',
-  youva: 'https://www.navneetstore.com/cdn/shop/files/youva_logo_withBaseline_639ab5b7-c771-41b3-88e2-29f8a6d0673d_100x.png'
+  doms:  'https://rutunjay651.github.io/resources/logo/doms.webp',
+  youva: 'https://rutunjay651.github.io/resources/logo/youva.png'
 };
 
 /* ============================================================
@@ -576,14 +588,13 @@ function normalize(p, brandKey) {
 }
 
 /* ============================================================
-   HIGHLIGHT HELPER
-   Safely escapes the query before building the RegExp.
+   HIGHLIGHT HELPER (black background, white text, bold)
    ============================================================ */
 function highlight(text, q) {
   if (!q || !text) return text;
   const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const re = new RegExp('(' + escaped + ')', 'gi');
-  return String(text).replace(re, '<mark style="background:#fef08a;border-radius:2px;padding:0 1px;">$1</mark>');
+  return String(text).replace(re, '<mark style="background:#000; color:#fff; font-weight:bold; border-radius:2px; padding:0 1px;">$1</mark>');
 }
 
 /* ============================================================
@@ -594,15 +605,12 @@ function buildCard(p) {
 }
 
 /* ============================================================
-   BUILD CARD HIGHLIGHTED  (FIX #3 & #5)
-   Highlights name, code, and price string with the query term.
-   Used in both the popup dropdown and the search-results page.
+   BUILD CARD HIGHLIGHTED (with black/white bold highlight)
    ============================================================ */
 function buildCardHighlighted(p, q) {
   const brandLogo = BRAND_LOGOS[p.brand] || '';
   const brandAlt  = p.brand === 'doms' ? 'DOMS' : 'Youva';
 
-  /* badge */
   let badgeHtml = '';
   if (p.badge) {
     const bc = p.badge.toLowerCase() === 'stellar' ? 'badge-stellar'
@@ -611,9 +619,8 @@ function buildCardHighlighted(p, q) {
     badgeHtml = '<span class="prod-badge ' + bc + '">' + p.badge + '</span>';
   }
 
-  /* price strings — built BEFORE highlighting so we can highlight the raw string */
-  const priceDisplay = (p.price != null && p.price > 0) ? ('Rs.' + p.price.toFixed(2)) : '';
-  const mrpDisplay   = (p.mrp   != null && p.mrp   > 0) ? ('Rs.' + p.mrp.toFixed(2))   : '';
+  const priceDisplay = (p.price != null && p.price > 0) ? ('₹' + p.price.toFixed(2)) : '';
+  const mrpDisplay   = (p.mrp   != null && p.mrp   > 0) ? ('₹' + p.mrp.toFixed(2))   : '';
   const off = (p.mrp && p.mrp > p.price && p.price)
     ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
 
@@ -628,17 +635,14 @@ function buildCardHighlighted(p, q) {
     priceHtml = '<div class="prod-price-na">Price on enquiry</div>';
   }
 
-  /* stars */
   const full  = Math.floor(p.rating);
   const half  = p.rating % 1 >= 0.5 ? 1 : 0;
   const empty = 5 - full - half;
   const stars = '\u2605'.repeat(full) + (half ? '\u00BD' : '') + '\u2606'.repeat(empty);
 
-  /* image */
   const imgSrc = p.img || ('https://placehold.co/280x210/f3f4f6/888?text=' + encodeURIComponent(p.name.slice(0, 10)));
   const catLabel = p.cat.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
-  /* highlighted name and code */
   const dispName = q ? highlight(p.name, q) : p.name;
   const dispCode = q ? highlight(p.code, q) : p.code;
 
@@ -660,7 +664,7 @@ function buildCardHighlighted(p, q) {
 function viewProduct(name) { showToast('Viewing: ' + name); }
 
 /* ============================================================
-   SEARCH OVERLAY — DOM REFS
+   SEARCH OVERLAY
    ============================================================ */
 const searchOverlay      = document.getElementById('searchOverlay');
 const searchPopupInput   = document.getElementById('searchPopupInput');
@@ -684,17 +688,10 @@ searchOverlay.addEventListener('click', function(e) {
   if (e.target === searchOverlay) closeSearchOverlay();
 });
 
-/* ============================================================
-   SEARCH INPUT LISTENER
-   FIX #2: Changed q.length < 2  =>  q.length < 1
-            so results show from the FIRST character typed.
-   ============================================================ */
+/* Search input (results from first character) */
 searchPopupInput.addEventListener('input', function() {
   const q = this.value.trim().toLowerCase();
-
-  /* FIX #2 — show results from 1st character */
   if (q.length < 1) { searchPopupDropdown.innerHTML = ''; return; }
-
   if (!ALL.length) {
     searchPopupDropdown.innerHTML = '<div class="search-no-results"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
     return;
@@ -703,9 +700,7 @@ searchPopupInput.addEventListener('input', function() {
   renderPopupDropdown(hits, q);
 });
 
-/* ============================================================
-   FIX #4 — Enter key triggers "View all results"
-   ============================================================ */
+/* Enter key triggers full search */
 searchPopupInput.addEventListener('keydown', function(e) {
   if (e.key === 'Enter') {
     e.preventDefault();
@@ -713,33 +708,23 @@ searchPopupInput.addEventListener('keydown', function(e) {
   }
 });
 
-/* ============================================================
-   MATCH PRODUCTS
-   FIX #1 — Added price & mrp string matching so you can
-             search "49", "99.00", "Rs.49" etc.
-   ============================================================ */
+/* Match products including price strings */
 function matchProducts(q, list) {
   return list.filter(function(p) {
-    /* price strings for matching */
     const priceStr = (p.price != null && p.price > 0) ? String(p.price.toFixed(2)) : '';
     const mrpStr   = (p.mrp   != null && p.mrp   > 0) ? String(p.mrp.toFixed(2))   : '';
-
     return p.name.toLowerCase().includes(q)
       || p.code.toLowerCase().includes(q)
       || p.cat.toLowerCase().replace(/_/g, ' ').includes(q)
       || p.brand.toLowerCase().includes(q)
       || p.brandLabel.toLowerCase().includes(q)
       || p.tags.some(function(t) { return t.toLowerCase().includes(q); })
-      /* FIX #1 — price search */
       || priceStr.includes(q)
       || mrpStr.includes(q);
   });
 }
 
-/* ============================================================
-   RENDER POPUP DROPDOWN
-   FIX #3 — highlight() applied to code and priceStr as well.
-   ============================================================ */
+/* Render dropdown with black/white highlights */
 function renderPopupDropdown(hits, q) {
   if (!hits.length) {
     searchPopupDropdown.innerHTML =
@@ -748,15 +733,13 @@ function renderPopupDropdown(hits, q) {
   }
 
   const header = '<div class="search-results-header">Suggestions<span>' + hits.length + ' found</span></div>';
-
   const items = hits.map(function(p) {
     const off = (p.mrp && p.mrp > p.price && p.price)
       ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
     const imgSrc   = p.img || ('https://placehold.co/52x52/f3f4f6/888?text=' + p.brand.toUpperCase());
-    const priceRaw = (p.price && p.price > 0) ? ('Rs.' + p.price.toFixed(2)) : 'On enquiry';
+    const priceRaw = (p.price && p.price > 0) ? ('₹' + p.price.toFixed(2)) : 'On enquiry';
     const logoUrl  = BRAND_LOGOS[p.brand] || '';
 
-    /* FIX #3 — highlight name, code, AND price in dropdown */
     const dispName  = highlight(p.name,   q);
     const dispCode  = highlight(p.code,   q);
     const dispPrice = highlight(priceRaw, q);
@@ -793,9 +776,7 @@ function doSearchFromPopup() {
 }
 
 /* ============================================================
-   SEARCH RESULTS PAGE
-   FIX #5 — buildCardHighlighted(p, q) used instead of buildCard(p)
-             so keywords are highlighted in the results grid too.
+   SEARCH RESULTS PAGE (with black/white highlights)
    ============================================================ */
 const searchSection = document.getElementById('searchResultsSection');
 const searchGrid    = document.getElementById('searchResultsGrid');
@@ -814,7 +795,6 @@ function showSearchResults(hits, q) {
     return;
   }
 
-  /* FIX #5 — pass q so highlights are applied in the results cards */
   searchGrid.innerHTML = hits.map(function(p) {
     return buildCardHighlighted(p, q.toLowerCase());
   }).join('');
