@@ -40,6 +40,8 @@
     .hdr-btn:hover{color:var(--primary);}
     .cart-wrap{position:relative;}
     .cart-badge{position:absolute;top:-8px;right:-10px;background:#e63329;color:#fff;border-radius:50%;width:20px;height:20px;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;pointer-events:none;border:2px solid #fff;}
+    /* Professional cart icon (🛒 style) */
+    .cart-icon-svg{width:26px;height:26px;stroke:var(--dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
     .search-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:2000;display:none;align-items:flex-start;justify-content:center;padding-top:80px;backdrop-filter:blur(4px);}
     .search-overlay.active{display:flex;animation:fadeIn 0.2s ease;}
     .search-popup{width:90%;max-width:500px;background:var(--white);border-radius:50px;box-shadow:0 8px 32px rgba(0,0,0,0.2);display:flex;flex-direction:column;overflow:hidden;animation:slideDown 0.25s ease;}
@@ -232,11 +234,7 @@
     .footer-bottom .pay-icons{display:flex;gap:8px;}
     .pay-icon{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);padding:4px 10px;border-radius:6px;font-size:.7rem;font-weight:600;}
 
-    /* FLOATING CART - now matches header cart (no background, just icon + badge) */
-    .floating-cart{position:fixed;bottom:28px;right:28px;z-index:999;background:transparent;color:var(--dark);width:auto;height:auto;border-radius:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;box-shadow:none;border:none;font-family:inherit;transition:transform .25s;padding:0;}
-    .floating-cart i{font-size:1.5rem;color:var(--dark);}
-    .floating-cart:hover{transform:scale(1.1);}
-    .floating-badge{position:absolute;top:-8px;right:-10px;background:#e63329;color:#fff;border-radius:50%;width:20px;height:20px;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;pointer-events:none;border:2px solid #fff;}
+    /* FLOATING CART REMOVED - no more floating cart */
 
     .toast{position:fixed;bottom:100px;right:28px;z-index:2000;background:var(--dark);color:#fff;padding:12px 20px;border-radius:10px;font-size:.82rem;font-weight:500;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translateX(120%);transition:transform .35s;border-left:4px solid #e63329;}
     .toast.show{transform:translateX(0);}
@@ -261,8 +259,8 @@
   <div class="header-inner">
     <a href="#" class="logo-wrap">
       <div class="logo-icon">
-        <!-- Updated Youva logo -->
-        <img src="https://rutunjay651.github.io/resources/logo/youva.png"
+        <!-- Updated Shrikant Paper Products logo -->
+        <img src="https://rutunjay651.github.io/resources/logo/spp.jpg"
              onerror="this.onerror=null;this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';"
              alt="Shrikant Paper Products"/>
       </div>
@@ -283,9 +281,14 @@
       <a href="#" class="hdr-btn" title="Wishlist">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </a>
+      <!-- Cart icon (professional 🛒 style) -->
       <div class="cart-wrap">
         <a href="#" class="hdr-btn" onclick="openCart()" title="Cart">
-          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <svg class="cart-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
         </a>
         <span class="cart-badge" id="cartBadge">0</span>
       </div>
@@ -410,10 +413,7 @@
     </div>
     <div class="brand-cards">
       <div class="brand-card" id="doms-section">
-        <div class="brand-card-bg">
-          <!-- Updated DOMS brand card image -->
-          <img src="https://domsindia.com/wp-content/uploads/2025/07/Range-Shots-scaled.webp" onerror="this.src='https://placehold.co/700x220/1a1a2e/ffffff?text=DOMS+Stationery';" alt="DOMS"/>
-        </div>
+        <div class="brand-card-bg"><img src="https://domsindia.com/wp-content/uploads/2025/07/Range-Shots-scaled.webp" onerror="this.src='https://placehold.co/700x220/1a1a2e/ffffff?text=DOMS+Stationery';" alt="DOMS"/></div>
         <div class="brand-card-info">
           <div class="bc-name">DOMS Industries</div>
           <div class="bc-desc">Pioneer in stationery manufacturing since 1976. Pencils, colour pencils, sketch pens, erasers, mathematical instruments, and a wide range of art materials.</div>
@@ -490,11 +490,18 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <a href="#" class="logo-wrap"><div class="footer-logo-icon"><img src="https://rutunjay651.github.io/resources/logo/youva.png" onerror="this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';" alt=""/></div><div class="logo-text" style="margin-left:12px;"><div class="brand-name" style="color:#fff;">Shrikant Paper Products</div><div class="brand-sub">Your Stationery Destination</div></div></a>
+      <a href="#" class="logo-wrap">
+        <div class="footer-logo-icon">
+          <img src="https://rutunjay651.github.io/resources/logo/spp.jpg" onerror="this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';" alt=""/>
+        </div>
+        <div class="logo-text" style="margin-left:12px;">
+          <div class="brand-name" style="color:#fff;">Shrikant Paper Products</div>
+          <div class="brand-sub">Your Stationery Destination</div>
+        </div>
+      </a>
       <div class="footer-about">Authorized dealer of DOMS and Youva stationery brands. Serving students, teachers, and artists in Jalna, Maharashtra since 2008.</div>
       <div class="footer-social">
         <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-        <!-- Fixed Instagram icon -->
         <a href="#" class="social-btn" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="none"/>
@@ -514,12 +521,7 @@
   <div class="footer-bottom"><p>2025 Shrikant Paper Products, Jalna. All rights reserved. | Serving Since 2008</p><div class="pay-icons"><span class="pay-icon">UPI</span><span class="pay-icon">Visa</span><span class="pay-icon">MC</span><span class="pay-icon">RuPay</span><span class="pay-icon">COD</span></div></div>
 </footer>
 
-<!-- Floating cart – now matches header cart style -->
-<button class="floating-cart" onclick="openCart()">
-  <i class="fas fa-shopping-cart"></i>
-  <span class="floating-badge" id="floatBadge">0</span>
-</button>
-
+<!-- No floating cart -->
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Done!</span></div>
 
@@ -588,13 +590,13 @@ function normalize(p, brandKey) {
 }
 
 /* ============================================================
-   HIGHLIGHT HELPER (black background, white text, bold)
+   HIGHLIGHT HELPER (light green background, black text, bold)
    ============================================================ */
 function highlight(text, q) {
   if (!q || !text) return text;
   const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const re = new RegExp('(' + escaped + ')', 'gi');
-  return String(text).replace(re, '<mark style="background:#000; color:#fff; font-weight:bold; border-radius:2px; padding:0 1px;">$1</mark>');
+  return String(text).replace(re, '<mark style="background:#4ade80; color:#000; font-weight:bold; border-radius:2px; padding:0 1px;">$1</mark>');
 }
 
 /* ============================================================
@@ -605,7 +607,7 @@ function buildCard(p) {
 }
 
 /* ============================================================
-   BUILD CARD HIGHLIGHTED (with black/white bold highlight)
+   BUILD CARD HIGHLIGHTED (with light green highlight)
    ============================================================ */
 function buildCardHighlighted(p, q) {
   const brandLogo = BRAND_LOGOS[p.brand] || '';
@@ -724,7 +726,7 @@ function matchProducts(q, list) {
   });
 }
 
-/* Render dropdown with black/white highlights */
+/* Render dropdown with light green highlights */
 function renderPopupDropdown(hits, q) {
   if (!hits.length) {
     searchPopupDropdown.innerHTML =
@@ -776,7 +778,7 @@ function doSearchFromPopup() {
 }
 
 /* ============================================================
-   SEARCH RESULTS PAGE (with black/white highlights)
+   SEARCH RESULTS PAGE (with light green highlights)
    ============================================================ */
 const searchSection = document.getElementById('searchResultsSection');
 const searchGrid    = document.getElementById('searchResultsGrid');
