@@ -28,10 +28,11 @@
     header{position:sticky;top:0;z-index:1000;background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,.08);}
     .header-inner{max-width:1300px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;gap:20px;}
     .logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
-    /* New logo text style */
-    .logo-text-only{font-size:1.15rem;font-weight:800;color:var(--dark);line-height:1.2;}
-    .logo-text-only span{font-size:.65rem;font-weight:500;color:var(--primary);text-transform:uppercase;letter-spacing:1px;display:block;margin-top:2px;}
-    /* Removed .logo-icon and .logo-text */
+    .logo-icon{width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0;box-shadow:0 3px 10px rgba(74,222,128,.3);}
+    .logo-icon img{width:100%;height:100%;object-fit:contain;background:#fff;}
+    .logo-text{line-height:1.15;}
+    .logo-text .brand-name{font-size:1.15rem;font-weight:800;color:var(--dark);}
+    .logo-text .brand-sub{font-size:.65rem;font-weight:500;color:var(--primary);text-transform:uppercase;letter-spacing:1px;}
     .header-actions{display:flex;align-items:center;gap:16px;}
     .hdr-btn{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;background:transparent;border:none;font-family:inherit;color:var(--dark);font-size:.7rem;font-weight:600;transition:color .2s;text-decoration:none;position:relative;}
     .hdr-btn svg{width:26px;height:26px;stroke:var(--dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s;}
@@ -210,9 +211,8 @@
     .nl-note{font-size:.72rem;color:rgba(255,255,255,.5);}
     footer{background:var(--dark);padding:56px 24px 0;}
     .footer-inner{max-width:1300px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08);}
-    .footer-logo-icon{width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0;background:#fff;display:flex;align-items:center;justify-content:center;padding:0 8px;}
-    .footer-logo-text{font-size:.9rem;font-weight:800;color:var(--dark);text-align:center;line-height:1.2;}
-    .footer-logo-text span{font-size:.65rem;font-weight:500;color:var(--primary);text-transform:uppercase;letter-spacing:1px;display:block;margin-top:2px;}
+    .footer-logo-icon{width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0;background:#fff;}
+    .footer-logo-icon img{width:100%;height:100%;object-fit:contain;}
     .footer-about{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:20px;margin-top:16px;}
     .footer-social{display:flex;gap:10px;}
     .social-btn{width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;transition:transform .25s ease;}
@@ -258,10 +258,15 @@
 <header>
   <div class="header-inner">
     <a href="#" class="logo-wrap">
-      <!-- Replaced image with text -->
-      <div class="logo-text-only">
-        Shrikant Paper Products - your stationery destination
-        <span>Est. 2008 | Authorised Dealer</span>
+      <div class="logo-icon">
+        <!-- Updated Shrikant Paper Products logo -->
+        <img src="https://rutunjay651.github.io/resources/logo/spp.jpg"
+             onerror="this.onerror=null;this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';"
+             alt="Shrikant Paper Products"/>
+      </div>
+      <div class="logo-text">
+        <div class="brand-name">Shrikant Paper Products</div>
+        <div class="brand-sub">Your Stationery Destination</div>
       </div>
     </a>
     <div class="header-actions">
@@ -486,10 +491,12 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <a href="#" class="logo-wrap">
-        <!-- Replaced image with text -->
-        <div class="footer-logo-text">
-          Shrikant Paper Products - your stationery destination
-          <span>Est. 2008 | Authorised Dealer</span>
+        <div class="footer-logo-icon">
+          <img src="https://rutunjay651.github.io/resources/logo/spp.jpg" onerror="this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';" alt=""/>
+        </div>
+        <div class="logo-text" style="margin-left:12px;">
+          <div class="brand-name" style="color:#fff;">Shrikant Paper Products</div>
+          <div class="brand-sub">Your Stationery Destination</div>
         </div>
       </a>
       <div class="footer-about">Authorized dealer of DOMS and Youva stationery brands. Serving students, teachers, and artists in Jalna, Maharashtra since 2008.</div>
