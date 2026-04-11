@@ -1,320 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Shrikant Paper Products</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --primary:#22c55e;
-  --secondary:#16a34a;
-  --dark:#1a1a2e;
-  --light:#f9f9f9;
-  --white:#ffffff;
-  --gray:#6c757d;
-  --light-gray:#f3f4f6;
-  --border:#e2e8f0;
-  --shadow:0 4px 24px rgba(0,0,0,.10);
-  --radius:12px;
-}
-html{scroll-behavior:smooth}
-body{font-family:'Poppins',sans-serif;background:var(--light);color:var(--dark);overflow-x:hidden}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shrikant Paper Products</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #4ade80;
+      --secondary: #4ade80;
+      --dark: #1a1a2e;
+      --light: #f9f9f9;
+      --white: #ffffff;
+      --gray: #6c757d;
+      --light-gray: #f3f4f6;
+      --border: #e2e8f0;
+      --shadow: 0 4px 24px rgba(0,0,0,.10);
+      --radius: 12px;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'Poppins',sans-serif;background:var(--light);color:var(--dark);overflow-x:hidden;}
 
-/* ANNOUNCE */
-.announcement-bar{background:var(--primary);color:#fff;text-align:center;font-size:.78rem;font-weight:500;padding:8px 16px;letter-spacing:.4px}
-.announcement-bar span{margin:0 16px}
-.announcement-bar i{margin-right:6px}
+    /* ANNOUNCEMENT BAR REMOVED */
 
-/* HEADER */
-header{position:sticky;top:0;z-index:1000;background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,.08)}
-.header-inner{max-width:1300px;margin:auto;display:flex;align-items:center;padding:14px 24px;gap:20px}
-.logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
-.logo-icon{width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0;box-shadow:0 3px 10px rgba(34,197,94,.25)}
-.logo-icon img{width:100%;height:100%;object-fit:contain;background:#fff}
-.logo-text{line-height:1.15}
-.logo-text .brand-name{font-size:1.15rem;font-weight:800;color:var(--dark)}
-.logo-text .brand-sub{font-size:.65rem;font-weight:500;color:var(--primary);text-transform:uppercase;letter-spacing:1px}
+    header{position:sticky;top:0;z-index:1000;background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,.08);}
+    .header-inner{max-width:1300px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;gap:20px;}
+    .logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .logo-icon{width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0;box-shadow:0 3px 10px rgba(74,222,128,.3);}
+    .logo-icon img{width:100%;height:100%;object-fit:contain;background:#fff;}
+    .logo-text{line-height:1.15;}
+    .logo-text .brand-name{font-size:1.15rem;font-weight:800;color:var(--dark);}
+    .logo-text .brand-sub{font-size:.65rem;font-weight:500;color:var(--primary);text-transform:uppercase;letter-spacing:1px;}
+    .header-actions{display:flex;align-items:center;gap:16px;}
+    .hdr-btn{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;background:transparent;border:none;font-family:inherit;color:var(--dark);font-size:.7rem;font-weight:600;transition:color .2s;text-decoration:none;position:relative;}
+    .hdr-btn svg{width:26px;height:26px;stroke:var(--dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s;}
+    .hdr-btn:hover svg{stroke:var(--primary);}
+    .hdr-btn:hover{color:var(--primary);}
+    .cart-wrap{position:relative;}
+    .cart-badge{position:absolute;top:-8px;right:-10px;background:#e63329;color:#fff;border-radius:50%;width:20px;height:20px;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;pointer-events:none;border:2px solid #fff;}
+    /* Professional cart icon (🛒 style) */
+    .cart-icon-svg{width:26px;height:26px;stroke:var(--dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+    .search-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:2000;display:none;align-items:flex-start;justify-content:center;padding-top:80px;backdrop-filter:blur(4px);}
+    .search-overlay.active{display:flex;animation:fadeIn 0.2s ease;}
+    .search-popup{width:90%;max-width:500px;background:var(--white);border-radius:50px;box-shadow:0 8px 32px rgba(0,0,0,0.2);display:flex;flex-direction:column;overflow:hidden;animation:slideDown 0.25s ease;}
+    .search-popup-header{display:flex;align-items:center;border-bottom:1px solid var(--border);}
+    .search-popup-input{flex:1;padding:14px 20px;border:none;font-family:inherit;font-size:1rem;outline:none;}
+    .search-popup-close{padding:0 16px;cursor:pointer;font-size:1.4rem;color:var(--gray);transition:color 0.2s;}
+    .search-popup-close:hover{color:var(--primary);}
+    #searchPopupDropdown{max-height:400px;overflow-y:auto;}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    @keyframes slideDown{from{transform:translateY(-30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+    .search-result-item{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .18s;}
+    .search-result-item:last-child{border-bottom:none;}
+    .search-result-item:hover{background:var(--light-gray);}
+    .sri-img{width:52px;height:52px;border-radius:8px;object-fit:contain;background:var(--light-gray);flex-shrink:0;padding:4px;border:1px solid var(--border);}
+    .sri-info{flex:1;min-width:0;}
+    .sri-name{font-size:.84rem;font-weight:600;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;}
+    .sri-meta{display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--gray);flex-wrap:wrap;}
+    .sri-brand-logo{height:18px;width:auto;object-fit:contain;}
+    .sri-code{font-size:.68rem;color:var(--gray);font-family:monospace;background:var(--light-gray);padding:1px 6px;border-radius:4px;}
+    .sri-price{font-weight:700;color:var(--dark);font-size:.82rem;}
+    .sri-mrp{text-decoration:line-through;color:var(--gray);font-size:.72rem;}
+    .sri-off{color:#10b981;font-weight:600;font-size:.72rem;}
+    .search-no-results{padding:28px 20px;text-align:center;color:var(--gray);font-size:.88rem;}
+    .search-no-results i{font-size:2rem;color:var(--border);display:block;margin-bottom:10px;}
+    .search-results-header{padding:10px 16px 6px;font-size:.72rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--white);z-index:1;}
+    .search-results-header span{color:var(--primary);}
+    .search-view-all{display:block;text-align:center;padding:10px;font-size:.8rem;font-weight:700;color:var(--primary);cursor:pointer;border-top:1px solid var(--border);}
+    .search-view-all:hover{background:var(--light-gray);}
+    nav{background:var(--dark);border-top:3px solid var(--primary);}
+    .nav-inner{max-width:1300px;margin:auto;display:flex;align-items:center;padding:0 24px;gap:4px;overflow-x:auto;}
+    .nav-inner::-webkit-scrollbar{height:0;}
+    .nav-link{white-space:nowrap;color:rgba(255,255,255,.85);text-decoration:none;font-size:.82rem;font-weight:500;padding:13px 18px;border-bottom:3px solid transparent;transition:color .2s,border-color .2s;}
+    .nav-link:hover,.nav-link.active{color:#fff;border-color:var(--primary);}
+    .nav-link i{margin-right:5px;font-size:.8rem;}
+    .hero{position:relative;overflow:hidden;}
+    .slides{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1);}
+    .slide{min-width:100%;height:500px;position:relative;overflow:hidden;}
+    .slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease;}
+    .slide:hover .slide-bg{transform:scale(1.03);}
+    .slide-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.70) 0%,rgba(0,0,0,.25) 60%,transparent 100%);}
+    .slide-content{position:absolute;inset:0;z-index:3;display:flex;align-items:center;max-width:1300px;margin:0 auto;padding:0 70px;left:0;right:0;}
+    .slide-text{max-width:540px;}
+    .slide-badge{display:inline-block;background:var(--primary);color:#fff;font-size:.7rem;font-weight:700;padding:5px 16px;border-radius:50px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1.5px;}
+    .slide-title{font-size:2.6rem;font-weight:800;color:#fff;line-height:1.2;margin-bottom:14px;}
+    .slide-title .orange-hero{color:#f7941d;}
+    .slide-title .darkblue-hero{color:#0f3460;}
+    .slide-desc{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:28px;line-height:1.7;}
+    .slide-btns{display:flex;gap:14px;flex-wrap:wrap;}
+    .btn-hero-primary{background:var(--primary);color:#fff;padding:13px 32px;border-radius:50px;font-family:inherit;font-size:.88rem;font-weight:700;border:2px solid var(--primary);cursor:pointer;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+    .btn-hero-primary:hover{background:#3b9b5f;border-color:#3b9b5f;transform:translateY(-2px);}
+    .btn-hero-outline{background:transparent;color:#fff;padding:13px 32px;border-radius:50px;font-family:inherit;font-size:.88rem;font-weight:700;border:2px solid rgba(255,255,255,.7);cursor:pointer;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+    .btn-hero-outline:hover{background:rgba(255,255,255,.15);transform:translateY(-2px);}
+    .slide-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.3);color:#fff;width:50px;height:50px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .25s;}
+    .slide-arrow:hover{background:var(--primary);border-color:var(--primary);}
+    .slide-arrow.prev{left:20px;}
+    .slide-arrow.next{right:20px;}
+    .slide-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10;}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer;transition:all .3s;}
+    .dot.active{background:#fff;width:26px;border-radius:4px;}
+    .typewriter-line{display:block;overflow:hidden;white-space:nowrap;width:0;animation:typing 1s steps(30,end) forwards;}
+    .typewriter-line:nth-child(1){animation-delay:0.2s;}
+    .typewriter-line:nth-child(2){animation-delay:1.3s;}
+    .typewriter-line:nth-child(3){animation-delay:2.4s;}
+    @keyframes typing{from{width:0;}to{width:100%;}}
+    .trust-bar{background:var(--white);border-top:3px solid var(--primary);border-bottom:1px solid var(--border);}
+    .trust-inner{max-width:1300px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);padding:0 24px;}
+    .trust-item{display:flex;align-items:center;gap:14px;padding:20px 16px;border-right:1px solid var(--border);}
+    .trust-item:last-child{border-right:none;}
+    .trust-icon{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#fff8f0,#fde8c8);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--primary);flex-shrink:0;}
+    .trust-text .t-title{font-size:.88rem;font-weight:700;color:var(--dark);}
+    .trust-text .t-sub{font-size:.72rem;color:var(--gray);margin-top:1px;}
+    .section{padding:56px 24px;max-width:1300px;margin:auto;}
+    .sec-header{text-align:center;margin-bottom:40px;}
+    .sec-badge{display:inline-block;background:linear-gradient(135deg,#fff8f0,#fde8c8);color:var(--primary);font-size:.72rem;font-weight:700;padding:5px 16px;border-radius:50px;margin-bottom:10px;text-transform:uppercase;letter-spacing:1.5px;}
+    .sec-title{font-size:2rem;font-weight:800;color:var(--dark);margin-bottom:10px;}
+    .sec-title span{color:var(--secondary);}
+    .sec-line{width:60px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--primary),var(--secondary));margin:0 auto 14px;}
+    .sec-sub{font-size:.9rem;color:var(--gray);max-width:540px;margin:auto;}
+    .brand-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+    .brand-card{border-radius:20px;overflow:hidden;position:relative;cursor:pointer;box-shadow:var(--shadow);transition:transform .3s;}
+    .brand-card:hover{transform:translateY(-6px);}
+    .brand-card-bg{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+    .brand-card-bg img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+    .brand-card:hover .brand-card-bg img{transform:scale(1.06);}
+    .brand-card-info{padding:22px;background:var(--white);}
+    .brand-card-info .bc-name{font-size:1.5rem;font-weight:800;color:var(--dark);margin-bottom:6px;}
+    .brand-card-info .bc-desc{font-size:.83rem;color:var(--gray);line-height:1.6;margin-bottom:16px;}
+    .brand-card-info .bc-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+    .bc-tag{background:var(--light-gray);color:var(--dark);font-size:.7rem;font-weight:600;padding:4px 12px;border-radius:50px;}
+    .btn-brand{display:inline-flex;align-items:center;gap:8px;color:var(--secondary);font-weight:700;font-size:.85rem;text-decoration:none;border:2px solid var(--secondary);padding:9px 22px;border-radius:50px;transition:all .25s;}
+    .btn-brand:hover{background:var(--secondary);color:#fff;}
+    .category-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+    .cat-card{background:var(--white);border-radius:var(--radius);padding:18px 10px;text-align:center;cursor:pointer;border:2px solid transparent;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:all .25s;overflow:hidden;}
+    .cat-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:0 8px 24px rgba(74,222,128,.15);}
+    .cat-icon{width:68px;height:68px;border-radius:50%;margin:0 auto 12px;overflow:hidden;background:var(--light-gray);display:flex;align-items:center;justify-content:center;}
+    .cat-icon img{width:100%;height:100%;object-fit:cover;}
+    .cat-name{font-size:.78rem;font-weight:700;color:var(--dark);margin-bottom:3px;}
+    .cat-count{font-size:.68rem;color:var(--gray);}
+    .filter-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;gap:12px;flex-wrap:wrap;}
+    .filter-tabs{display:flex;gap:8px;flex-wrap:wrap;}
+    .filter-tab{padding:8px 20px;border-radius:50px;font-size:.8rem;font-weight:600;cursor:pointer;border:2px solid var(--border);background:var(--white);color:var(--gray);transition:all .2s;font-family:inherit;}
+    .filter-tab.active,.filter-tab:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
+    .sort-select{padding:8px 16px;border-radius:8px;border:2px solid var(--border);font-family:inherit;font-size:.8rem;color:var(--dark);background:var(--white);outline:none;cursor:pointer;}
+    .sort-select:focus{border-color:var(--primary);}
+    .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+    .product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07);border:1px solid var(--border);transition:transform .3s,box-shadow .3s;position:relative;}
+    .product-card:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(0,0,0,.13);}
+    .prod-badge{position:absolute;top:12px;left:12px;z-index:5;font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;}
+    .badge-new{background:#10b981;color:#fff;}
+    .badge-sale{background:var(--secondary);color:#fff;}
+    .badge-hot{background:var(--primary);color:#fff;}
+    .badge-top{background:#7c3aed;color:#fff;}
+    .badge-stellar{background:#0f3460;color:#fff;}
+    .badge-hq{background:#1a1a2e;color:#fff;}
+    .prod-brand-tag{position:absolute;top:12px;right:12px;z-index:5;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);border-radius:8px;padding:4px 8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+    .prod-brand-tag img{height:20px;width:auto;object-fit:contain;}
+    .prod-img{height:210px;position:relative;overflow:hidden;background:var(--light-gray);display:flex;align-items:center;justify-content:center;}
+    .prod-img img{width:100%;height:100%;object-fit:contain;padding:12px;transition:transform .4s;}
+    .product-card:hover .prod-img img{transform:scale(1.07);}
+    .prod-wishlist{position:absolute;bottom:12px;right:12px;z-index:5;width:34px;height:34px;border-radius:50%;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;color:var(--gray);transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+    .prod-wishlist:hover{color:var(--secondary);border-color:var(--secondary);}
+    .prod-wishlist.active{color:var(--secondary);}
+    .prod-body{padding:16px;}
+    .prod-category{font-size:.68rem;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;}
+    .prod-code{font-size:.62rem;color:var(--gray);font-family:monospace;margin-bottom:6px;}
+    .prod-name{font-size:.86rem;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.4;}
+    .prod-rating{display:flex;align-items:center;gap:5px;margin-bottom:10px;}
+    .stars{color:#f59e0b;font-size:.78rem;}
+    .rating-count{font-size:.7rem;color:var(--gray);}
+    .prod-price-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+    .prod-price{font-size:1.05rem;font-weight:800;color:var(--dark);}
+    .prod-mrp{font-size:.78rem;color:var(--gray);text-decoration:line-through;}
+    .prod-off{font-size:.72rem;font-weight:700;color:#10b981;}
+    .prod-price-na{font-size:.82rem;color:var(--gray);font-style:italic;}
+    .btn-view{width:100%;padding:10px;border-radius:8px;background:linear-gradient(135deg,var(--primary),#3b9b5f);color:#fff;border:none;font-family:inherit;font-size:.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .25s;}
+    .btn-view:hover{transform:scale(1.02);box-shadow:0 6px 18px rgba(74,222,128,.35);}
+    .view-all-wrap{text-align:center;margin-top:32px;}
+    .btn-view-all{display:inline-flex;align-items:center;gap:8px;padding:0;background:transparent;border:none;color:var(--primary);font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;transition:opacity .2s;}
+    .btn-view-all:hover{opacity:0.7;}
+    .btn-view-all i{font-size:1rem;}
+    #searchResultsSection{display:none;padding:40px 24px;max-width:1300px;margin:auto;}
+    .search-results-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+    .search-results-title{font-size:1.1rem;font-weight:700;color:var(--dark);}
+    .search-results-title span{color:var(--primary);}
+    .btn-clear-search{padding:8px 18px;border-radius:50px;border:2px solid var(--border);background:var(--white);color:var(--gray);font-family:inherit;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;}
+    .btn-clear-search:hover{border-color:var(--primary);color:var(--primary);}
+    .promo-wrap{padding:0 24px 56px;max-width:1300px;margin:auto;}
+    .promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .promo-card{border-radius:18px;overflow:hidden;position:relative;height:200px;}
+    .promo-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+    .promo-card:hover img{transform:scale(1.05);}
+    .promo-card-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.2) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:22px;}
+    .promo-card-label{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;}
+    .promo-card-title{font-size:1.15rem;font-weight:800;color:#fff;line-height:1.25;margin-bottom:10px;}
+    .promo-card-btn{display:inline-flex;align-items:center;gap:6px;background:var(--primary);color:#fff;padding:7px 18px;border-radius:50px;font-size:.75rem;font-weight:700;text-decoration:none;width:fit-content;transition:background .25s;}
+    .promo-card-btn:hover{background:#3b9b5f;}
+    .newsletter{background:linear-gradient(135deg,var(--dark) 0%,#0f3460 100%);padding:64px 24px;text-align:center;}
+    .newsletter-inner{max-width:580px;margin:auto;}
+    .newsletter h2{font-size:2rem;font-weight:800;color:#fff;margin-bottom:10px;}
+    .newsletter p{color:rgba(255,255,255,.7);font-size:.9rem;margin-bottom:30px;line-height:1.6;}
+    .nl-form{display:flex;gap:10px;max-width:480px;margin:0 auto 16px;}
+    .nl-form input{flex:1;padding:14px 20px;border-radius:50px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-family:inherit;font-size:.88rem;outline:none;}
+    .nl-form input::placeholder{color:rgba(255,255,255,.5);}
+    .nl-form input:focus{border-color:var(--secondary);}
+    .nl-form button{padding:14px 28px;border-radius:50px;background:var(--secondary);color:#fff;border:none;font-family:inherit;font-size:.88rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .25s;}
+    .nl-form button:hover{background:#3b9b5f;}
+    .nl-note{font-size:.72rem;color:rgba(255,255,255,.5);}
+    footer{background:var(--dark);padding:56px 24px 0;}
+    .footer-inner{max-width:1300px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08);}
+    .footer-logo-icon{width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0;background:#fff;}
+    .footer-logo-icon img{width:100%;height:100%;object-fit:contain;}
+    .footer-about{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:20px;margin-top:16px;}
+    .footer-social{display:flex;gap:10px;}
+    .social-btn{width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;transition:transform .25s ease;}
+    .social-btn svg{width:18px;height:18px;fill:rgba(255,255,255,.75);}
+    .social-btn:hover{transform:scale(1.25);}
+    .footer-col h4{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:18px;position:relative;padding-bottom:12px;}
+    .footer-col h4::after{content:'';position:absolute;bottom:0;left:0;width:28px;height:3px;border-radius:2px;background:var(--primary);}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+    .footer-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.8rem;display:flex;align-items:center;gap:7px;transition:color .2s;}
+    .footer-links a i{font-size:.65rem;color:var(--primary);}
+    .footer-links a:hover{color:#fff;}
+    .footer-contact{display:flex;flex-direction:column;gap:14px;}
+    .contact-item{display:flex;align-items:flex-start;gap:12px;}
+    .contact-item .ci-icon{width:34px;height:34px;border-radius:8px;background:rgba(74,222,128,.2);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;}
+    .contact-item .ci-text .ci-label{font-size:.68rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;}
+    .contact-item .ci-text .ci-val{font-size:.8rem;color:rgba(255,255,255,.8);margin-top:2px;}
+    .footer-bottom{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:20px 0;flex-wrap:wrap;gap:12px;}
+    .footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.35);}
+    .footer-bottom .pay-icons{display:flex;gap:8px;}
+    .pay-icon{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);padding:4px 10px;border-radius:6px;font-size:.7rem;font-weight:600;}
 
-/* SEARCH — icon toggles bar */
-.search-wrap{flex:1;display:flex;align-items:center;justify-content:flex-end;position:relative}
-.search-icon-btn{background:none;border:none;cursor:pointer;padding:6px;line-height:0;color:var(--dark);transition:color .2s;flex-shrink:0}
-.search-icon-btn:hover{color:var(--primary)}
-.search-icon-btn svg{width:26px;height:26px}
-.search-bar-popup{display:none;position:absolute;top:calc(100% + 14px);right:0;width:min(500px,90vw);background:var(--white);border:2px solid var(--primary);border-radius:50px;overflow:visible;box-shadow:0 8px 28px rgba(0,0,0,.12);z-index:500}
-.search-bar-popup.open{display:flex}
-.search-bar-popup input{flex:1;border:none;background:transparent;padding:11px 18px;font-family:inherit;font-size:.9rem;outline:none;color:var(--dark);border-radius:50px 0 0 50px}
-.search-bar-popup button{background:var(--primary);border:none;cursor:pointer;color:#fff;padding:0 20px;border-radius:0 50px 50px 0;flex-shrink:0;transition:background .2s}
-.search-bar-popup button:hover{background:var(--secondary)}
-.search-bar-popup button svg{width:18px;height:18px;display:block}
+    /* FLOATING CART REMOVED - no more floating cart */
 
-/* SEARCH DROPDOWN */
-#searchDropdown{display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--white);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.18);z-index:9999;max-height:440px;overflow-y:auto;border:1px solid var(--border)}
-#searchDropdown.active{display:block}
-.search-result-item{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .18s}
-.search-result-item:last-child{border-bottom:none}
-.search-result-item:hover{background:var(--light-gray)}
-.sri-img{width:52px;height:52px;border-radius:8px;object-fit:contain;background:var(--light-gray);flex-shrink:0;padding:4px;border:1px solid var(--border)}
-.sri-info{flex:1;min-width:0}
-.sri-name{font-size:.84rem;font-weight:600;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px}
-.sri-meta{display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--gray);flex-wrap:wrap}
-.sri-brand-logo{height:18px;width:auto;object-fit:contain}
-.sri-code{font-size:.68rem;color:var(--gray);font-family:monospace;background:var(--light-gray);padding:1px 6px;border-radius:4px}
-.sri-price{font-weight:700;color:var(--dark);font-size:.82rem}
-.sri-off{color:#10b981;font-weight:600;font-size:.72rem}
-.search-no-results{padding:28px 20px;text-align:center;color:var(--gray);font-size:.88rem}
-.search-no-results i{font-size:2rem;color:var(--border);display:block;margin-bottom:10px}
-.search-results-header{padding:10px 16px 6px;font-size:.72rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--white);z-index:1}
-.search-results-header span{color:var(--primary)}
-.search-view-all{display:block;text-align:center;padding:10px;font-size:.8rem;font-weight:700;color:var(--primary);cursor:pointer;border-top:1px solid var(--border)}
-.search-view-all:hover{background:var(--light-gray)}
-
-/* HEADER ACTIONS */
-.header-actions{display:flex;align-items:center;gap:16px;flex-shrink:0}
-.hdr-btn{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;background:transparent;border:none;font-family:inherit;color:var(--dark);font-size:.7rem;font-weight:600;transition:color .2s;text-decoration:none;position:relative}
-.hdr-btn svg{width:26px;height:26px;stroke:var(--dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
-.hdr-btn:hover svg{stroke:var(--primary)}
-.hdr-btn:hover{color:var(--primary)}
-.hdr-btn .btn-label{font-size:.68rem;font-weight:600}
-.cart-wrap{position:relative}
-.cart-badge{position:absolute;top:-8px;right:-10px;background:#e63329;color:#fff;border-radius:50%;width:20px;height:20px;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;pointer-events:none;border:2px solid #fff}
-
-/* NAV */
-nav{background:var(--dark);border-top:3px solid var(--primary)}
-.nav-inner{max-width:1300px;margin:auto;display:flex;align-items:center;padding:0 24px;gap:4px;overflow-x:auto}
-.nav-inner::-webkit-scrollbar{height:0}
-.nav-link{white-space:nowrap;color:rgba(255,255,255,.85);text-decoration:none;font-size:.82rem;font-weight:500;padding:13px 18px;border-bottom:3px solid transparent;transition:color .2s,border-color .2s}
-.nav-link:hover,.nav-link.active{color:var(--primary);border-color:var(--primary)}
-.nav-link i{margin-right:5px;font-size:.8rem}
-
-/* HERO */
-.hero{position:relative;overflow:hidden}
-.slides{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1)}
-.slide{min-width:100%;height:500px;position:relative;overflow:hidden}
-.slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease}
-.slide:hover .slide-bg{transform:scale(1.03)}
-.slide-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.70) 0%,rgba(0,0,0,.25) 60%,transparent 100%)}
-.slide-content{position:absolute;inset:0;z-index:3;display:flex;align-items:center;max-width:1300px;margin:0 auto;padding:0 70px;left:0;right:0}
-.slide-text{max-width:540px}
-.slide-badge{display:inline-block;background:var(--primary);color:#fff;font-size:.7rem;font-weight:700;padding:5px 16px;border-radius:50px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1.5px}
-.slide-title{font-size:2.6rem;font-weight:800;color:#fff;line-height:1.2;margin-bottom:14px}
-.slide-title .green{color:var(--primary)}
-.slide-desc{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:28px;line-height:1.7}
-.slide-btns{display:flex;gap:14px;flex-wrap:wrap}
-.btn-hero-primary{background:var(--primary);color:#fff;padding:13px 32px;border-radius:50px;font-family:inherit;font-size:.88rem;font-weight:700;border:2px solid var(--primary);cursor:pointer;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.btn-hero-primary:hover{background:var(--secondary);border-color:var(--secondary);transform:translateY(-2px)}
-.btn-hero-outline{background:transparent;color:#fff;padding:13px 32px;border-radius:50px;font-family:inherit;font-size:.88rem;font-weight:700;border:2px solid rgba(255,255,255,.7);cursor:pointer;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.btn-hero-outline:hover{background:rgba(255,255,255,.15);transform:translateY(-2px)}
-.slide-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.3);color:#fff;width:50px;height:50px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .25s}
-.slide-arrow:hover{background:var(--primary);border-color:var(--primary)}
-.slide-arrow.prev{left:20px}
-.slide-arrow.next{right:20px}
-.slide-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
-.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer;transition:all .3s}
-.dot.active{background:#fff;width:26px;border-radius:4px}
-
-/* TYPEWRITER */
-.typewriter-line{display:block;overflow:hidden;white-space:nowrap;width:0;animation:typing 1s steps(30,end) forwards}
-.typewriter-line:nth-child(1){animation-delay:.2s}
-.typewriter-line:nth-child(2){animation-delay:1.3s}
-.typewriter-line:nth-child(3){animation-delay:2.4s}
-@keyframes typing{from{width:0}to{width:100%}}
-
-/* TRUST BAR */
-.trust-bar{background:var(--white);border-top:3px solid var(--primary);border-bottom:1px solid var(--border)}
-.trust-inner{max-width:1300px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);padding:0 24px}
-.trust-item{display:flex;align-items:center;gap:14px;padding:20px 16px;border-right:1px solid var(--border)}
-.trust-item:last-child{border-right:none}
-.trust-icon{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#f0fdf4,#dcfce7);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--primary);flex-shrink:0}
-.trust-text .t-title{font-size:.88rem;font-weight:700;color:var(--dark)}
-.trust-text .t-sub{font-size:.72rem;color:var(--gray);margin-top:1px}
-
-/* SECTIONS */
-.section{padding:56px 24px;max-width:1300px;margin:auto}
-.sec-header{text-align:center;margin-bottom:40px}
-.sec-badge{display:inline-block;background:linear-gradient(135deg,#f0fdf4,#dcfce7);color:var(--primary);font-size:.72rem;font-weight:700;padding:5px 16px;border-radius:50px;margin-bottom:10px;text-transform:uppercase;letter-spacing:1.5px}
-.sec-title{font-size:2rem;font-weight:800;color:var(--dark);margin-bottom:10px}
-.sec-title span{color:var(--primary)}
-.sec-line{width:60px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--primary),var(--secondary));margin:0 auto 14px}
-.sec-sub{font-size:.9rem;color:var(--gray);max-width:540px;margin:auto}
-
-/* BRAND CARDS */
-.brand-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.brand-card{border-radius:20px;overflow:hidden;cursor:pointer;box-shadow:var(--shadow);transition:transform .3s}
-.brand-card:hover{transform:translateY(-6px)}
-.brand-card-bg{height:220px;overflow:hidden}
-.brand-card-bg img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.brand-card:hover .brand-card-bg img{transform:scale(1.06)}
-.brand-card-info{padding:22px;background:var(--white)}
-.bc-name{font-size:1.5rem;font-weight:800;color:var(--dark);margin-bottom:6px}
-.bc-desc{font-size:.83rem;color:var(--gray);line-height:1.6;margin-bottom:16px}
-.bc-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.bc-tag{background:var(--light-gray);color:var(--dark);font-size:.7rem;font-weight:600;padding:4px 12px;border-radius:50px}
-.btn-brand{display:inline-flex;align-items:center;gap:8px;color:var(--primary);font-weight:700;font-size:.85rem;text-decoration:none;border:2px solid var(--primary);padding:9px 22px;border-radius:50px;transition:all .25s}
-.btn-brand:hover{background:var(--primary);color:#fff}
-
-/* CATEGORIES */
-.category-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-.cat-card{background:var(--white);border-radius:var(--radius);padding:18px 10px;text-align:center;cursor:pointer;border:2px solid transparent;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:all .25s}
-.cat-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:0 8px 24px rgba(34,197,94,.15)}
-.cat-icon{width:68px;height:68px;border-radius:50%;margin:0 auto 12px;overflow:hidden;background:var(--light-gray);display:flex;align-items:center;justify-content:center}
-.cat-icon img{width:100%;height:100%;object-fit:cover}
-.cat-name{font-size:.78rem;font-weight:700;color:var(--dark);margin-bottom:3px}
-.cat-count{font-size:.68rem;color:var(--gray)}
-
-/* FILTER BAR */
-.filter-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;gap:12px;flex-wrap:wrap}
-.filter-tabs{display:flex;gap:8px;flex-wrap:wrap}
-.filter-tab{padding:8px 20px;border-radius:50px;font-size:.8rem;font-weight:600;cursor:pointer;border:2px solid var(--border);background:var(--white);color:var(--gray);transition:all .2s;font-family:inherit}
-.filter-tab.active,.filter-tab:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
-.sort-select{padding:8px 16px;border-radius:8px;border:2px solid var(--border);font-family:inherit;font-size:.8rem;color:var(--dark);background:var(--white);outline:none;cursor:pointer}
-.sort-select:focus{border-color:var(--primary)}
-
-/* PRODUCT GRID */
-.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07);border:1px solid var(--border);transition:transform .3s,box-shadow .3s;position:relative}
-.product-card:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(0,0,0,.13)}
-.prod-badge{position:absolute;top:12px;left:12px;z-index:5;font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:50px;text-transform:uppercase;letter-spacing:.5px}
-.badge-new{background:#10b981;color:#fff}
-.badge-sale{background:var(--primary);color:#fff}
-.badge-hot{background:var(--secondary);color:#fff}
-.badge-top{background:#7c3aed;color:#fff}
-.badge-stellar{background:#0f3460;color:#fff}
-.badge-hq{background:#1a1a2e;color:#fff}
-.prod-brand-tag{position:absolute;top:12px;right:12px;z-index:5;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);border-radius:8px;padding:4px 8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
-.prod-brand-tag img{height:20px;width:auto;object-fit:contain}
-.prod-img{height:210px;position:relative;overflow:hidden;background:var(--light-gray);display:flex;align-items:center;justify-content:center}
-.prod-img img{width:100%;height:100%;object-fit:contain;padding:12px;transition:transform .4s}
-.product-card:hover .prod-img img{transform:scale(1.07)}
-.prod-wishlist{position:absolute;bottom:12px;right:12px;z-index:5;width:34px;height:34px;border-radius:50%;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;color:var(--gray);transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.1)}
-.prod-wishlist:hover{color:var(--primary);border-color:var(--primary)}
-.prod-wishlist.active{color:var(--primary)}
-.prod-body{padding:16px}
-.prod-category{font-size:.68rem;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
-.prod-code{font-size:.62rem;color:var(--gray);font-family:monospace;margin-bottom:6px}
-.prod-name{font-size:.86rem;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.4}
-.prod-rating{display:flex;align-items:center;gap:5px;margin-bottom:10px}
-.stars{color:#f59e0b;font-size:.78rem}
-.rating-count{font-size:.7rem;color:var(--gray)}
-.prod-price-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
-.prod-price{font-size:1.05rem;font-weight:800;color:var(--dark)}
-.prod-mrp{font-size:.78rem;color:var(--gray);text-decoration:line-through}
-.prod-off{font-size:.72rem;font-weight:700;color:#10b981}
-.prod-price-na{font-size:.82rem;color:var(--gray);font-style:italic}
-.btn-view{width:100%;padding:10px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border:none;font-family:inherit;font-size:.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .25s}
-.btn-view:hover{transform:scale(1.02);box-shadow:0 6px 18px rgba(34,197,94,.35)}
-.view-all-wrap{text-align:center;margin-top:32px}
-.btn-view-all{display:inline-flex;align-items:center;gap:10px;padding:13px 36px;border-radius:50px;background:var(--white);border:2px solid var(--primary);color:var(--primary);font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .25s}
-.btn-view-all:hover{background:var(--primary);color:#fff}
-
-/* SEARCH RESULTS */
-#searchResultsSection{display:none;padding:40px 24px;max-width:1300px;margin:auto}
-.search-results-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
-.search-results-title{font-size:1.1rem;font-weight:700;color:var(--dark)}
-.search-results-title span{color:var(--primary)}
-.btn-clear-search{padding:8px 18px;border-radius:50px;border:2px solid var(--border);background:var(--white);color:var(--gray);font-family:inherit;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s}
-.btn-clear-search:hover{border-color:var(--primary);color:var(--primary)}
-
-/* PROMO */
-.promo-wrap{padding:0 24px 56px;max-width:1300px;margin:auto}
-.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.promo-card{border-radius:18px;overflow:hidden;position:relative;height:200px}
-.promo-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.promo-card:hover img{transform:scale(1.05)}
-.promo-card-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.2) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:22px}
-.promo-card-label{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
-.promo-card-title{font-size:1.15rem;font-weight:800;color:#fff;line-height:1.25;margin-bottom:10px}
-.promo-card-btn{display:inline-flex;align-items:center;gap:6px;background:var(--primary);color:#fff;padding:7px 18px;border-radius:50px;font-size:.75rem;font-weight:700;text-decoration:none;width:fit-content;transition:background .25s}
-.promo-card-btn:hover{background:var(--secondary)}
-
-/* NEWSLETTER */
-.newsletter{background:linear-gradient(135deg,var(--dark) 0%,#0f3460 100%);padding:64px 24px;text-align:center}
-.newsletter-inner{max-width:580px;margin:auto}
-.newsletter h2{font-size:2rem;font-weight:800;color:#fff;margin-bottom:10px}
-.newsletter p{color:rgba(255,255,255,.7);font-size:.9rem;margin-bottom:30px;line-height:1.6}
-.nl-form{display:flex;gap:10px;max-width:480px;margin:0 auto 16px}
-.nl-form input{flex:1;padding:14px 20px;border-radius:50px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-family:inherit;font-size:.88rem;outline:none}
-.nl-form input::placeholder{color:rgba(255,255,255,.5)}
-.nl-form input:focus{border-color:var(--primary)}
-.nl-form button{padding:14px 28px;border-radius:50px;background:var(--primary);color:#fff;border:none;font-family:inherit;font-size:.88rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .25s}
-.nl-form button:hover{background:var(--secondary)}
-.nl-note{font-size:.72rem;color:rgba(255,255,255,.5)}
-
-/* FOOTER */
-footer{background:var(--dark);padding:56px 24px 0}
-.footer-inner{max-width:1300px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08)}
-.footer-logo-icon{width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0;background:#fff}
-.footer-logo-icon img{width:100%;height:100%;object-fit:contain}
-.footer-about{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:20px;margin-top:16px}
-.footer-social{display:flex;gap:10px}
-.social-btn{width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;transition:transform .25s}
-.social-btn svg{width:18px;height:18px;fill:rgba(255,255,255,.75)}
-.social-btn:hover{transform:scale(1.25)}
-.footer-col h4{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:18px;position:relative;padding-bottom:12px}
-.footer-col h4::after{content:'';position:absolute;bottom:0;left:0;width:28px;height:3px;border-radius:2px;background:var(--primary)}
-.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
-.footer-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.8rem;display:flex;align-items:center;gap:7px;transition:color .2s}
-.footer-links a i{font-size:.65rem;color:var(--primary)}
-.footer-links a:hover{color:#fff}
-.footer-contact{display:flex;flex-direction:column;gap:14px}
-.contact-item{display:flex;align-items:flex-start;gap:12px}
-.ci-icon{width:34px;height:34px;border-radius:8px;background:rgba(34,197,94,.15);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
-.ci-label{font-size:.68rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px}
-.ci-val{font-size:.8rem;color:rgba(255,255,255,.8);margin-top:2px}
-.footer-bottom{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:20px 0;flex-wrap:wrap;gap:12px}
-.footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.35)}
-.pay-icons{display:flex;gap:8px}
-.pay-icon{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);padding:4px 10px;border-radius:6px;font-size:.7rem;font-weight:600}
-
-/* FLOATING CART */
-.floating-cart{position:fixed;bottom:28px;right:28px;z-index:999;background:var(--primary);color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;box-shadow:0 6px 24px rgba(34,197,94,.4);border:none;font-family:inherit;transition:transform .25s}
-.floating-cart:hover{transform:scale(1.1)}
-.floating-badge{position:absolute;top:-4px;right:-4px;background:#e63329;color:#fff;width:20px;height:20px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center}
-
-/* TOAST */
-.toast{position:fixed;bottom:100px;right:28px;z-index:2000;background:var(--dark);color:#fff;padding:12px 20px;border-radius:10px;font-size:.82rem;font-weight:500;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translateX(120%);transition:transform .35s;border-left:4px solid #10b981}
-.toast.show{transform:translateX(0)}
-.toast i{color:#10b981}
-
-/* BACK TO TOP — centered at bottom */
-.back-top{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:999;background:var(--white);color:var(--dark);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.15);border:2px solid var(--border);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
-.back-top.visible{opacity:1;pointer-events:all;transform:translateX(-50%)}
-.back-top:hover{color:var(--primary);border-color:var(--primary)}
-
-/* STATES */
-.loading-state{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--gray)}
-.loading-state i{font-size:2.5rem;color:var(--primary);display:block;margin-bottom:14px}
-.empty-state{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--gray)}
-.empty-state i{font-size:3rem;color:var(--border);display:block;margin-bottom:14px}
-.empty-state h3{font-size:1.2rem;font-weight:700;margin-bottom:6px;color:var(--dark)}
-
-/* RESPONSIVE */
-@media(max-width:1100px){.product-grid{grid-template-columns:repeat(3,1fr)}.category-grid{grid-template-columns:repeat(4,1fr)}.footer-inner{grid-template-columns:1fr 1fr}}
-@media(max-width:900px){.trust-inner{grid-template-columns:repeat(2,1fr)}.trust-item:nth-child(2){border-right:none}.brand-cards{grid-template-columns:1fr}.promo-grid{grid-template-columns:1fr}.slide-title{font-size:1.9rem}.category-grid{grid-template-columns:repeat(3,1fr)}.slide{height:400px}.slide-content{padding:0 50px}}
-@media(max-width:700px){.product-grid{grid-template-columns:repeat(2,1fr)}.header-inner{flex-wrap:wrap}.trust-inner{grid-template-columns:1fr}.trust-item{border-right:none;border-bottom:1px solid var(--border)}.footer-inner{grid-template-columns:1fr}.slide{height:340px}.slide-content{padding:0 36px}.slide-title{font-size:1.6rem}}
-@media(max-width:480px){.product-grid{grid-template-columns:1fr}.category-grid{grid-template-columns:repeat(2,1fr)}.nl-form{flex-direction:column}}
-</style>
+    .toast{position:fixed;bottom:100px;right:28px;z-index:2000;background:var(--dark);color:#fff;padding:12px 20px;border-radius:10px;font-size:.82rem;font-weight:500;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translateX(120%);transition:transform .35s;border-left:4px solid #e63329;}
+    .toast.show{transform:translateX(0);}
+    .toast i{color:#10b981;}
+    .back-top{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:999;background:var(--white);color:var(--dark);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.15);border:2px solid var(--border);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;}
+    .back-top.visible{opacity:1;pointer-events:all;transform:translateX(-50%);}
+    .back-top:hover{color:var(--primary);border-color:var(--primary);}
+    .loading-state{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--gray);}
+    .loading-state i{font-size:2.5rem;color:var(--primary);display:block;margin-bottom:14px;}
+    .empty-state{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--gray);}
+    .empty-state i{font-size:3rem;color:var(--border);display:block;margin-bottom:14px;}
+    .empty-state h3{font-size:1.2rem;font-weight:700;margin-bottom:6px;color:var(--dark);}
+    @media(max-width:1100px){.product-grid{grid-template-columns:repeat(3,1fr);}.category-grid{grid-template-columns:repeat(4,1fr);}.footer-inner{grid-template-columns:1fr 1fr;}}
+    @media(max-width:900px){.trust-inner{grid-template-columns:repeat(2,1fr);}.trust-item:nth-child(2){border-right:none;}.brand-cards{grid-template-columns:1fr;}.promo-grid{grid-template-columns:1fr;}.slide-title{font-size:1.9rem;}.category-grid{grid-template-columns:repeat(3,1fr);}.slide{height:400px;}.slide-content{padding:0 50px;}}
+    @media(max-width:700px){.product-grid{grid-template-columns:repeat(2,1fr);}.header-inner{flex-wrap:wrap;}.trust-inner{grid-template-columns:1fr;}.trust-item{border-right:none;border-bottom:1px solid var(--border);}.footer-inner{grid-template-columns:1fr;}.slide{height:340px;}.slide-content{padding:0 36px;}.slide-title{font-size:1.6rem;}}
+    @media(max-width:480px){.product-grid{grid-template-columns:1fr;}.category-grid{grid-template-columns:repeat(2,1fr);}.nl-form{flex-direction:column;}}
+  </style>
 </head>
 <body>
 
-<!-- ANNOUNCEMENT -->
-<div class="announcement-bar">
-  <span><i class="fas fa-shield-halved"></i>Authorized Dealer of DOMS &amp; Youva</span>
-  <span>&nbsp;|&nbsp;</span>
-  <span><i class="fas fa-star"></i>Quality Stationery for Students, Artists &amp; Professionals</span>
-  <span>&nbsp;|&nbsp;</span>
-  <span><i class="fas fa-store"></i>Serving Since 2008 — Jalna, Maharashtra</span>
-</div>
-
-<!-- HEADER -->
 <header>
   <div class="header-inner">
     <a href="#" class="logo-wrap">
       <div class="logo-icon">
-        <img src="https://www.navneetstore.com/cdn/shop/files/youva_logo.png?v=1683Views"
-             onerror="this.onerror=null;this.src='https://placehold.co/52x52/22c55e/ffffff?text=SPP';"
+        <!-- Updated Shrikant Paper Products logo -->
+        <img src="https://rutunjay651.github.io/resources/logo/spp.jpg"
+             onerror="this.onerror=null;this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';"
              alt="Shrikant Paper Products"/>
       </div>
       <div class="logo-text">
@@ -322,50 +269,26 @@ footer{background:var(--dark);padding:56px 24px 0}
         <div class="brand-sub">Your Stationery Destination</div>
       </div>
     </a>
-
-    <!-- SEARCH — icon button, bar appears on click -->
-    <div class="search-wrap" id="searchWrap">
-      <button class="search-icon-btn" id="searchIconBtn" onclick="toggleSearch()" aria-label="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    <div class="header-actions">
+      <button class="hdr-btn" id="openSearchBtn" title="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
       </button>
-      <div class="search-bar-popup" id="searchBarPopup">
-        <input type="text" id="searchInput" placeholder="Search by name, code, category…" autocomplete="off"/>
-        <button onclick="doSearch()" aria-label="Go">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-        </button>
-        <div id="searchDropdown"></div>
-      </div>
-    </div>
-
-    <!-- HEADER ACTIONS: Account | Wishlist | Cart -->
-    <div class="header-actions">
       <a href="#" class="hdr-btn" title="Account">
-        <svg viewBox="0 0 24 24">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
-        <span class="btn-label">Account</span>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       </a>
       <a href="#" class="hdr-btn" title="Wishlist">
-        <svg viewBox="0 0 24 24">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-        </svg>
-        <span class="btn-label">Wishlist</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </a>
+      <!-- Cart icon (professional 🛒 style) -->
       <div class="cart-wrap">
         <a href="#" class="hdr-btn" onclick="openCart()" title="Cart">
-          <svg viewBox="0 0 24 24">
+          <svg class="cart-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"/>
             <circle cx="20" cy="21" r="1"/>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
           </svg>
-          <span class="btn-label">Cart</span>
         </a>
         <span class="cart-badge" id="cartBadge">0</span>
       </div>
@@ -373,7 +296,17 @@ footer{background:var(--dark);padding:56px 24px 0}
   </div>
 </header>
 
-<!-- NAV -->
+<!-- SEARCH OVERLAY -->
+<div id="searchOverlay" class="search-overlay">
+  <div class="search-popup">
+    <div class="search-popup-header">
+      <input type="text" id="searchPopupInput" class="search-popup-input" placeholder="Search by name, code, price, category…" autocomplete="off"/>
+      <div class="search-popup-close" id="closeSearchPopup">&times;</div>
+    </div>
+    <div id="searchPopupDropdown"></div>
+  </div>
+</div>
+
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-link active"><i class="fas fa-home"></i>Home</a>
@@ -383,18 +316,17 @@ footer{background:var(--dark);padding:56px 24px 0}
   </div>
 </nav>
 
-<!-- HERO SLIDER — 2 slides -->
 <div class="hero">
   <div class="slides" id="slides">
     <div class="slide">
-      <div class="slide-bg" style="background-image:url('https://www.navneetstore.com/cdn/shop/files/youva_main_banner_1.jpg');background-color:#1e4d2b"></div>
+      <div class="slide-bg" style="background-image:url('https://www.navneetstore.com/cdn/shop/files/youva_main_banner_1.jpg');"></div>
       <div class="slide-overlay"></div>
       <div class="slide-content">
         <div class="slide-text">
           <div class="slide-badge">Youva by Navneet</div>
           <div class="slide-title" id="slide1-title">
             <span class="typewriter-line">Write Better.</span>
-            <span class="typewriter-line"><span class="green">Think Brighter.</span></span>
+            <span class="typewriter-line"><span class="orange-hero">Think Brighter.</span></span>
             <span class="typewriter-line">Create More.</span>
           </div>
           <div class="slide-desc">Vivid, vibrant stationery for students and creative minds — notebooks, colours, art kits and more.</div>
@@ -406,14 +338,14 @@ footer{background:var(--dark);padding:56px 24px 0}
       </div>
     </div>
     <div class="slide">
-      <div class="slide-bg" style="background-color:#0f3460;background-image:url('https://domsindia.com/wp-content/uploads/2024/01/DOMS-Banner-Art-Materials.jpg')"></div>
-      <div class="slide-overlay" style="background:linear-gradient(90deg,rgba(15,52,96,.9) 0%,rgba(15,52,96,.35) 60%,transparent 100%)"></div>
+      <div class="slide-bg" style="background-image:url('https://domsindia.com/wp-content/uploads/2025/07/Untitled-design-scaled.webp');"></div>
+      <div class="slide-overlay" style="background:linear-gradient(90deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.25) 60%,transparent 100%);"></div>
       <div class="slide-content">
         <div class="slide-text">
           <div class="slide-badge">DOMS Art Collection</div>
           <div class="slide-title" id="slide2-title">
             <span class="typewriter-line">Every Ambition</span>
-            <span class="typewriter-line"><span style="color:#0f3460;background:rgba(255,255,255,.88);padding:2px 8px;border-radius:4px;">Needs</span></span>
+            <span class="typewriter-line"><span class="darkblue-hero">Needs</span></span>
             <span class="typewriter-line">Preparation.</span>
           </div>
           <div class="slide-desc">Explore DOMS' complete range — oil pastels, watercolours, sketch pens, geometry boxes and creative kits.</div>
@@ -433,7 +365,6 @@ footer{background:var(--dark);padding:56px 24px 0}
   </div>
 </div>
 
-<!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-inner">
     <div class="trust-item"><div class="trust-icon"><i class="fas fa-shield-halved"></i></div><div class="trust-text"><div class="t-title">100% Genuine</div><div class="t-sub">Authorized dealer</div></div></div>
@@ -443,7 +374,7 @@ footer{background:var(--dark);padding:56px 24px 0}
   </div>
 </div>
 
-<!-- SEARCH RESULTS -->
+<!-- SEARCH RESULTS SECTION -->
 <div id="searchResultsSection">
   <div class="search-results-bar">
     <div class="search-results-title" id="searchResultsTitle">Results for "<span></span>"</div>
@@ -462,19 +393,18 @@ footer{background:var(--dark);padding:56px 24px 0}
       <div class="sec-sub">Find exactly what you need from our wide range of stationery categories</div>
     </div>
     <div class="category-grid">
-      <div class="cat-card" onclick="filterByCat('notebooks')"><div class="cat-icon"><img src="https://www.navneetstore.com/cdn/shop/products/Youva_Spiral_Longbook_2.jpg" onerror="this.src='https://placehold.co/68x68/f3f4f6/22c55e?text=NB';" alt=""/></div><div class="cat-name">Notebooks</div><div class="cat-count" id="cnt-notebooks">— products</div></div>
-      <div class="cat-card" onclick="filterByCat('pencils')"><div class="cat-icon"><img src="https://domsindia.com/wp-content/uploads/2023/04/ZOOM-ULTIMATE-DARK-PENCIL-BOX-PACK.png" onerror="this.src='https://placehold.co/68x68/f3f4f6/22c55e?text=PEN';" alt=""/></div><div class="cat-name">Pencils</div><div class="cat-count" id="cnt-pencils">— products</div></div>
-      <div class="cat-card" onclick="filterByCat('colours')"><div class="cat-icon"><img src="https://domsindia.com/wp-content/uploads/2023/04/Colour-Pencils-24-Shades.png" onerror="this.src='https://placehold.co/68x68/f3f4f6/22c55e?text=CLR';" alt=""/></div><div class="cat-name">Colours</div><div class="cat-count" id="cnt-colours">— products</div></div>
-      <div class="cat-card" onclick="filterByCat('kits')"><div class="cat-icon"><img src="https://domsindia.com/wp-content/uploads/2023/04/Fun-Fiesta-Kit.png" onerror="this.src='https://placehold.co/68x68/f3f4f6/22c55e?text=KIT';" alt=""/></div><div class="cat-name">Art Kits</div><div class="cat-count" id="cnt-kits">— products</div></div>
-      <div class="cat-card" onclick="filterByCat('markers')"><div class="cat-icon"><img src="https://domsindia.com/wp-content/uploads/2023/04/SKETCH-MAX-JUMBO-SKETCH-PEN-12-Shades.png" onerror="this.src='https://placehold.co/68x68/f3f4f6/22c55e?text=MKR';" alt=""/></div><div class="cat-name">Sketch / Markers</div><div class="cat-count" id="cnt-markers">— products</div></div>
-      <div class="cat-card" onclick="filterByCat('geometry_boxes')"><div class="cat-icon"><img src="https://domsindia.com/wp-content/uploads/2023/04/GEOMMY-Mathematical-Drawing-Instrument-Box.png" onerror="this.src='https://placehold.co/68x68/f3f4f6/22c55e?text=GEO';" alt=""/></div><div class="cat-name">Geometry Box</div><div class="cat-count" id="cnt-geometry_boxes">— products</div></div>
+      <div class="cat-card" onclick="filterByCat('notebooks')"><div class="cat-icon"><img src="https://www.navneetstore.com/cdn/shop/products/Youva_Spiral_Longbook_2.jpg" onerror="this.src='https://placehold.co/68x68/f3f4f6/4ade80?text=NB';" alt=""/></div><div class="cat-name">Notebooks</div><div class="cat-count" id="cnt-notebooks">— products</div></div>
+      <div class="cat-card" onclick="filterByCat('pencils')"><div class="cat-icon"><img src="https://domsindia.com/wp-content/uploads/2023/04/ZOOM-ULTIMATE-DARK-PENCIL-BOX-PACK.png" onerror="this.src='https://placehold.co/68x68/f3f4f6/4ade80?text=PEN';" alt=""/></div><div class="cat-name">Pencils</div><div class="cat-count" id="cnt-pencils">— products</div></div>
+      <div class="cat-card" onclick="filterByCat('colours')"><div class="cat-icon"><img src="https://domsindia.com/wp-content/uploads/2023/04/Colour-Pencils-24-Shades.png" onerror="this.src='https://placehold.co/68x68/f3f4f6/4ade80?text=CLR';" alt=""/></div><div class="cat-name">Colours</div><div class="cat-count" id="cnt-colours">— products</div></div>
+      <div class="cat-card" onclick="filterByCat('kits')"><div class="cat-icon"><img src="https://domsindia.com/wp-content/uploads/2023/04/Fun-Fiesta-Kit.png" onerror="this.src='https://placehold.co/68x68/f3f4f6/4ade80?text=KIT';" alt=""/></div><div class="cat-name">Art Kits</div><div class="cat-count" id="cnt-kits">— products</div></div>
+      <div class="cat-card" onclick="filterByCat('markers')"><div class="cat-icon"><img src="https://domsindia.com/wp-content/uploads/2023/04/SKETCH-MAX-JUMBO-SKETCH-PEN-12-Shades.png" onerror="this.src='https://placehold.co/68x68/f3f4f6/4ade80?text=MKR';" alt=""/></div><div class="cat-name">Sketch / Markers</div><div class="cat-count" id="cnt-markers">— products</div></div>
+      <div class="cat-card" onclick="filterByCat('geometry_boxes')"><div class="cat-icon"><img src="https://domsindia.com/wp-content/uploads/2023/04/GEOMMY-Mathematical-Drawing-Instrument-Box.png" onerror="this.src='https://placehold.co/68x68/f3f4f6/4ade80?text=GEO';" alt=""/></div><div class="cat-name">Geometry Box</div><div class="cat-count" id="cnt-geometry_boxes">— products</div></div>
     </div>
   </div>
 </div>
 
-<!-- BRAND SECTION -->
-<div style="background:var(--light-gray);padding:56px 0" id="brand-section">
-  <div class="section" style="padding-top:0;padding-bottom:0">
+<div style="background:var(--light-gray);padding:56px 0;" id="brand-section">
+  <div class="section" style="padding-top:0;padding-bottom:0;">
     <div class="sec-header">
       <div class="sec-badge">Our Brands</div>
       <div class="sec-title">Shop by <span>Brand</span></div>
@@ -483,7 +413,7 @@ footer{background:var(--dark);padding:56px 24px 0}
     </div>
     <div class="brand-cards">
       <div class="brand-card" id="doms-section">
-        <div class="brand-card-bg"><img src="https://domsindia.com/wp-content/uploads/2023/03/DOMS-Web-Banner-scaled.jpg" onerror="this.src='https://placehold.co/700x220/1a1a2e/ffffff?text=DOMS+Stationery';" alt="DOMS"/></div>
+        <div class="brand-card-bg"><img src="https://domsindia.com/wp-content/uploads/2025/07/Range-Shots-scaled.webp" onerror="this.src='https://placehold.co/700x220/1a1a2e/ffffff?text=DOMS+Stationery';" alt="DOMS"/></div>
         <div class="brand-card-info">
           <div class="bc-name">DOMS Industries</div>
           <div class="bc-desc">Pioneer in stationery manufacturing since 1976. Pencils, colour pencils, sketch pens, erasers, mathematical instruments, and a wide range of art materials.</div>
@@ -492,7 +422,7 @@ footer{background:var(--dark);padding:56px 24px 0}
         </div>
       </div>
       <div class="brand-card" id="youva-section">
-        <div class="brand-card-bg"><img src="https://www.navneetstore.com/cdn/shop/files/youva_main_banner_1.jpg" onerror="this.src='https://placehold.co/700x220/22c55e/ffffff?text=Youva+by+Navneet';" alt="Youva"/></div>
+        <div class="brand-card-bg"><img src="https://www.navneetstore.com/cdn/shop/files/youva_main_banner_1.jpg" onerror="this.src='https://placehold.co/700x220/4ade80/ffffff?text=Youva+by+Navneet';" alt="Youva"/></div>
         <div class="brand-card-info">
           <div class="bc-name">Youva by Navneet</div>
           <div class="bc-desc">Vibrant stationery brand for students and professionals. Spiral long books, hardcover notebooks, drawing books, oil pastels, colour pencils and geometry boxes.</div>
@@ -504,7 +434,6 @@ footer{background:var(--dark);padding:56px 24px 0}
   </div>
 </div>
 
-<!-- FEATURED PRODUCTS -->
 <div id="products-section">
   <div class="section">
     <div class="sec-header">
@@ -535,22 +464,20 @@ footer{background:var(--dark);padding:56px 24px 0}
     <div class="product-grid" id="productGrid">
       <div class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Loading products…</p></div>
     </div>
-    <div class="view-all-wrap" id="viewAllWrap" style="display:none">
-      <button class="btn-view-all" onclick="showAllProducts()"><i class="fas fa-th-large"></i> View All Products</button>
+    <div class="view-all-wrap" id="viewAllWrap" style="display:none;">
+      <button class="btn-view-all" onclick="showAllProducts()"><i class="fas fa-arrow-down"></i> View All Products</button>
     </div>
   </div>
 </div>
 
-<!-- PROMO BANNERS -->
 <div class="promo-wrap">
   <div class="promo-grid">
     <div class="promo-card"><img src="https://domsindia.com/wp-content/uploads/2023/03/DOMS-Web-Banner-scaled.jpg" onerror="this.src='https://placehold.co/450x200/1a1a2e/ffffff?text=DOMS';" alt=""/><div class="promo-card-overlay"><div class="promo-card-label">Back to School</div><div class="promo-card-title">DOMS School Kits for Every Student</div><a href="#" class="promo-card-btn" onclick="filterByBrand('doms');return false;">Shop Now <i class="fas fa-arrow-right"></i></a></div></div>
-    <div class="promo-card"><img src="https://www.navneetstore.com/cdn/shop/files/youva_main_banner_1.jpg" onerror="this.src='https://placehold.co/450x200/22c55e/ffffff?text=Youva';" alt=""/><div class="promo-card-overlay"><div class="promo-card-label">Youva Collection</div><div class="promo-card-title">Vibrant Notebooks for Creators</div><a href="#" class="promo-card-btn" onclick="filterByBrand('youva');return false;">Shop Now <i class="fas fa-arrow-right"></i></a></div></div>
+    <div class="promo-card"><img src="https://www.navneetstore.com/cdn/shop/files/youva_main_banner_1.jpg" onerror="this.src='https://placehold.co/450x200/4ade80/ffffff?text=Youva';" alt=""/><div class="promo-card-overlay"><div class="promo-card-label">Youva Collection</div><div class="promo-card-title">Vibrant Notebooks for Creators</div><a href="#" class="promo-card-btn" onclick="filterByBrand('youva');return false;">Shop Now <i class="fas fa-arrow-right"></i></a></div></div>
     <div class="promo-card"><img src="https://domsindia.com/wp-content/uploads/2024/01/DOMS-Banner-Art-Materials.jpg" onerror="this.src='https://placehold.co/450x200/0f3460/ffffff?text=Art';" alt=""/><div class="promo-card-overlay"><div class="promo-card-label">Art Special</div><div class="promo-card-title">DOMS Complete Art Collections</div><a href="#" class="promo-card-btn" onclick="filterByCat('kits');return false;">Shop Now <i class="fas fa-arrow-right"></i></a></div></div>
   </div>
 </div>
 
-<!-- NEWSLETTER -->
 <div class="newsletter">
   <div class="newsletter-inner">
     <h2>Stay Updated!</h2>
@@ -560,436 +487,476 @@ footer{background:var(--dark);padding:56px 24px 0}
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div>
+    <div class="footer-brand">
       <a href="#" class="logo-wrap">
-        <div class="footer-logo-icon"><img src="https://www.navneetstore.com/cdn/shop/files/youva_logo.png?v=1683Views" onerror="this.src='https://placehold.co/52x52/22c55e/ffffff?text=SPP';" alt=""/></div>
-        <div class="logo-text" style="margin-left:12px"><div class="brand-name" style="color:#fff">Shrikant Paper Products</div><div class="brand-sub">Your Stationery Destination</div></div>
+        <div class="footer-logo-icon">
+          <img src="https://rutunjay651.github.io/resources/logo/spp.jpg" onerror="this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';" alt=""/>
+        </div>
+        <div class="logo-text" style="margin-left:12px;">
+          <div class="brand-name" style="color:#fff;">Shrikant Paper Products</div>
+          <div class="brand-sub">Your Stationery Destination</div>
+        </div>
       </a>
       <div class="footer-about">Authorized dealer of DOMS and Youva stationery brands. Serving students, teachers, and artists in Jalna, Maharashtra since 2008.</div>
       <div class="footer-social">
-        <a href="#" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
         <a href="#" class="social-btn" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="none"/>
+            <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" fill="currentColor"/>
+            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
           </svg>
         </a>
-        <a href="https://wa.me/919422218909" class="social-btn" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
-        <a href="#" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a1a2e"/></svg></a>
-        <a href="#" class="social-btn" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://wa.me/919422218909" class="social-btn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+        <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a1a2e"/></svg></a>
+        <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
       </div>
     </div>
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <ul class="footer-links">
-        <li><a href="#"><i class="fas fa-chevron-right"></i>Home</a></li>
-        <li><a href="#doms-section"><i class="fas fa-chevron-right"></i>DOMS Products</a></li>
-        <li><a href="#youva-section"><i class="fas fa-chevron-right"></i>Youva Products</a></li>
-        <li><a href="#categories"><i class="fas fa-chevron-right"></i>Categories</a></li>
-        <li><a href="#products-section"><i class="fas fa-chevron-right"></i>All Products</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Customer Care</h4>
-      <ul class="footer-links">
-        <li><a href="#"><i class="fas fa-chevron-right"></i>My Account</a></li>
-        <li><a href="#"><i class="fas fa-chevron-right"></i>Shipping Policy</a></li>
-        <li><a href="#"><i class="fas fa-chevron-right"></i>Return &amp; Refund</a></li>
-        <li><a href="#"><i class="fas fa-chevron-right"></i>Privacy Policy</a></li>
-        <li><a href="#"><i class="fas fa-chevron-right"></i>FAQs</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact Us</h4>
-      <div class="footer-contact">
-        <div class="contact-item"><div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="ci-label">Address</div><div class="ci-val">Ganesh Jinning, Near Samarth Bank, Old Mondha, Jalna — 431203</div></div></div>
-        <div class="contact-item"><div class="ci-icon"><i class="fas fa-phone-alt"></i></div><div><div class="ci-label">Phone</div><div class="ci-val">+91 94222 18909</div></div></div>
-        <div class="contact-item"><div class="ci-icon"><i class="fas fa-envelope"></i></div><div><div class="ci-label">Email</div><div class="ci-val">shrikantpaperproducts@gmail.com</div></div></div>
-        <div class="contact-item"><div class="ci-icon"><i class="fas fa-clock"></i></div><div><div class="ci-label">Hours</div><div class="ci-val">Mon–Sat: 10 AM – 9 PM</div></div></div>
-      </div>
-    </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="#"><i class="fas fa-chevron-right"></i>Home</a></li><li><a href="#doms-section"><i class="fas fa-chevron-right"></i>DOMS Products</a></li><li><a href="#youva-section"><i class="fas fa-chevron-right"></i>Youva Products</a></li><li><a href="#categories"><i class="fas fa-chevron-right"></i>Categories</a></li><li><a href="#products-section"><i class="fas fa-chevron-right"></i>All Products</a></li></ul></div>
+    <div class="footer-col"><h4>Customer Care</h4><ul class="footer-links"><li><a href="#"><i class="fas fa-chevron-right"></i>My Account</a></li><li><a href="#"><i class="fas fa-chevron-right"></i>Shipping Policy</a></li><li><a href="#"><i class="fas fa-chevron-right"></i>Return &amp; Refund</a></li><li><a href="#"><i class="fas fa-chevron-right"></i>Privacy Policy</a></li><li><a href="#"><i class="fas fa-chevron-right"></i>FAQs</a></li></ul></div>
+    <div class="footer-col"><h4>Contact Us</h4><div class="footer-contact"><div class="contact-item"><div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div><div class="ci-text"><div class="ci-label">Address</div><div class="ci-val">Ganesh Jinning, Near Samarth Bank, Old Mondha, Jalna — 431203</div></div></div><div class="contact-item"><div class="ci-icon"><i class="fas fa-phone-alt"></i></div><div class="ci-text"><div class="ci-label">Phone</div><div class="ci-val">+91 94222 18909</div></div></div><div class="contact-item"><div class="ci-icon"><i class="fas fa-envelope"></i></div><div class="ci-text"><div class="ci-label">Email</div><div class="ci-val">shrikantpaperproducts@gmail.com</div></div></div><div class="contact-item"><div class="ci-icon"><i class="fas fa-clock"></i></div><div class="ci-text"><div class="ci-label">Hours</div><div class="ci-val">Mon–Sat: 10 AM – 9 PM</div></div></div></div></div>
   </div>
-  <div class="footer-bottom">
-    <p>© 2025 Shrikant Paper Products, Jalna. All rights reserved. | Serving Since 2008</p>
-    <div class="pay-icons"><span class="pay-icon">UPI</span><span class="pay-icon">Visa</span><span class="pay-icon">MC</span><span class="pay-icon">RuPay</span><span class="pay-icon">COD</span></div>
-  </div>
+  <div class="footer-bottom"><p>2025 Shrikant Paper Products, Jalna. All rights reserved. | Serving Since 2008</p><div class="pay-icons"><span class="pay-icon">UPI</span><span class="pay-icon">Visa</span><span class="pay-icon">MC</span><span class="pay-icon">RuPay</span><span class="pay-icon">COD</span></div></div>
 </footer>
 
-<button class="floating-cart" onclick="openCart()"><i class="fas fa-shopping-cart"></i><span class="floating-badge" id="floatBadge">0</span></button>
+<!-- No floating cart -->
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Done!</span></div>
 
 <script>
-/* ─── BRAND LOGOS ─── */
-var BRAND_LOGOS = {
-  doms:  'https://domsindia.com/wp-content/uploads/2023/08/NEW-2024-DOMS-LOGO-CORRECTION.webp',
-  youva: 'https://www.navneetstore.com/cdn/shop/files/youva_logo_withBaseline_639ab5b7-c771-41b3-88e2-29f8a6d0673d_100x.png'
+/* ============================================================
+   BRAND LOGOS (updated)
+   ============================================================ */
+const BRAND_LOGOS = {
+  doms:  'https://rutunjay651.github.io/resources/logo/doms.webp',
+  youva: 'https://rutunjay651.github.io/resources/logo/youva.png'
 };
 
-/* ─── PRODUCT DATA (inline — no fetch) ─── */
-var ALL = [];
-var CART_N = 0;
-var SLIDE_IDX = 0, SLIDE_TIMER;
-var FILTER = {mode:'popular',brand:'all',cat:'all',sort:'featured'};
-var SHOWING_ALL = false;
-var PAGE_SIZE = 8;
+/* ============================================================
+   STATE
+   ============================================================ */
+let ALL             = [];
+let cartCount       = 0;
+let slideIndex      = 0;
+let slideTimer;
+let currentFilter   = { brand:'all', cat:'all', sort:'featured', mode:'popular' };
+let showingAll      = false;
+const PAGE_SIZE     = 8;
 
-var RAW = [
-  /* DOMS PENCILS */
-  {id:'d1', code:'DM-FUSION',   brand:'doms', name:'DOMS Fusion Extra Super Dark Pencils',            price:70,  mrp:80,  rating:4.8, badge:'BESTSELLER', cat:'pencils',       img:'https://domsindia.com/wp-content/uploads/2025/12/204-scaled-1.webp',             tags:['pencil','dark','graphite','fusion']},
-  {id:'d2', code:'DM-SUPERSIX', brand:'doms', name:'DOMS Super Six Pencils Pack of 6',               price:55,  mrp:null,rating:4.7, badge:null,          cat:'pencils',       img:'https://domsindia.com/wp-content/uploads/2025/12/225-scaled-1.webp',             tags:['pencil','hb','pack']},
-  {id:'d3', code:'DM-DRAWPEN',  brand:'doms', name:'DOMS Drawing Pencil Set 2B 4B 6B 8B',           price:85,  mrp:105, rating:4.8, badge:'ARTIST',      cat:'pencils',       img:'https://domsindia.com/wp-content/uploads/2025/12/234-scaled-1.webp',             tags:['pencil','drawing','2b','4b','6b']},
-  {id:'d4', code:'DM-EMECH',    brand:'doms', name:'DOMS E-Mech 0.5mm Mechanical Pencil',           price:90,  mrp:115, rating:4.6, badge:'NEW',         cat:'pencils',       img:'https://domsindia.com/wp-content/uploads/2025/12/49-scaled-2.webp',              tags:['mechanical','pencil','0.5mm']},
-  {id:'d5', code:'DM-HELLO',    brand:'doms', name:'DOMS Hello Pencil Triangular Easy Grip',        price:45,  mrp:null,rating:4.5, badge:'KIDS',        cat:'pencils',       img:'https://domsindia.com/wp-content/uploads/2025/12/HELLO-PENCIL-123.png',          tags:['pencil','kids','triangular']},
-  {id:'d6', code:'DM-NEOSTAR',  brand:'doms', name:'DOMS Neo Star HB Pencil Break Resistant',       price:55,  mrp:70,  rating:4.4, badge:null,          cat:'pencils',       img:'https://domsindia.com/wp-content/uploads/2025/12/new-star-1.png',               tags:['pencil','hb','neostar']},
-  {id:'d7', code:'DM-PEPCILS',  brand:'doms', name:'DOMS Pepcils Eraser Pencil Shaped',             price:35,  mrp:null,rating:4.8, badge:'BESTSELLER', cat:'pencils',       img:'https://domsindia.com/wp-content/uploads/2025/04/242-scaled.webp',              tags:['eraser','dust free']},
-  {id:'d8', code:'DM-XLONGE',   brand:'doms', name:'DOMS Extra Long Eraser Dust Free White',        price:28,  mrp:null,rating:4.7, badge:'NEW',         cat:'pencils',       img:'https://domsindia.com/wp-content/uploads/2025/12/279-scaled-1.webp',             tags:['eraser','long','dust free']},
-  {id:'d9', code:'DM-3HX',      brand:'doms', name:'DOMS 3HX Sharpener Triple Hole',               price:45,  mrp:60,  rating:4.9, badge:'TOP RATED',   cat:'pencils',       img:'https://domsindia.com/wp-content/uploads/2025/12/37-scaled-2.webp',              tags:['sharpener','triple hole']},
-  /* DOMS COLOURS */
-  {id:'d10',code:'DM-CPFSC24',  brand:'doms', name:'DOMS Colour Pencil 24 Brilliant Shades',        price:118, mrp:140, rating:4.7, badge:'HOT',         cat:'colours',       img:'https://domsindia.com/wp-content/uploads/2023/04/Colour-Pencils-24-Shades.png',  tags:['colour pencil','24 shades']},
-  {id:'d11',code:'DM-CPFSC12',  brand:'doms', name:'DOMS Colour Pencil 12 Shades',                  price:60,  mrp:80,  rating:4.6, badge:null,          cat:'colours',       img:'https://domsindia.com/wp-content/uploads/2023/04/Colour-Pencils-24-Shades.png',  tags:['colour pencil','12 shades']},
-  {id:'d12',code:'DM-WAXC16',   brand:'doms', name:'DOMS Long Wax Crayons 16 Shades',               price:40,  mrp:55,  rating:4.5, badge:null,          cat:'colours',       img:'https://domsindia.com/wp-content/uploads/2025/12/117-scaled-1.webp',             tags:['crayon','wax','16 shades']},
-  {id:'d13',code:'DM-OILP12',   brand:'doms', name:'DOMS Oil Pastel 12 Shades',                     price:20,  mrp:null,rating:4.5, badge:null,          cat:'colours',       img:'https://domsindia.com/wp-content/uploads/2023/04/Oil-Pastels-25-Shades.png',     tags:['oil pastel','12 shades']},
-  {id:'d14',code:'DM-OILP25',   brand:'doms', name:'DOMS Oil Pastel 25 Shades',                     price:72,  mrp:95,  rating:4.8, badge:'HOT',         cat:'colours',       img:'https://domsindia.com/wp-content/uploads/2023/04/Oil-Pastels-25-Shades.png',     tags:['oil pastel','25 shades']},
-  {id:'d15',code:'DM-POST12',   brand:'doms', name:'DOMS Poster Colour 12 Shades',                  price:110, mrp:140, rating:4.6, badge:null,          cat:'colours',       img:'https://domsindia.com/wp-content/uploads/2023/04/Poster-Colours-12-Shades.png',  tags:['poster colour','12 shades']},
-  /* DOMS MARKERS */
-  {id:'d16',code:'DM-SKMAX12',  brand:'doms', name:'DOMS Sketch Max 12 Shades Jumbo',               price:95,  mrp:125, rating:4.7, badge:'BESTSELLER', cat:'markers',       img:'https://domsindia.com/wp-content/uploads/2023/04/SKETCH-MAX-JUMBO-SKETCH-PEN-12-Shades.png', tags:['sketch pen','12 shades']},
-  {id:'d17',code:'DM-BRUSHP14', brand:'doms', name:'DOMS Pastel Brush Pen 14 Shades',               price:199, mrp:260, rating:4.7, badge:'NEW',         cat:'markers',       img:'https://domsindia.com/wp-content/uploads/2023/04/Pastel-Brush-Pens-14-Shades.png', tags:['brush pen','14 shades','pastel']},
-  {id:'d18',code:'DM-PERMMARK', brand:'doms', name:'DOMS Permanent Marker Black',                   price:20,  mrp:null,rating:4.5, badge:null,          cat:'markers',       img:'https://domsindia.com/wp-content/uploads/2023/04/SKETCH-MAX-JUMBO-SKETCH-PEN-12-Shades.png', tags:['marker','permanent','black']},
-  /* DOMS GEOMETRY */
-  {id:'d19',code:'DM-GEOMMY',   brand:'doms', name:'DOMS Geommy Math Instrument Box',               price:175, mrp:220, rating:4.8, badge:'BESTSELLER', cat:'geometry_boxes',img:'https://domsindia.com/wp-content/uploads/2023/04/GEOMMY-Mathematical-Drawing-Instrument-Box.png', tags:['geometry box','math','instrument']},
-  {id:'d20',code:'DM-GBOX110',  brand:'doms', name:'DOMS G Box Geomatic 110 Premium',               price:110, mrp:130, rating:4.7, badge:null,          cat:'geometry_boxes',img:'https://domsindia.com/wp-content/uploads/2023/04/GEOMMY-Mathematical-Drawing-Instrument-Box.png', tags:['geometry box','geomatic']},
-  /* DOMS KITS */
-  {id:'d21',code:'DM-FUNF',     brand:'doms', name:'DOMS Fun Fiesta Kit Creative Art Set',          price:249, mrp:349, rating:4.9, badge:'HOT',         cat:'kits',          img:'https://domsindia.com/wp-content/uploads/2023/04/Fun-Fiesta-Kit.png',            tags:['kit','art','fun fiesta','creative']},
-  {id:'d22',code:'DM-WONDER49', brand:'doms', name:'DOMS Wonder Kit 49',                            price:49,  mrp:null,rating:4.5, badge:null,          cat:'kits',          img:'https://domsindia.com/wp-content/uploads/2023/04/Fun-Fiesta-Kit.png',            tags:['kit','wonder','starter']},
-  {id:'d23',code:'DM-ARTGEAR',  brand:'doms', name:'DOMS Art Gear Kit 799 Premium',                 price:799, mrp:950, rating:4.8, badge:'PREMIUM',     cat:'kits',          img:'https://domsindia.com/wp-content/uploads/2023/04/Fun-Fiesta-Kit.png',            tags:['kit','art gear','premium']},
-  {id:'d24',code:'DM-ARTAMAZE', brand:'doms', name:'DOMS Art Amaze Kit 199',                        price:199, mrp:250, rating:4.7, badge:null,          cat:'kits',          img:'https://domsindia.com/wp-content/uploads/2023/04/Fun-Fiesta-Kit.png',            tags:['kit','art','amaze']},
-  /* YOUVA NOTEBOOKS */
-  {id:'y1', code:'23389',       brand:'youva',name:'Youva Spiral Long Book A4 Single Line 172pg',   price:126, mrp:150, rating:5.0, badge:'BESTSELLER', cat:'notebooks',     img:'https://www.navneetstore.com/cdn/shop/files/Design2edited_30d3b8ac-8892-4699-b98b-c86ff195b24c.png', tags:['spiral','long book','a4','single line']},
-  {id:'y2', code:'23675',       brand:'youva',name:'Youva Spiral Long Book A4 Unruled Safety Lock', price:285, mrp:null,rating:4.5, badge:'NEW',         cat:'notebooks',     img:'https://www.navneetstore.com/cdn/shop/files/Front1_2.png',                       tags:['spiral','long book','a4','unruled']},
-  {id:'y3', code:'22503',       brand:'youva',name:'Youva Regular Soft Bound Long Book 172pg',      price:146, mrp:175, rating:5.0, badge:null,          cat:'notebooks',     img:'https://www.navneetstore.com/cdn/shop/files/Design2edited_7c7622bd-fe13-4c42-93a3-762d93776254.png', tags:['soft bound','long book','single line']},
-  {id:'y4', code:'22717',       brand:'youva',name:'Youva Case Bound Long Book A4 288pg',           price:185, mrp:220, rating:4.8, badge:'SALE',        cat:'notebooks',     img:'https://www.navneetstore.com/cdn/shop/files/Front1_1.png',                       tags:['case bound','long book','a4','288']},
-  {id:'y5', code:'23012',       brand:'youva',name:'Youva SBLB A4 Soft Bound Trendy Single Line',   price:210, mrp:null,rating:5.0, badge:'POPULAR',    cat:'notebooks',     img:'https://www.navneetstore.com/cdn/shop/files/Design7edited_0c3fa422-1323-4b46-9ce7-ac02593d9576.png', tags:['soft bound','a4','single line','trendy']},
-  {id:'y6', code:'23413',       brand:'youva',name:'Youva Long Book A4 Rainbow Design Single Line', price:194, mrp:230, rating:4.5, badge:'NEW',         cat:'notebooks',     img:'https://www.navneetstore.com/cdn/shop/files/Design2edited_b2bc7f27-8903-4284-be43-72f44b90ae5a.png', tags:['rainbow','long book','a4','single line']},
-  {id:'y7', code:'23147',       brand:'youva',name:'Youva Jumbo Medium Square Notebook 172pg',      price:161, mrp:180, rating:4.5, badge:null,          cat:'notebooks',     img:'https://www.navneetstore.com/cdn/shop/files/Front12edited_8444473d-adce-4565-8fe5-340b64ba6e51.png', tags:['notebook','jumbo','medium square']},
-  {id:'y8', code:'23143',       brand:'youva',name:'Youva Jumbo Single Line Notebook 172pg',        price:161, mrp:null,rating:5.0, badge:null,          cat:'notebooks',     img:'https://www.navneetstore.com/cdn/shop/files/Front5edited.png',                  tags:['notebook','jumbo','single line']},
-  {id:'y9', code:'27002',       brand:'youva',name:'HQ Notebook A5 Single Line 160pg',              price:120, mrp:150, rating:4.9, badge:'HQ',          cat:'notebooks',     img:'https://www.navneetstore.com/cdn/shop/files/Front1.png',                         tags:['hq','a5','single line','160']},
-  {id:'y10',code:'24247',       brand:'youva',name:'Youva Stellar Spiral Long Book 172pg',          price:115, mrp:140, rating:4.8, badge:'stellar',     cat:'notebooks',     img:'https://www.navneetstore.com/cdn/shop/files/24068stellarorangei.jpg',            tags:['stellar','spiral','long book']},
-  {id:'y11',code:'22912',       brand:'youva',name:'Youva Drawing Book A4 36pg',                    price:30,  mrp:40,  rating:4.6, badge:'BESTSELLER', cat:'notebooks',     img:'https://www.navneetstore.com/cdn/shop/files/Dimension_e83098d9-6040-4b55-9e27-5814549010ad.png', tags:['drawing book','a4','36']},
-  /* YOUVA GEOMETRY */
-  {id:'y12',code:'35096',       brand:'youva',name:'Youva Geometry Box Hexa 110',                   price:110, mrp:130, rating:4.7, badge:'BESTSELLER', cat:'geometry_boxes',img:'https://domsindia.com/wp-content/uploads/2023/04/GEOMMY-Mathematical-Drawing-Instrument-Box.png', tags:['geometry box','hexa','math']},
-  {id:'y13',code:'35340',       brand:'youva',name:'Youva Geometry Box Quad 90',                    price:90,  mrp:110, rating:4.6, badge:null,          cat:'geometry_boxes',img:'https://domsindia.com/wp-content/uploads/2023/04/GEOMMY-Mathematical-Drawing-Instrument-Box.png', tags:['geometry box','quad']},
-  /* YOUVA PENCILS */
-  {id:'y14',code:'35323',       brand:'youva',name:'Youva Quip Pencil HB',                          price:60,  mrp:75,  rating:4.5, badge:null,          cat:'pencils',       img:'https://www.navneetstore.com/cdn/shop/files/Front1_2.png',                       tags:['pencil','quip','hb']},
-  /* YOUVA COLOURS */
-  {id:'y15',code:'35054',       brand:'youva',name:'Youva Tempera Colour 12 Shades',                price:20,  mrp:null,rating:4.4, badge:null,          cat:'colours',       img:'https://domsindia.com/wp-content/uploads/2023/04/Poster-Colours-12-Shades.png',  tags:['tempera','12 shades','colour']},
-  {id:'y16',code:'35055',       brand:'youva',name:'Youva Oil Pastels 25 Shades',                   price:88,  mrp:115, rating:4.8, badge:'HOT',         cat:'colours',       img:'https://domsindia.com/wp-content/uploads/2023/04/Oil-Pastels-25-Shades.png',     tags:['oil pastel','25 shades']},
-  /* YOUVA KITS */
-  {id:'y17',code:'35226',       brand:'youva',name:'Youva Drawing Kit Complete Set',                price:50,  mrp:null,rating:4.5, badge:null,          cat:'kits',          img:'https://domsindia.com/wp-content/uploads/2023/04/Fun-Fiesta-Kit.png',            tags:['drawing kit','kit']}
-];
-
-/* ─── NORMALIZE ─── */
-function loadProducts() {
-  ALL = RAW.map(function(p) {
-    return {
-      id:    p.id,
-      code:  p.code  || '',
-      name:  p.name  || '',
-      brand: p.brand,
-      price: p.price != null ? +p.price : null,
-      mrp:   p.mrp   != null ? +p.mrp   : null,
-      rating:p.rating || 4.0,
-      badge: p.badge  || null,
-      img:   p.img    || null,
-      cat:   p.cat    || '',
-      tags:  p.tags   || []
-    };
-  });
-  updateCategoryCounts();
-  renderFeaturedGrid();
+/* ============================================================
+   FETCH & NORMALIZE
+   ============================================================ */
+async function loadProducts() {
+  try {
+    const [r1, r2] = await Promise.all([
+      fetch('https://shrikantpaperproducts.github.io/resources/doms.json'),
+      fetch('https://shrikantpaperproducts.github.io/resources/youva.json')
+    ]);
+    if (!r1.ok) throw new Error('doms.json ' + r1.status);
+    if (!r2.ok) throw new Error('youva.json ' + r2.status);
+    const domsRaw  = await r1.json();
+    const youvaRaw = await r2.json();
+    ALL = [
+      ...domsRaw.map(p  => normalize(p,  'doms')),
+      ...youvaRaw.map(p => normalize(p, 'youva'))
+    ];
+    updateCategoryCounts();
+    renderFeaturedGrid();
+  } catch(e) {
+    console.error(e);
+    document.getElementById('productGrid').innerHTML =
+      '<div class="empty-state"><i class="fas fa-exclamation-circle"></i><h3>Could not load products</h3><p>Please check your connection.</p></div>';
+  }
 }
 
-/* ─── BUILD CARD ─── */
-function buildCard(p) {
-  var logoUrl  = BRAND_LOGOS[p.brand] || '';
-  var brandAlt = p.brand === 'doms' ? 'DOMS' : 'Youva';
-  var imgSrc   = p.img || 'https://placehold.co/280x210/f3f4f6/22c55e?text=' + encodeURIComponent(p.name.slice(0,12));
-  var catLabel = p.cat.replace(/_/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();});
+function normalize(p, brandKey) {
+  return {
+    id:         p.id,
+    code:       p.code         || '',
+    name:       p.name         || '',
+    brand:      brandKey,
+    brandLabel: p.brand        || brandKey,
+    price:      p.price        != null ? parseFloat(p.price)         : null,
+    mrp:        p.originalPrice != null ? parseFloat(p.originalPrice) : null,
+    discount:   p.discountPercent,
+    rating:     p.rating       || 4.0,
+    badge:      p.badge        || null,
+    img:        p.img          || '',
+    cat:        p.cat          || '',
+    tags:       Array.isArray(p.tags) ? p.tags : []
+  };
+}
 
-  var badgeHtml = '';
+/* ============================================================
+   HIGHLIGHT HELPER (light green background, black text, bold)
+   ============================================================ */
+function highlight(text, q) {
+  if (!q || !text) return text;
+  const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp('(' + escaped + ')', 'gi');
+  return String(text).replace(re, '<mark style="background:#4ade80; color:#000; font-weight:bold; border-radius:2px; padding:0 1px;">$1</mark>');
+}
+
+/* ============================================================
+   BUILD CARD  (normal — no highlights)
+   ============================================================ */
+function buildCard(p) {
+  return buildCardHighlighted(p, null);
+}
+
+/* ============================================================
+   BUILD CARD HIGHLIGHTED (with light green highlight)
+   ============================================================ */
+function buildCardHighlighted(p, q) {
+  const brandLogo = BRAND_LOGOS[p.brand] || '';
+  const brandAlt  = p.brand === 'doms' ? 'DOMS' : 'Youva';
+
+  let badgeHtml = '';
   if (p.badge) {
-    var bl = p.badge.toLowerCase();
-    var bc = bl==='stellar'?'badge-stellar':bl==='hq'?'badge-hq':bl==='bestseller'||bl==='top rated'?'badge-hot':bl==='popular'?'badge-top':'badge-new';
+    const bc = p.badge.toLowerCase() === 'stellar' ? 'badge-stellar'
+             : p.badge.toLowerCase() === 'hq'      ? 'badge-hq'
+             : 'badge-new';
     badgeHtml = '<span class="prod-badge ' + bc + '">' + p.badge + '</span>';
   }
 
-  var priceHtml = '';
-  if (p.price && p.price > 0) {
-    priceHtml = '<div class="prod-price">&#8377;' + p.price + '</div>';
-    if (p.mrp && p.mrp > p.price) {
-      priceHtml += '<div class="prod-mrp">&#8377;' + p.mrp + '</div>';
-      var off = Math.round(((p.mrp - p.price)/p.mrp)*100);
-      if (off > 0) priceHtml += '<div class="prod-off">' + off + '% off</div>';
-    }
+  const priceDisplay = (p.price != null && p.price > 0) ? ('₹' + p.price.toFixed(2)) : '';
+  const mrpDisplay   = (p.mrp   != null && p.mrp   > 0) ? ('₹' + p.mrp.toFixed(2))   : '';
+  const off = (p.mrp && p.mrp > p.price && p.price)
+    ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
+
+  let priceHtml = '';
+  if (p.price != null && p.price > 0) {
+    const dispPrice = q ? highlight(priceDisplay, q) : priceDisplay;
+    const dispMrp   = q ? highlight(mrpDisplay,   q) : mrpDisplay;
+    priceHtml  = '<div class="prod-price">' + dispPrice + '</div>';
+    if (p.mrp && p.mrp > p.price) priceHtml += '<div class="prod-mrp">' + dispMrp + '</div>';
+    if (off > 0) priceHtml += '<div class="prod-off">' + off + '% off</div>';
   } else {
     priceHtml = '<div class="prod-price-na">Price on enquiry</div>';
   }
 
-  var full  = Math.floor(p.rating);
-  var half  = (p.rating % 1 >= 0.5) ? 1 : 0;
-  var empty = 5 - full - half;
-  var stars = '★'.repeat(full) + (half ? '⯨' : '') + '☆'.repeat(empty);
+  const full  = Math.floor(p.rating);
+  const half  = p.rating % 1 >= 0.5 ? 1 : 0;
+  const empty = 5 - full - half;
+  const stars = '\u2605'.repeat(full) + (half ? '\u00BD' : '') + '\u2606'.repeat(empty);
+
+  const imgSrc = p.img || ('https://placehold.co/280x210/f3f4f6/888?text=' + encodeURIComponent(p.name.slice(0, 10)));
+  const catLabel = p.cat.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+  const dispName = q ? highlight(p.name, q) : p.name;
+  const dispCode = q ? highlight(p.code, q) : p.code;
 
   return '<div class="product-card" data-brand="' + p.brand + '" data-cat="' + p.cat + '">'
     + badgeHtml
-    + '<div class="prod-brand-tag"><img src="' + logoUrl + '" alt="' + brandAlt + '" onerror="this.style.display=\'none\'"/></div>'
-    + '<div class="prod-img">'
-    + '<img src="' + imgSrc + '" alt="' + p.name + '" loading="lazy" onerror="this.onerror=null;this.src=\'https://placehold.co/280x210/f3f4f6/22c55e?text=' + encodeURIComponent(brandAlt) + '\';"/>'
-    + '<div class="prod-wishlist" onclick="toggleWishlist(this)"><i class="far fa-heart"></i></div>'
-    + '</div>'
+    + '<div class="prod-brand-tag"><img src="' + brandLogo + '" alt="' + brandAlt + '" onerror="this.onerror=null;this.style.display=\'none\';this.nextSibling.style.display=\'inline\';"><span style="display:none;font-size:.62rem;font-weight:700;color:var(--dark);">' + brandAlt + '</span></div>'
+    + '<div class="prod-img"><img src="' + imgSrc + '" onerror="this.onerror=null;this.src=\'https://placehold.co/280x210/f3f4f6/888?text=No+Image\';" alt="' + p.name + '" loading="lazy"/><div class="prod-wishlist" onclick="toggleWishlist(this)"><i class="far fa-heart"></i></div></div>'
     + '<div class="prod-body">'
-    + '<div class="prod-category">' + brandAlt + ' · ' + catLabel + '</div>'
-    + '<div class="prod-code">' + p.code + '</div>'
-    + '<div class="prod-name">' + p.name + '</div>'
-    + '<div class="prod-rating"><div class="stars">' + stars + '</div><span class="rating-count">(' + p.rating + ')</span></div>'
-    + '<div class="prod-price-row">' + priceHtml + '</div>'
-    + '<button class="btn-view" onclick="viewProduct(\'' + p.name.replace(/'/g,"\\'") + '\')"><i class="fas fa-eye"></i> View</button>'
-    + '</div></div>';
+    +   '<div class="prod-category">' + brandAlt + ' - ' + catLabel + '</div>'
+    +   '<div class="prod-code">'    + dispCode + '</div>'
+    +   '<div class="prod-name">'    + dispName + '</div>'
+    +   '<div class="prod-rating"><div class="stars">' + stars + '</div><span class="rating-count">(' + p.rating + ')</span></div>'
+    +   '<div class="prod-price-row">' + priceHtml + '</div>'
+    +   '<button class="btn-view" onclick="viewProduct(\'' + p.name.replace(/'/g, "\\'") + '\')">View</button>'
+    + '</div>'
+    + '</div>';
 }
 
 function viewProduct(name) { showToast('Viewing: ' + name); }
 
-/* ─── SEARCH ─── */
-var searchEl    = document.getElementById('searchInput');
-var searchBar   = document.getElementById('searchBarPopup');
-var searchDD    = document.getElementById('searchDropdown');
-var searchSec   = document.getElementById('searchResultsSection');
-var searchGrid  = document.getElementById('searchResultsGrid');
-var searchTitle = document.getElementById('searchResultsTitle');
-var searchOpen  = false;
+/* ============================================================
+   SEARCH OVERLAY
+   ============================================================ */
+const searchOverlay      = document.getElementById('searchOverlay');
+const searchPopupInput   = document.getElementById('searchPopupInput');
+const searchPopupDropdown = document.getElementById('searchPopupDropdown');
+const openSearchBtn      = document.getElementById('openSearchBtn');
+const closeSearchPopupEl = document.getElementById('closeSearchPopup');
 
-function toggleSearch() {
-  searchOpen = !searchOpen;
-  searchBar.classList.toggle('open', searchOpen);
-  if (searchOpen) { searchEl.focus(); }
+function openSearchOverlay() {
+  searchOverlay.classList.add('active');
+  searchPopupInput.focus();
+}
+function closeSearchOverlay() {
+  searchOverlay.classList.remove('active');
+  searchPopupInput.value = '';
+  searchPopupDropdown.innerHTML = '';
 }
 
-document.addEventListener('click', function(e) {
-  if (!document.getElementById('searchWrap').contains(e.target)) {
-    searchBar.classList.remove('open');
-    searchDD.classList.remove('active');
-    searchDD.innerHTML = '';
-    searchOpen = false;
+openSearchBtn.addEventListener('click', openSearchOverlay);
+closeSearchPopupEl.addEventListener('click', closeSearchOverlay);
+searchOverlay.addEventListener('click', function(e) {
+  if (e.target === searchOverlay) closeSearchOverlay();
+});
+
+/* Search input (results from first character) */
+searchPopupInput.addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  if (q.length < 1) { searchPopupDropdown.innerHTML = ''; return; }
+  if (!ALL.length) {
+    searchPopupDropdown.innerHTML = '<div class="search-no-results"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
+    return;
+  }
+  const hits = matchProducts(q, ALL).slice(0, 8);
+  renderPopupDropdown(hits, q);
+});
+
+/* Enter key triggers full search */
+searchPopupInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    doSearchFromPopup();
   }
 });
 
-searchEl.addEventListener('input', function() {
-  var q = this.value.trim().toLowerCase();
-  if (q.length < 2) { searchDD.classList.remove('active'); return; }
-  var hits = matchProducts(q).slice(0, 8);
-  renderDropdown(hits, q);
-});
-
-searchEl.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSearch(); });
-
-function doSearch() {
-  var q = searchEl.value.trim();
-  searchDD.classList.remove('active');
-  if (!q) { clearSearch(); return; }
-  var hits = matchProducts(q.toLowerCase());
-  showSearchResults(hits, q);
-}
-
-function matchProducts(q) {
-  return ALL.filter(function(p) {
+/* Match products including price strings */
+function matchProducts(q, list) {
+  return list.filter(function(p) {
+    const priceStr = (p.price != null && p.price > 0) ? String(p.price.toFixed(2)) : '';
+    const mrpStr   = (p.mrp   != null && p.mrp   > 0) ? String(p.mrp.toFixed(2))   : '';
     return p.name.toLowerCase().includes(q)
-        || p.code.toLowerCase().includes(q)
-        || p.cat.replace(/_/g,' ').includes(q)
-        || p.brand.includes(q)
-        || p.tags.some(function(t){ return t.toLowerCase().includes(q); });
+      || p.code.toLowerCase().includes(q)
+      || p.cat.toLowerCase().replace(/_/g, ' ').includes(q)
+      || p.brand.toLowerCase().includes(q)
+      || p.brandLabel.toLowerCase().includes(q)
+      || p.tags.some(function(t) { return t.toLowerCase().includes(q); })
+      || priceStr.includes(q)
+      || mrpStr.includes(q);
   });
 }
 
-function showSearchResults(hits, q) {
-  document.getElementById('products-section').style.display = 'none';
-  searchSec.style.display = 'block';
-  searchTitle.innerHTML = '<span>' + hits.length + '</span> result' + (hits.length!==1?'s':'') + ' for "<span>' + q + '</span>"';
+/* Render dropdown with light green highlights */
+function renderPopupDropdown(hits, q) {
   if (!hits.length) {
-    searchGrid.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><h3>No results for "' + q + '"</h3><p>Try different keywords or product codes.</p></div>';
+    searchPopupDropdown.innerHTML =
+      '<div class="search-no-results"><i class="fas fa-search"></i>No results for "<strong>' + q + '</strong>"</div>';
     return;
   }
-  searchGrid.innerHTML = hits.map(buildCard).join('');
-  searchSec.scrollIntoView({behavior:'smooth',block:'start'});
+
+  const header = '<div class="search-results-header">Suggestions<span>' + hits.length + ' found</span></div>';
+  const items = hits.map(function(p) {
+    const off = (p.mrp && p.mrp > p.price && p.price)
+      ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
+    const imgSrc   = p.img || ('https://placehold.co/52x52/f3f4f6/888?text=' + p.brand.toUpperCase());
+    const priceRaw = (p.price && p.price > 0) ? ('₹' + p.price.toFixed(2)) : 'On enquiry';
+    const logoUrl  = BRAND_LOGOS[p.brand] || '';
+
+    const dispName  = highlight(p.name,   q);
+    const dispCode  = highlight(p.code,   q);
+    const dispPrice = highlight(priceRaw, q);
+
+    return '<div class="search-result-item" onclick="selectPopupItem(\'' + p.name.replace(/'/g, "\\'") + '\')">'
+      + '<img class="sri-img" src="' + imgSrc + '" onerror="this.src=\'https://placehold.co/52x52/f3f4f6/888?text=IMG\';" alt="' + p.name + '"/>'
+      + '<div class="sri-info">'
+      +   '<div class="sri-name">'  + dispName  + '</div>'
+      +   '<div class="sri-meta">'
+      +     '<img class="sri-brand-logo" src="' + logoUrl + '" alt="' + p.brand + '" onerror="this.style.display=\'none\';">'
+      +     '<span class="sri-code">' + dispCode  + '</span>'
+      +     '<span class="sri-price">' + dispPrice + '</span>'
+      +     (off > 0 ? '<span class="sri-off">' + off + '% off</span>' : '')
+      +   '</div>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+
+  const viewAll = '<div class="search-view-all" onclick="doSearchFromPopup()">View all results for "<strong>' + q + '</strong>" &rarr;</div>';
+  searchPopupDropdown.innerHTML = header + items + viewAll;
+}
+
+function selectPopupItem(name) {
+  searchPopupInput.value = name;
+  doSearchFromPopup();
+}
+
+function doSearchFromPopup() {
+  const q = searchPopupInput.value.trim();
+  if (!q) return;
+  const hits = matchProducts(q.toLowerCase(), ALL);
+  showSearchResults(hits, q);
+  closeSearchOverlay();
+}
+
+/* ============================================================
+   SEARCH RESULTS PAGE (with light green highlights)
+   ============================================================ */
+const searchSection = document.getElementById('searchResultsSection');
+const searchGrid    = document.getElementById('searchResultsGrid');
+const searchTitle   = document.getElementById('searchResultsTitle');
+
+function showSearchResults(hits, q) {
+  document.getElementById('products-section').style.display = 'none';
+  searchSection.style.display = 'block';
+  searchTitle.innerHTML =
+    '<span>' + hits.length + '</span> result' + (hits.length !== 1 ? 's' : '') +
+    ' for "<span>' + q + '</span>"';
+
+  if (!hits.length) {
+    searchGrid.innerHTML =
+      '<div class="empty-state"><i class="fas fa-search"></i><h3>No results for "' + q + '"</h3><p>Try different keywords or product codes.</p></div>';
+    return;
+  }
+
+  searchGrid.innerHTML = hits.map(function(p) {
+    return buildCardHighlighted(p, q.toLowerCase());
+  }).join('');
+
+  searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function clearSearch() {
-  searchEl.value = '';
-  searchSec.style.display = 'none';
+  searchSection.style.display = 'none';
   document.getElementById('products-section').style.display = 'block';
 }
 
-function renderDropdown(hits, q) {
-  if (!hits.length) {
-    searchDD.innerHTML = '<div class="search-no-results"><i class="fas fa-search"></i>No results for "<strong>' + q + '</strong>"</div>';
-    searchDD.classList.add('active');
-    return;
-  }
-  var header = '<div class="search-results-header">Suggestions<span>' + hits.length + ' found</span></div>';
-  var items = hits.map(function(p) {
-    var imgSrc = p.img || 'https://placehold.co/52x52/f3f4f6/22c55e?text=IMG';
-    var priceStr = p.price ? '&#8377;' + p.price : 'On enquiry';
-    var logoUrl = BRAND_LOGOS[p.brand] || '';
-    return '<div class="search-result-item" onclick="selectDDItem(\'' + p.name.replace(/'/g,"\\'") + '\')">'
-      + '<img class="sri-img" src="' + imgSrc + '" onerror="this.src=\'https://placehold.co/52x52/f3f4f6/22c55e?text=IMG\';" alt="' + p.name + '"/>'
-      + '<div class="sri-info">'
-      + '<div class="sri-name">' + p.name + '</div>'
-      + '<div class="sri-meta">'
-      + '<img class="sri-brand-logo" src="' + logoUrl + '" alt="" onerror="this.style.display=\'none\'"/>'
-      + '<span class="sri-code">' + p.code + '</span>'
-      + '<span class="sri-price">' + priceStr + '</span>'
-      + '</div></div></div>';
-  }).join('');
-  var viewAll = '<div class="search-view-all" onclick="doSearch()">View all results for "<strong>' + q + '</strong>" →</div>';
-  searchDD.innerHTML = header + items + viewAll;
-  searchDD.classList.add('active');
-}
-
-function selectDDItem(name) {
-  searchEl.value = name;
-  searchDD.classList.remove('active');
-  doSearch();
-}
-
-/* ─── FILTER TABS ─── */
-function filterTab(btn, val) {
-  document.querySelectorAll('.filter-tab').forEach(function(b){b.classList.remove('active');});
+/* ============================================================
+   FILTER TABS & BRAND / CAT FILTERS
+   ============================================================ */
+function filterTab(btn, value) {
+  document.querySelectorAll('.filter-tab').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
-  SHOWING_ALL = false;
-  FILTER.sort = document.getElementById('sortSelect').value;
-  if (val === 'popular')           { FILTER.mode='popular'; FILTER.brand='all'; FILTER.cat='all'; }
-  else if (val==='doms'||val==='youva') { FILTER.mode='brand'; FILTER.brand=val; FILTER.cat='all'; }
-  else                              { FILTER.mode='cat'; FILTER.brand='all'; FILTER.cat=val; }
+  showingAll = false;
+  currentFilter.sort = document.getElementById('sortSelect').value;
+  if (value === 'popular') {
+    currentFilter.mode = 'popular'; currentFilter.brand = 'all'; currentFilter.cat = 'all';
+  } else if (value === 'doms' || value === 'youva') {
+    currentFilter.mode = 'brand'; currentFilter.brand = value; currentFilter.cat = 'all';
+  } else {
+    currentFilter.mode = 'cat'; currentFilter.brand = 'all'; currentFilter.cat = value;
+  }
   renderFeaturedGrid();
 }
 
 function filterByCat(cat) {
-  SHOWING_ALL=false; FILTER.mode='cat'; FILTER.cat=cat; FILTER.brand='all';
+  showingAll = false;
+  currentFilter.mode = 'cat'; currentFilter.cat = cat; currentFilter.brand = 'all';
   clearSearch();
-  document.querySelectorAll('.filter-tab').forEach(function(b){
-    b.classList.toggle('active', b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+cat+"'"));
+  document.querySelectorAll('.filter-tab').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + cat + "'"));
   });
   renderFeaturedGrid();
-  document.getElementById('products-section').scrollIntoView({behavior:'smooth'});
+  document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
 }
 
 function filterByBrand(brand) {
-  SHOWING_ALL=false; FILTER.mode='brand'; FILTER.brand=brand; FILTER.cat='all';
+  showingAll = false;
+  currentFilter.mode = 'brand'; currentFilter.brand = brand; currentFilter.cat = 'all';
   clearSearch();
-  document.querySelectorAll('.filter-tab').forEach(function(b){
-    b.classList.toggle('active', b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+brand+"'"));
+  document.querySelectorAll('.filter-tab').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + brand + "'"));
   });
   renderFeaturedGrid();
-  document.getElementById('products-section').scrollIntoView({behavior:'smooth'});
+  document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
 }
 
 function applySort() {
-  FILTER.sort = document.getElementById('sortSelect').value;
+  currentFilter.sort = document.getElementById('sortSelect').value;
   renderFeaturedGrid();
 }
 
 function getFilteredList() {
-  var list = ALL.slice();
-  if (FILTER.mode==='brand')       list = list.filter(function(p){return p.brand===FILTER.brand;});
-  else if (FILTER.mode==='cat')    list = list.filter(function(p){return p.cat===FILTER.cat||p.cat.includes(FILTER.cat);});
-  if (FILTER.sort==='low')  list.sort(function(a,b){return (a.price||9999)-(b.price||9999);});
-  if (FILTER.sort==='high') list.sort(function(a,b){return (b.price||0)-(a.price||0);});
-  if (FILTER.sort==='name') list.sort(function(a,b){return a.name.localeCompare(b.name);});
+  let list = ALL.slice();
+  if      (currentFilter.mode === 'popular') list = list.slice(0, 80);
+  else if (currentFilter.mode === 'brand')   list = list.filter(function(p) { return p.brand === currentFilter.brand; });
+  else if (currentFilter.mode === 'cat')     list = list.filter(function(p) { return p.cat === currentFilter.cat || p.cat.includes(currentFilter.cat); });
+  if (currentFilter.sort === 'low')  list.sort(function(a, b) { return (a.price || 9999) - (b.price || 9999); });
+  if (currentFilter.sort === 'high') list.sort(function(a, b) { return (b.price || 0)    - (a.price || 0);    });
+  if (currentFilter.sort === 'name') list.sort(function(a, b) { return a.name.localeCompare(b.name);          });
   return list;
 }
 
 function renderFeaturedGrid() {
-  var list = getFilteredList();
-  var grid = document.getElementById('productGrid');
-  var vaw  = document.getElementById('viewAllWrap');
+  if (!ALL.length) return;
+  const list        = getFilteredList();
+  const grid        = document.getElementById('productGrid');
+  const viewAllWrap = document.getElementById('viewAllWrap');
   if (!list.length) {
     grid.innerHTML = '<div class="empty-state"><i class="fas fa-box-open"></i><h3>No products found</h3><p>Try a different filter.</p></div>';
-    vaw.style.display = 'none';
+    viewAllWrap.style.display = 'none';
     return;
   }
-  var toShow = SHOWING_ALL ? list : list.slice(0, PAGE_SIZE);
-  grid.innerHTML = toShow.map(buildCard).join('');
-  vaw.style.display = (!SHOWING_ALL && list.length > PAGE_SIZE) ? 'block' : 'none';
+  const toShow = showingAll ? list : list.slice(0, PAGE_SIZE);
+  grid.innerHTML = toShow.map(function(p) { return buildCard(p); }).join('');
+  viewAllWrap.style.display = (!showingAll && list.length > PAGE_SIZE) ? 'block' : 'none';
 }
 
-function showAllProducts() { SHOWING_ALL=true; renderFeaturedGrid(); }
+function showAllProducts() { showingAll = true; renderFeaturedGrid(); }
 
+/* ============================================================
+   CATEGORY COUNTS
+   ============================================================ */
 function updateCategoryCounts() {
   ['notebooks','pencils','colours','kits','markers','geometry_boxes'].forEach(function(cat) {
-    var el = document.getElementById('cnt-'+cat);
-    if (el) el.textContent = ALL.filter(function(p){return p.cat===cat;}).length + ' products';
+    const el = document.getElementById('cnt-' + cat);
+    if (el) el.textContent = ALL.filter(function(p) { return p.cat === cat; }).length + ' products';
   });
 }
 
-/* ─── CART / WISHLIST ─── */
-function addToCart(btn, name) {
-  CART_N++;
-  document.getElementById('cartBadge').textContent  = CART_N;
-  document.getElementById('floatBadge').textContent = CART_N;
-  showToast('Added: ' + name);
-}
-function openCart() { showToast('Cart has ' + CART_N + ' item(s)'); }
+/* ============================================================
+   CART, WISHLIST, TOAST
+   ============================================================ */
+function openCart() { showToast('Cart has ' + cartCount + ' item(s)'); }
 function toggleWishlist(el) {
   el.classList.toggle('active');
-  var icon = el.querySelector('i');
-  if (el.classList.contains('active')) { icon.className='fas fa-heart'; showToast('Added to Wishlist ❤'); }
-  else { icon.className='far fa-heart'; }
+  const icon = el.querySelector('i');
+  if (el.classList.contains('active')) {
+    icon.classList.replace('far', 'fas');
+    showToast('Added to Wishlist');
+  } else {
+    icon.classList.replace('fas', 'far');
+  }
 }
-
-/* ─── TOAST ─── */
-var toastTimer;
+let toastTimer;
 function showToast(msg) {
-  var t = document.getElementById('toast');
+  const t = document.getElementById('toast');
   document.getElementById('toastMsg').textContent = msg;
   t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(function(){t.classList.remove('show');}, 2800);
+  toastTimer = setTimeout(function() { t.classList.remove('show'); }, 2800);
 }
 
-/* ─── HERO SLIDER ─── */
+/* ============================================================
+   HERO SLIDER
+   ============================================================ */
 function goSlide(n) {
-  SLIDE_IDX = n;
-  document.getElementById('slides').style.transform = 'translateX(-' + (n*100) + '%)';
-  document.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('active',i===n);});
-  clearInterval(SLIDE_TIMER);
-  SLIDE_TIMER = setInterval(function(){changeSlide(1);}, 6000);
-  /* Restart typewriter */
-  var titleEl = document.getElementById('slide' + (n+1) + '-title');
-  if (titleEl) {
-    titleEl.querySelectorAll('.typewriter-line').forEach(function(line){
-      line.style.animation='none';
-      void line.offsetHeight;
-      line.style.animation='';
-    });
-  }
+  slideIndex = n;
+  document.getElementById('slides').style.transform = 'translateX(-' + (n * 100) + '%)';
+  document.querySelectorAll('.dot').forEach(function(d, i) { d.classList.toggle('active', i === n); });
+  resetSlideTimer();
+  restartTypewriter(n);
 }
 function changeSlide(dir) {
-  var total = document.querySelectorAll('.slide').length;
-  goSlide((SLIDE_IDX + dir + total) % total);
+  const total = document.querySelectorAll('.slide').length;
+  goSlide((slideIndex + dir + total) % total);
+}
+function resetSlideTimer() {
+  clearInterval(slideTimer);
+  slideTimer = setInterval(function() { changeSlide(1); }, 6000);
+}
+function restartTypewriter(slideIdx) {
+  const titleId = slideIdx === 0 ? 'slide1-title' : 'slide2-title';
+  const el = document.getElementById(titleId);
+  if (!el) return;
+  el.querySelectorAll('.typewriter-line').forEach(function(line) {
+    line.style.animation = 'none';
+    line.offsetHeight;
+    line.style.animation = '';
+  });
 }
 
-/* ─── BACK TO TOP ─── */
-window.addEventListener('scroll', function(){
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+window.addEventListener('scroll', function() {
   document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
 });
 
-/* ─── INIT ─── */
-document.addEventListener('DOMContentLoaded', function(){
+/* ============================================================
+   INIT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', function() {
   loadProducts();
-  SLIDE_TIMER = setInterval(function(){changeSlide(1);}, 6000);
+  resetSlideTimer();
 });
 </script>
 </body>
