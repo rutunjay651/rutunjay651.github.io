@@ -23,8 +23,6 @@
     html{scroll-behavior:smooth;}
     body{font-family:'Poppins',sans-serif;background:var(--light);color:var(--dark);overflow-x:hidden;}
 
-    /* ANNOUNCEMENT BAR REMOVED */
-
     header{position:sticky;top:0;z-index:1000;background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,.08);}
     .header-inner{max-width:1300px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;gap:20px;}
     .logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
@@ -34,13 +32,30 @@
     .logo-text .brand-name{font-size:1.15rem;font-weight:800;color:var(--dark);}
     .logo-text .brand-sub{font-size:.65rem;font-weight:500;color:var(--primary);text-transform:uppercase;letter-spacing:1px;}
     .header-actions{display:flex;align-items:center;gap:16px;}
-    .hdr-btn{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;background:transparent;border:none;font-family:inherit;color:var(--dark);font-size:.7rem;font-weight:600;transition:color .2s;text-decoration:none;position:relative;}
+
+    /* ── CHANGE 2: hover = scale + label, NOT green colour ── */
+    .hdr-btn{
+      display:flex;flex-direction:column;align-items:center;gap:2px;
+      cursor:pointer;background:transparent;border:none;
+      font-family:inherit;color:var(--dark);font-size:.7rem;font-weight:600;
+      transition:color .2s, transform .2s;
+      text-decoration:none;position:relative;
+    }
     .hdr-btn svg{width:26px;height:26px;stroke:var(--dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s;}
-    .hdr-btn:hover svg{stroke:var(--primary);}
-    .hdr-btn:hover{color:var(--primary);}
+    /* keep colour dark on hover — only scale up */
+    .hdr-btn:hover svg{stroke:var(--dark);}
+    .hdr-btn:hover{color:var(--dark);transform:scale(1.18);}
+    /* label hidden by default, slides in on hover */
+    .hdr-btn-label{
+      font-size:.58rem;font-weight:700;color:var(--dark);
+      max-height:0;overflow:hidden;opacity:0;
+      transition:max-height .22s ease, opacity .22s ease;
+      line-height:1;white-space:nowrap;
+    }
+    .hdr-btn:hover .hdr-btn-label{max-height:14px;opacity:1;}
+
     .cart-wrap{position:relative;}
     .cart-badge{position:absolute;top:-8px;right:-10px;background:#e63329;color:#fff;border-radius:50%;width:20px;height:20px;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;pointer-events:none;border:2px solid #fff;}
-    /* Professional cart icon (🛒 style) */
     .cart-icon-svg{width:26px;height:26px;stroke:var(--dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
     .search-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:2000;display:none;align-items:flex-start;justify-content:center;padding-top:80px;backdrop-filter:blur(4px);}
     .search-overlay.active{display:flex;animation:fadeIn 0.2s ease;}
@@ -64,7 +79,7 @@
     .sri-price{font-weight:700;color:var(--dark);font-size:.82rem;}
     .sri-mrp{text-decoration:line-through;color:var(--gray);font-size:.72rem;}
     .sri-off{color:#10b981;font-weight:600;font-size:.72rem;}
-      .search-no-results{padding:28px 20px;text-align:center;color:var(--gray);font-size:.88rem;}
+    .search-no-results{padding:28px 20px;text-align:center;color:var(--gray);font-size:.88rem;}
     .search-no-results i{font-size:2rem;color:var(--border);display:block;margin-bottom:10px;}
     .search-results-header{padding:10px 16px 6px;font-size:.72rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--white);z-index:1;}
     .search-results-header span{color:var(--primary);}
@@ -101,11 +116,40 @@
     .slide-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10;}
     .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer;transition:all .3s;}
     .dot.active{background:#fff;width:26px;border-radius:4px;}
-    .typewriter-line{display:block;overflow:hidden;white-space:nowrap;width:0;animation:typing 1s steps(30,end) forwards;}
-    .typewriter-line:nth-child(1){animation-delay:0.2s;}
-    .typewriter-line:nth-child(2){animation-delay:1.3s;}
-    .typewriter-line:nth-child(3){animation-delay:2.4s;}
+
+    /* ── CHANGE 4: typewriter — slower (2.2 s) + blinking | cursor ── */
+    .typewriter-line{
+      display:block;overflow:hidden;white-space:nowrap;
+      width:0;
+      border-right:3px solid transparent; /* cursor rail */
+    }
+    /* Line 1 */
+    .typewriter-line:nth-child(1){
+      animation:
+        typing      2.2s steps(30,end) 0.2s  forwards,
+        blink-cur   0.7s linear        0.2s  3 forwards,
+        hide-cur    0.01s linear       2.4s  forwards;
+    }
+    /* Line 2 */
+    .typewriter-line:nth-child(2){
+      animation:
+        typing      2.2s steps(30,end) 2.6s  forwards,
+        blink-cur   0.7s linear        2.6s  3 forwards,
+        hide-cur    0.01s linear       4.8s  forwards;
+    }
+    /* Line 3 — cursor blinks forever after last line */
+    .typewriter-line:nth-child(3){
+      animation:
+        typing      2.2s steps(30,end) 5.0s  forwards,
+        blink-cur   0.7s linear        5.0s  infinite;
+    }
     @keyframes typing{from{width:0;}to{width:100%;}}
+    @keyframes blink-cur{
+      0%,100%{border-color:rgba(255,255,255,.88);}
+      50%    {border-color:transparent;}
+    }
+    @keyframes hide-cur{to{border-color:transparent;}}
+
     .trust-bar{background:var(--white);border-top:3px solid var(--primary);border-bottom:1px solid var(--border);}
     .trust-inner{max-width:1300px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);padding:0 24px;}
     .trust-item{display:flex;align-items:center;gap:14px;padding:20px 16px;border-right:1px solid var(--border);}
@@ -233,9 +277,6 @@
     .footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.35);}
     .footer-bottom .pay-icons{display:flex;gap:8px;}
     .pay-icon{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);padding:4px 10px;border-radius:6px;font-size:.7rem;font-weight:600;}
-
-    /* FLOATING CART REMOVED - no more floating cart */
-
     .toast{position:fixed;bottom:100px;right:28px;z-index:2000;background:var(--dark);color:#fff;padding:12px 20px;border-radius:10px;font-size:.82rem;font-weight:500;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translateX(120%);transition:transform .35s;border-left:4px solid #e63329;}
     .toast.show{transform:translateX(0);}
     .toast i{color:#10b981;}
@@ -257,31 +298,45 @@
 
 <header>
   <div class="header-inner">
+
+    <!-- ── CHANGE 1: hamburger icon at far left (logo naturally shifts right) ── -->
+    <button class="hdr-btn" title="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="7"  x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+      <span class="hdr-btn-label">Menu</span>
+    </button>
+
     <a href="#" class="logo-wrap">
       <div class="logo-icon">
-        <!-- Updated Shrikant Paper Products logo -->
         <img src="https://rutunjay651.github.io/resources/logo/spp.png"
              onerror="this.onerror=null;this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';"
              alt="Shrikant Paper Products"/>
       </div>
       <img src="https://rutunjay651.github.io/resources/logo/spp2.png"
-     alt="Shrikant Paper Products"
-     style="height:54px; width:auto; object-fit:contain;"
-     onerror="this.onerror=null; this.style.display='none';" />
+           alt="Shrikant Paper Products"
+           style="height:54px; width:auto; object-fit:contain;"
+           onerror="this.onerror=null; this.style.display='none';" />
     </a>
+
     <div class="header-actions">
+      <!-- ── CHANGE 2: labels added to every icon; hover = scale, not green ── -->
       <button class="hdr-btn" id="openSearchBtn" title="Search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
+        <span class="hdr-btn-label">Search</span>
       </button>
       <a href="#" class="hdr-btn" title="Account">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span class="hdr-btn-label">Account</span>
       </a>
       <a href="#" class="hdr-btn" title="Wishlist">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="hdr-btn-label">Wishlist</span>
       </a>
-      <!-- Cart icon (professional 🛒 style) -->
       <div class="cart-wrap">
         <a href="#" class="hdr-btn" onclick="openCart()" title="Cart">
           <svg class="cart-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -289,6 +344,7 @@
             <circle cx="20" cy="21" r="1"/>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
           </svg>
+          <span class="hdr-btn-label">Cart</span>
         </a>
         <span class="cart-badge" id="cartBadge">0</span>
       </div>
@@ -501,16 +557,21 @@
       </a>
       <div class="footer-about">Authorized dealer of DOMS and Youva stationery brands. Serving students, teachers, and artists in Jalna, Maharashtra since 2008.</div>
       <div class="footer-social">
-        <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <!-- Facebook -->
+        <a href="#" class="social-btn">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <!-- ── CHANGE 5: Instagram — proper filled icon, consistent with others ── -->
         <a href="#" class="social-btn" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="none"/>
-            <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" fill="currentColor"/>
-            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
           </svg>
         </a>
+        <!-- WhatsApp -->
         <a href="https://wa.me/919422218909" class="social-btn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+        <!-- YouTube -->
         <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a1a2e"/></svg></a>
+        <!-- X / Twitter -->
         <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
       </div>
     </div>
@@ -521,22 +582,15 @@
   <div class="footer-bottom"><p>2025 Shrikant Paper Products, Jalna. All rights reserved. | Serving Since 2008</p><div class="pay-icons"><span class="pay-icon">UPI</span><span class="pay-icon">Visa</span><span class="pay-icon">MC</span><span class="pay-icon">RuPay</span><span class="pay-icon">COD</span></div></div>
 </footer>
 
-<!-- No floating cart -->
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Done!</span></div>
 
 <script>
-/* ============================================================
-   BRAND LOGOS (updated)
-   ============================================================ */
 const BRAND_LOGOS = {
   doms:  'https://rutunjay651.github.io/resources/logo/doms.webp',
   youva: 'https://rutunjay651.github.io/resources/logo/youva.png'
 };
 
-/* ============================================================
-   STATE
-   ============================================================ */
 let ALL             = [];
 let cartCount       = 0;
 let slideIndex      = 0;
@@ -545,9 +599,6 @@ let currentFilter   = { brand:'all', cat:'all', sort:'featured', mode:'popular' 
 let showingAll      = false;
 const PAGE_SIZE     = 8;
 
-/* ============================================================
-   FETCH & NORMALIZE
-   ============================================================ */
 async function loadProducts() {
   try {
     const [r1, r2] = await Promise.all([
@@ -589,26 +640,18 @@ function normalize(p, brandKey) {
   };
 }
 
-/* ============================================================
-   HIGHLIGHT HELPER (light green background, black text, bold)
-   ============================================================ */
+/* ── CHANGE 3: highlight colour changed from lime-green to warm amber ── */
 function highlight(text, q) {
   if (!q || !text) return text;
   const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const re = new RegExp('(' + escaped + ')', 'gi');
-  return String(text).replace(re, '<mark style="background:#4ade80; color:#000; font-weight:bold; border-radius:2px; padding:0 1px;">$1</mark>');
+  return String(text).replace(re,
+    '<mark style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:3px;padding:0 2px;">$1</mark>'
+  );
 }
 
-/* ============================================================
-   BUILD CARD  (normal — no highlights)
-   ============================================================ */
-function buildCard(p) {
-  return buildCardHighlighted(p, null);
-}
+function buildCard(p) { return buildCardHighlighted(p, null); }
 
-/* ============================================================
-   BUILD CARD HIGHLIGHTED (with light green highlight)
-   ============================================================ */
 function buildCardHighlighted(p, q) {
   const brandLogo = BRAND_LOGOS[p.brand] || '';
   const brandAlt  = p.brand === 'doms' ? 'DOMS' : 'Youva';
@@ -665,52 +708,29 @@ function buildCardHighlighted(p, q) {
 
 function viewProduct(name) { showToast('Viewing: ' + name); }
 
-/* ============================================================
-   SEARCH OVERLAY
-   ============================================================ */
-const searchOverlay      = document.getElementById('searchOverlay');
-const searchPopupInput   = document.getElementById('searchPopupInput');
+const searchOverlay       = document.getElementById('searchOverlay');
+const searchPopupInput    = document.getElementById('searchPopupInput');
 const searchPopupDropdown = document.getElementById('searchPopupDropdown');
-const openSearchBtn      = document.getElementById('openSearchBtn');
-const closeSearchPopupEl = document.getElementById('closeSearchPopup');
+const openSearchBtn       = document.getElementById('openSearchBtn');
+const closeSearchPopupEl  = document.getElementById('closeSearchPopup');
 
-function openSearchOverlay() {
-  searchOverlay.classList.add('active');
-  searchPopupInput.focus();
-}
-function closeSearchOverlay() {
-  searchOverlay.classList.remove('active');
-  searchPopupInput.value = '';
-  searchPopupDropdown.innerHTML = '';
-}
+function openSearchOverlay() { searchOverlay.classList.add('active'); searchPopupInput.focus(); }
+function closeSearchOverlay() { searchOverlay.classList.remove('active'); searchPopupInput.value = ''; searchPopupDropdown.innerHTML = ''; }
 
 openSearchBtn.addEventListener('click', openSearchOverlay);
 closeSearchPopupEl.addEventListener('click', closeSearchOverlay);
-searchOverlay.addEventListener('click', function(e) {
-  if (e.target === searchOverlay) closeSearchOverlay();
-});
+searchOverlay.addEventListener('click', function(e) { if (e.target === searchOverlay) closeSearchOverlay(); });
 
-/* Search input (results from first character) */
 searchPopupInput.addEventListener('input', function() {
   const q = this.value.trim().toLowerCase();
   if (q.length < 1) { searchPopupDropdown.innerHTML = ''; return; }
-  if (!ALL.length) {
-    searchPopupDropdown.innerHTML = '<div class="search-no-results"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
-    return;
-  }
+  if (!ALL.length) { searchPopupDropdown.innerHTML = '<div class="search-no-results"><i class="fas fa-spinner fa-spin"></i> Loading...</div>'; return; }
   const hits = matchProducts(q, ALL).slice(0, 8);
   renderPopupDropdown(hits, q);
 });
 
-/* Enter key triggers full search */
-searchPopupInput.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    doSearchFromPopup();
-  }
-});
+searchPopupInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); doSearchFromPopup(); } });
 
-/* Match products including price strings */
 function matchProducts(q, list) {
   return list.filter(function(p) {
     const priceStr = (p.price != null && p.price > 0) ? String(p.price.toFixed(2)) : '';
@@ -726,26 +746,20 @@ function matchProducts(q, list) {
   });
 }
 
-/* Render dropdown with light green highlights */
 function renderPopupDropdown(hits, q) {
   if (!hits.length) {
-    searchPopupDropdown.innerHTML =
-      '<div class="search-no-results"><i class="fas fa-search"></i>No results for "<strong>' + q + '</strong>"</div>';
+    searchPopupDropdown.innerHTML = '<div class="search-no-results"><i class="fas fa-search"></i>No results for "<strong>' + q + '</strong>"</div>';
     return;
   }
-
   const header = '<div class="search-results-header">Suggestions<span>' + hits.length + ' found</span></div>';
   const items = hits.map(function(p) {
-    const off = (p.mrp && p.mrp > p.price && p.price)
-      ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
+    const off = (p.mrp && p.mrp > p.price && p.price) ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
     const imgSrc   = p.img || ('https://placehold.co/52x52/f3f4f6/888?text=' + p.brand.toUpperCase());
     const priceRaw = (p.price && p.price > 0) ? ('₹' + p.price.toFixed(2)) : 'On enquiry';
     const logoUrl  = BRAND_LOGOS[p.brand] || '';
-
     const dispName  = highlight(p.name,   q);
     const dispCode  = highlight(p.code,   q);
     const dispPrice = highlight(priceRaw, q);
-
     return '<div class="search-result-item" onclick="selectPopupItem(\'' + p.name.replace(/'/g, "\\'") + '\')">'
       + '<img class="sri-img" src="' + imgSrc + '" onerror="this.src=\'https://placehold.co/52x52/f3f4f6/888?text=IMG\';" alt="' + p.name + '"/>'
       + '<div class="sri-info">'
@@ -759,16 +773,11 @@ function renderPopupDropdown(hits, q) {
       + '</div>'
       + '</div>';
   }).join('');
-
   const viewAll = '<div class="search-view-all" onclick="doSearchFromPopup()">View all results for "<strong>' + q + '</strong>" &rarr;</div>';
   searchPopupDropdown.innerHTML = header + items + viewAll;
 }
 
-function selectPopupItem(name) {
-  searchPopupInput.value = name;
-  doSearchFromPopup();
-}
-
+function selectPopupItem(name) { searchPopupInput.value = name; doSearchFromPopup(); }
 function doSearchFromPopup() {
   const q = searchPopupInput.value.trim();
   if (!q) return;
@@ -777,9 +786,6 @@ function doSearchFromPopup() {
   closeSearchOverlay();
 }
 
-/* ============================================================
-   SEARCH RESULTS PAGE (with light green highlights)
-   ============================================================ */
 const searchSection = document.getElementById('searchResultsSection');
 const searchGrid    = document.getElementById('searchResultsGrid');
 const searchTitle   = document.getElementById('searchResultsTitle');
@@ -787,20 +793,12 @@ const searchTitle   = document.getElementById('searchResultsTitle');
 function showSearchResults(hits, q) {
   document.getElementById('products-section').style.display = 'none';
   searchSection.style.display = 'block';
-  searchTitle.innerHTML =
-    '<span>' + hits.length + '</span> result' + (hits.length !== 1 ? 's' : '') +
-    ' for "<span>' + q + '</span>"';
-
+  searchTitle.innerHTML = '<span>' + hits.length + '</span> result' + (hits.length !== 1 ? 's' : '') + ' for "<span>' + q + '</span>"';
   if (!hits.length) {
-    searchGrid.innerHTML =
-      '<div class="empty-state"><i class="fas fa-search"></i><h3>No results for "' + q + '"</h3><p>Try different keywords or product codes.</p></div>';
+    searchGrid.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><h3>No results for "' + q + '"</h3><p>Try different keywords or product codes.</p></div>';
     return;
   }
-
-  searchGrid.innerHTML = hits.map(function(p) {
-    return buildCardHighlighted(p, q.toLowerCase());
-  }).join('');
-
+  searchGrid.innerHTML = hits.map(function(p) { return buildCardHighlighted(p, q.toLowerCase()); }).join('');
   searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -809,21 +807,14 @@ function clearSearch() {
   document.getElementById('products-section').style.display = 'block';
 }
 
-/* ============================================================
-   FILTER TABS & BRAND / CAT FILTERS
-   ============================================================ */
 function filterTab(btn, value) {
   document.querySelectorAll('.filter-tab').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
   showingAll = false;
   currentFilter.sort = document.getElementById('sortSelect').value;
-  if (value === 'popular') {
-    currentFilter.mode = 'popular'; currentFilter.brand = 'all'; currentFilter.cat = 'all';
-  } else if (value === 'doms' || value === 'youva') {
-    currentFilter.mode = 'brand'; currentFilter.brand = value; currentFilter.cat = 'all';
-  } else {
-    currentFilter.mode = 'cat'; currentFilter.brand = 'all'; currentFilter.cat = value;
-  }
+  if (value === 'popular') { currentFilter.mode = 'popular'; currentFilter.brand = 'all'; currentFilter.cat = 'all'; }
+  else if (value === 'doms' || value === 'youva') { currentFilter.mode = 'brand'; currentFilter.brand = value; currentFilter.cat = 'all'; }
+  else { currentFilter.mode = 'cat'; currentFilter.brand = 'all'; currentFilter.cat = value; }
   renderFeaturedGrid();
 }
 
@@ -831,9 +822,7 @@ function filterByCat(cat) {
   showingAll = false;
   currentFilter.mode = 'cat'; currentFilter.cat = cat; currentFilter.brand = 'all';
   clearSearch();
-  document.querySelectorAll('.filter-tab').forEach(function(b) {
-    b.classList.toggle('active', b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + cat + "'"));
-  });
+  document.querySelectorAll('.filter-tab').forEach(function(b) { b.classList.toggle('active', b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + cat + "'")); });
   renderFeaturedGrid();
   document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
 }
@@ -842,17 +831,12 @@ function filterByBrand(brand) {
   showingAll = false;
   currentFilter.mode = 'brand'; currentFilter.brand = brand; currentFilter.cat = 'all';
   clearSearch();
-  document.querySelectorAll('.filter-tab').forEach(function(b) {
-    b.classList.toggle('active', b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + brand + "'"));
-  });
+  document.querySelectorAll('.filter-tab').forEach(function(b) { b.classList.toggle('active', b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + brand + "'")); });
   renderFeaturedGrid();
   document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
 }
 
-function applySort() {
-  currentFilter.sort = document.getElementById('sortSelect').value;
-  renderFeaturedGrid();
-}
+function applySort() { currentFilter.sort = document.getElementById('sortSelect').value; renderFeaturedGrid(); }
 
 function getFilteredList() {
   let list = ALL.slice();
@@ -860,8 +844,8 @@ function getFilteredList() {
   else if (currentFilter.mode === 'brand')   list = list.filter(function(p) { return p.brand === currentFilter.brand; });
   else if (currentFilter.mode === 'cat')     list = list.filter(function(p) { return p.cat === currentFilter.cat || p.cat.includes(currentFilter.cat); });
   if (currentFilter.sort === 'low')  list.sort(function(a, b) { return (a.price || 9999) - (b.price || 9999); });
-  if (currentFilter.sort === 'high') list.sort(function(a, b) { return (b.price || 0)    - (a.price || 0);    });
-  if (currentFilter.sort === 'name') list.sort(function(a, b) { return a.name.localeCompare(b.name);          });
+  if (currentFilter.sort === 'high') list.sort(function(a, b) { return (b.price || 0)    - (a.price || 0); });
+  if (currentFilter.sort === 'name') list.sort(function(a, b) { return a.name.localeCompare(b.name); });
   return list;
 }
 
@@ -882,9 +866,6 @@ function renderFeaturedGrid() {
 
 function showAllProducts() { showingAll = true; renderFeaturedGrid(); }
 
-/* ============================================================
-   CATEGORY COUNTS
-   ============================================================ */
 function updateCategoryCounts() {
   ['notebooks','pencils','colours','kits','markers','geometry_boxes'].forEach(function(cat) {
     const el = document.getElementById('cnt-' + cat);
@@ -892,19 +873,12 @@ function updateCategoryCounts() {
   });
 }
 
-/* ============================================================
-   CART, WISHLIST, TOAST
-   ============================================================ */
 function openCart() { showToast('Cart has ' + cartCount + ' item(s)'); }
 function toggleWishlist(el) {
   el.classList.toggle('active');
   const icon = el.querySelector('i');
-  if (el.classList.contains('active')) {
-    icon.classList.replace('far', 'fas');
-    showToast('Added to Wishlist');
-  } else {
-    icon.classList.replace('fas', 'far');
-  }
+  if (el.classList.contains('active')) { icon.classList.replace('far', 'fas'); showToast('Added to Wishlist'); }
+  else { icon.classList.replace('fas', 'far'); }
 }
 let toastTimer;
 function showToast(msg) {
@@ -915,9 +889,6 @@ function showToast(msg) {
   toastTimer = setTimeout(function() { t.classList.remove('show'); }, 2800);
 }
 
-/* ============================================================
-   HERO SLIDER
-   ============================================================ */
 function goSlide(n) {
   slideIndex = n;
   document.getElementById('slides').style.transform = 'translateX(-' + (n * 100) + '%)';
@@ -925,35 +896,27 @@ function goSlide(n) {
   resetSlideTimer();
   restartTypewriter(n);
 }
-function changeSlide(dir) {
-  const total = document.querySelectorAll('.slide').length;
-  goSlide((slideIndex + dir + total) % total);
-}
-function resetSlideTimer() {
-  clearInterval(slideTimer);
-  slideTimer = setInterval(function() { changeSlide(1); }, 6000);
-}
+function changeSlide(dir) { const total = document.querySelectorAll('.slide').length; goSlide((slideIndex + dir + total) % total); }
+function resetSlideTimer() { clearInterval(slideTimer); slideTimer = setInterval(function() { changeSlide(1); }, 6000); }
+
+/* restart typewriter when slide changes */
 function restartTypewriter(slideIdx) {
   const titleId = slideIdx === 0 ? 'slide1-title' : 'slide2-title';
   const el = document.getElementById(titleId);
   if (!el) return;
   el.querySelectorAll('.typewriter-line').forEach(function(line) {
     line.style.animation = 'none';
-    line.offsetHeight;
+    line.style.borderRightColor = 'transparent';
+    line.offsetHeight; /* force reflow */
     line.style.animation = '';
+    line.style.borderRightColor = '';
   });
 }
 
-/* ============================================================
-   BACK TO TOP
-   ============================================================ */
 window.addEventListener('scroll', function() {
   document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
 });
 
-/* ============================================================
-   INIT
-   ============================================================ */
 document.addEventListener('DOMContentLoaded', function() {
   loadProducts();
   resetSlideTimer();
