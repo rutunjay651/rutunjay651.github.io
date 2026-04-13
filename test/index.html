@@ -25,6 +25,10 @@
 
     header{position:sticky;top:0;z-index:1000;background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,.08);}
     .header-inner{max-width:1300px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;gap:20px;}
+
+    /* ── CHANGE 1: wrap menu btn + logos in one left group ── */
+    .header-left{display:flex;align-items:center;gap:12px;}
+
     .logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
     .logo-icon{width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0;}
     .logo-icon img{width:100%;height:100%;object-fit:contain;background:#fff;}
@@ -32,28 +36,23 @@
     .logo-text .brand-name{font-size:1.15rem;font-weight:800;color:var(--dark);}
     .logo-text .brand-sub{font-size:.65rem;font-weight:500;color:var(--primary);text-transform:uppercase;letter-spacing:1px;}
     .header-actions{display:flex;align-items:center;gap:16px;}
-
-    /* ── CHANGE 2: hover = scale + label, NOT green colour ── */
     .hdr-btn{
       display:flex;flex-direction:column;align-items:center;gap:2px;
       cursor:pointer;background:transparent;border:none;
       font-family:inherit;color:var(--dark);font-size:.7rem;font-weight:600;
-      transition:color .2s, transform .2s;
+      transition:color .2s,transform .2s;
       text-decoration:none;position:relative;
     }
     .hdr-btn svg{width:26px;height:26px;stroke:var(--dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s;}
-    /* keep colour dark on hover — only scale up */
     .hdr-btn:hover svg{stroke:var(--dark);}
     .hdr-btn:hover{color:var(--dark);transform:scale(1.18);}
-    /* label hidden by default, slides in on hover */
     .hdr-btn-label{
       font-size:.58rem;font-weight:700;color:var(--dark);
       max-height:0;overflow:hidden;opacity:0;
-      transition:max-height .22s ease, opacity .22s ease;
+      transition:max-height .22s ease,opacity .22s ease;
       line-height:1;white-space:nowrap;
     }
     .hdr-btn:hover .hdr-btn-label{max-height:14px;opacity:1;}
-
     .cart-wrap{position:relative;}
     .cart-badge{position:absolute;top:-8px;right:-10px;background:#e63329;color:#fff;border-radius:50%;width:20px;height:20px;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;pointer-events:none;border:2px solid #fff;}
     .cart-icon-svg{width:26px;height:26px;stroke:var(--dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
@@ -117,38 +116,41 @@
     .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer;transition:all .3s;}
     .dot.active{background:#fff;width:26px;border-radius:4px;}
 
-    /* ── CHANGE 4: typewriter — slower (2.2 s) + blinking | cursor ── */
+    /* ── CHANGE 2: typewriter timing fixed ──
+       Line 1: types 0.2s→2.4s. Cursor appears at 0.2s, hides instantly at 2.4s.
+       Line 2: types 2.4s→4.6s. Cursor appears at 2.4s, hides instantly at 4.6s.
+       Line 3: types 4.6s→6.8s. Cursor appears at 4.6s, blinks forever after 6.8s.
+    ── */
     .typewriter-line{
       display:block;overflow:hidden;white-space:nowrap;
       width:0;
-      border-right:3px solid transparent; /* cursor rail */
+      border-right:3px solid transparent;
     }
-    /* Line 1 */
     .typewriter-line:nth-child(1){
       animation:
-        typing      2.2s steps(30,end) 0.2s  forwards,
-        blink-cur   0.7s linear        0.2s  3 forwards,
-        hide-cur    0.01s linear       1.1s  forwards;
+        typing    2.2s steps(30,end) 0.2s forwards,
+        show-cur  0s   linear        0.2s forwards,
+        hide-cur  0s   linear        2.4s forwards;
     }
-    /* Line 2 */
     .typewriter-line:nth-child(2){
       animation:
-        typing      2.2s steps(30,end) 1.8s  forwards,
-        blink-cur   0.7s linear        2.0s  3 forwards,
-        hide-cur    0.01s linear       2.1s  forwards;
+        typing    2.2s steps(30,end) 2.4s forwards,
+        show-cur  0s   linear        2.4s forwards,
+        hide-cur  0s   linear        4.6s forwards;
     }
-    /* Line 3 — cursor blinks forever after last line */
     .typewriter-line:nth-child(3){
       animation:
-        typing      2.2s steps(30,end) 5.0s  forwards,
-        blink-cur   0.7s linear        5.0s  infinite;
+        typing      2.2s steps(30,end) 4.6s forwards,
+        show-cur    0s   linear        4.6s forwards,
+        blink-cur   0.7s linear        6.8s infinite;
     }
-    @keyframes typing{from{width:0;}to{width:100%;}}
+    @keyframes typing   { from{width:0;} to{width:100%;} }
+    @keyframes show-cur { to { border-color: rgba(255,255,255,.9); } }
+    @keyframes hide-cur { to { border-color: transparent; } }
     @keyframes blink-cur{
-      0%,100%{border-color:rgba(255,255,255,.88);}
-      50%    {border-color:transparent;}
+      0%,100%{ border-color: rgba(255,255,255,.9); }
+      50%    { border-color: transparent; }
     }
-    @keyframes hide-cur{to{border-color:transparent;}}
 
     .trust-bar{background:var(--white);border-top:3px solid var(--primary);border-bottom:1px solid var(--border);}
     .trust-inner{max-width:1300px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);padding:0 24px;}
@@ -299,30 +301,31 @@
 <header>
   <div class="header-inner">
 
-    <!-- ── CHANGE 1: hamburger icon at far left (logo naturally shifts right) ── -->
-    <button class="hdr-btn" title="Menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="3" y1="7"  x2="21" y2="7"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="17" x2="21" y2="17"/>
-      </svg>
-      <span class="hdr-btn-label">Menu</span>
-    </button>
+    <!-- ── CHANGE 1: menu button + both logo images grouped side-by-side on left ── -->
+    <div class="header-left">
+      <button class="hdr-btn" title="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="7"  x2="21" y2="7"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="17" x2="21" y2="17"/>
+        </svg>
+        <span class="hdr-btn-label">Menu</span>
+      </button>
 
-    <a href="#" class="logo-wrap">
-      <div class="logo-icon">
-        <img src="https://rutunjay651.github.io/resources/logo/spp.png"
-             onerror="this.onerror=null;this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';"
-             alt="Shrikant Paper Products"/>
-      </div>
-      <img src="https://rutunjay651.github.io/resources/logo/spp2.png"
-           alt="Shrikant Paper Products"
-           style="height:54px; width:auto; object-fit:contain;"
-           onerror="this.onerror=null; this.style.display='none';" />
-    </a>
+      <a href="#" class="logo-wrap">
+        <div class="logo-icon">
+          <img src="https://rutunjay651.github.io/resources/logo/spp.png"
+               onerror="this.onerror=null;this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';"
+               alt="Shrikant Paper Products"/>
+        </div>
+        <img src="https://rutunjay651.github.io/resources/logo/spp2.png"
+             alt="Shrikant Paper Products"
+             style="height:54px;width:auto;object-fit:contain;"
+             onerror="this.onerror=null;this.style.display='none';"/>
+      </a>
+    </div>
 
     <div class="header-actions">
-      <!-- ── CHANGE 2: labels added to every icon; hover = scale, not green ── -->
       <button class="hdr-btn" id="openSearchBtn" title="Search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -340,8 +343,7 @@
       <div class="cart-wrap">
         <a href="#" class="hdr-btn" onclick="openCart()" title="Cart">
           <svg class="cart-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"/>
-            <circle cx="20" cy="21" r="1"/>
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
           </svg>
           <span class="hdr-btn-label">Cart</span>
@@ -430,7 +432,6 @@
   </div>
 </div>
 
-<!-- SEARCH RESULTS SECTION -->
 <div id="searchResultsSection">
   <div class="search-results-bar">
     <div class="search-results-title" id="searchResultsTitle">Results for "<span></span>"</div>
@@ -439,7 +440,6 @@
   <div class="product-grid" id="searchResultsGrid"></div>
 </div>
 
-<!-- CATEGORIES -->
 <div id="categories">
   <div class="section">
     <div class="sec-header">
@@ -557,21 +557,12 @@
       </a>
       <div class="footer-about">Authorized dealer of DOMS and Youva stationery brands. Serving students, teachers, and artists in Jalna, Maharashtra since 2008.</div>
       <div class="footer-social">
-        <!-- Facebook -->
-        <a href="#" class="social-btn">
-          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-        <!-- ── CHANGE 5: Instagram — proper filled icon, consistent with others ── -->
+        <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
         <a href="#" class="social-btn" aria-label="Instagram">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
-        <!-- WhatsApp -->
         <a href="https://wa.me/919422218909" class="social-btn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
-        <!-- YouTube -->
         <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a1a2e"/></svg></a>
-        <!-- X / Twitter -->
         <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
       </div>
     </div>
@@ -586,341 +577,77 @@
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Done!</span></div>
 
 <script>
-const BRAND_LOGOS = {
-  doms:  'https://rutunjay651.github.io/resources/logo/doms.webp',
-  youva: 'https://rutunjay651.github.io/resources/logo/youva.png'
-};
+const BRAND_LOGOS={doms:'https://rutunjay651.github.io/resources/logo/doms.webp',youva:'https://rutunjay651.github.io/resources/logo/youva.png'};
+let ALL=[],cartCount=0,slideIndex=0,slideTimer;
+let currentFilter={brand:'all',cat:'all',sort:'featured',mode:'popular'};
+let showingAll=false;
+const PAGE_SIZE=8;
 
-let ALL             = [];
-let cartCount       = 0;
-let slideIndex      = 0;
-let slideTimer;
-let currentFilter   = { brand:'all', cat:'all', sort:'featured', mode:'popular' };
-let showingAll      = false;
-const PAGE_SIZE     = 8;
-
-async function loadProducts() {
-  try {
-    const [r1, r2] = await Promise.all([
-      fetch('https://shrikantpaperproducts.github.io/resources/doms.json'),
-      fetch('https://shrikantpaperproducts.github.io/resources/youva.json')
-    ]);
-    if (!r1.ok) throw new Error('doms.json ' + r1.status);
-    if (!r2.ok) throw new Error('youva.json ' + r2.status);
-    const domsRaw  = await r1.json();
-    const youvaRaw = await r2.json();
-    ALL = [
-      ...domsRaw.map(p  => normalize(p,  'doms')),
-      ...youvaRaw.map(p => normalize(p, 'youva'))
-    ];
-    updateCategoryCounts();
-    renderFeaturedGrid();
-  } catch(e) {
-    console.error(e);
-    document.getElementById('productGrid').innerHTML =
-      '<div class="empty-state"><i class="fas fa-exclamation-circle"></i><h3>Could not load products</h3><p>Please check your connection.</p></div>';
-  }
+async function loadProducts(){
+  try{
+    const[r1,r2]=await Promise.all([fetch('https://shrikantpaperproducts.github.io/resources/doms.json'),fetch('https://shrikantpaperproducts.github.io/resources/youva.json')]);
+    if(!r1.ok)throw new Error('doms '+r1.status);if(!r2.ok)throw new Error('youva '+r2.status);
+    const d=await r1.json(),y=await r2.json();
+    ALL=[...d.map(p=>normalize(p,'doms')),...y.map(p=>normalize(p,'youva'))];
+    updateCategoryCounts();renderFeaturedGrid();
+  }catch(e){console.error(e);document.getElementById('productGrid').innerHTML='<div class="empty-state"><i class="fas fa-exclamation-circle"></i><h3>Could not load products</h3><p>Please check your connection.</p></div>';}
 }
-
-function normalize(p, brandKey) {
-  return {
-    id:         p.id,
-    code:       p.code         || '',
-    name:       p.name         || '',
-    brand:      brandKey,
-    brandLabel: p.brand        || brandKey,
-    price:      p.price        != null ? parseFloat(p.price)         : null,
-    mrp:        p.originalPrice != null ? parseFloat(p.originalPrice) : null,
-    discount:   p.discountPercent,
-    rating:     p.rating       || 4.0,
-    badge:      p.badge        || null,
-    img:        p.img          || '',
-    cat:        p.cat          || '',
-    tags:       Array.isArray(p.tags) ? p.tags : []
-  };
+function normalize(p,b){return{id:p.id,code:p.code||'',name:p.name||'',brand:b,brandLabel:p.brand||b,price:p.price!=null?parseFloat(p.price):null,mrp:p.originalPrice!=null?parseFloat(p.originalPrice):null,discount:p.discountPercent,rating:p.rating||4.0,badge:p.badge||null,img:p.img||'',cat:p.cat||'',tags:Array.isArray(p.tags)?p.tags:[]};}
+function highlight(text,q){if(!q||!text)return text;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');return String(text).replace(re,'<mark style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:3px;padding:0 2px;">$1</mark>');}
+function buildCard(p){return buildCardHighlighted(p,null);}
+function buildCardHighlighted(p,q){
+  const bl=BRAND_LOGOS[p.brand]||'',ba=p.brand==='doms'?'DOMS':'Youva';
+  let bh='';if(p.badge){const bc=p.badge.toLowerCase()==='stellar'?'badge-stellar':p.badge.toLowerCase()==='hq'?'badge-hq':'badge-new';bh='<span class="prod-badge '+bc+'">'+p.badge+'</span>';}
+  const pd=(p.price!=null&&p.price>0)?('₹'+p.price.toFixed(2)):'',md=(p.mrp!=null&&p.mrp>0)?('₹'+p.mrp.toFixed(2)):'';
+  const off=(p.mrp&&p.mrp>p.price&&p.price)?Math.round(((p.mrp-p.price)/p.mrp)*100):0;
+  let ph='';
+  if(p.price!=null&&p.price>0){const dp=q?highlight(pd,q):pd,dm=q?highlight(md,q):md;ph='<div class="prod-price">'+dp+'</div>';if(p.mrp&&p.mrp>p.price)ph+='<div class="prod-mrp">'+dm+'</div>';if(off>0)ph+='<div class="prod-off">'+off+'% off</div>';}
+  else ph='<div class="prod-price-na">Price on enquiry</div>';
+  const f=Math.floor(p.rating),h=p.rating%1>=0.5?1:0,e=5-f-h,st='\u2605'.repeat(f)+(h?'\u00BD':'')+'\u2606'.repeat(e);
+  const img=p.img||('https://placehold.co/280x210/f3f4f6/888?text='+encodeURIComponent(p.name.slice(0,10)));
+  const cl=p.cat.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+  const dn=q?highlight(p.name,q):p.name,dc=q?highlight(p.code,q):p.code;
+  return '<div class="product-card" data-brand="'+p.brand+'" data-cat="'+p.cat+'">'+bh+'<div class="prod-brand-tag"><img src="'+bl+'" alt="'+ba+'" onerror="this.onerror=null;this.style.display=\'none\';this.nextSibling.style.display=\'inline\';"><span style="display:none;font-size:.62rem;font-weight:700;color:var(--dark);">'+ba+'</span></div><div class="prod-img"><img src="'+img+'" onerror="this.onerror=null;this.src=\'https://placehold.co/280x210/f3f4f6/888?text=No+Image\';" alt="'+p.name+'" loading="lazy"/><div class="prod-wishlist" onclick="toggleWishlist(this)"><i class="far fa-heart"></i></div></div><div class="prod-body"><div class="prod-category">'+ba+' - '+cl+'</div><div class="prod-code">'+dc+'</div><div class="prod-name">'+dn+'</div><div class="prod-rating"><div class="stars">'+st+'</div><span class="rating-count">('+p.rating+')</span></div><div class="prod-price-row">'+ph+'</div><button class="btn-view" onclick="viewProduct(\''+p.name.replace(/'/g,"\\'")+'\')" >View</button></div></div>';
 }
-
-/* ── CHANGE 3: highlight colour changed from lime-green to warm amber ── */
-function highlight(text, q) {
-  if (!q || !text) return text;
-  const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const re = new RegExp('(' + escaped + ')', 'gi');
-  return String(text).replace(re,
-    '<mark style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:3px;padding:0 2px;">$1</mark>'
-  );
+function viewProduct(n){showToast('Viewing: '+n);}
+const so=document.getElementById('searchOverlay'),spi=document.getElementById('searchPopupInput'),spd=document.getElementById('searchPopupDropdown'),osb=document.getElementById('openSearchBtn'),csp=document.getElementById('closeSearchPopup');
+function openSearchOverlay(){so.classList.add('active');spi.focus();}
+function closeSearchOverlay(){so.classList.remove('active');spi.value='';spd.innerHTML='';}
+osb.addEventListener('click',openSearchOverlay);csp.addEventListener('click',closeSearchOverlay);
+so.addEventListener('click',function(e){if(e.target===so)closeSearchOverlay();});
+spi.addEventListener('input',function(){const q=this.value.trim().toLowerCase();if(q.length<1){spd.innerHTML='';return;}if(!ALL.length){spd.innerHTML='<div class="search-no-results"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';return;}renderPopupDropdown(matchProducts(q,ALL).slice(0,8),q);});
+spi.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();doSearchFromPopup();}});
+function matchProducts(q,list){return list.filter(function(p){const ps=(p.price!=null&&p.price>0)?String(p.price.toFixed(2)):'',ms=(p.mrp!=null&&p.mrp>0)?String(p.mrp.toFixed(2)):'';return p.name.toLowerCase().includes(q)||p.code.toLowerCase().includes(q)||p.cat.toLowerCase().replace(/_/g,' ').includes(q)||p.brand.toLowerCase().includes(q)||p.brandLabel.toLowerCase().includes(q)||p.tags.some(function(t){return t.toLowerCase().includes(q);})||ps.includes(q)||ms.includes(q);});}
+function renderPopupDropdown(hits,q){
+  if(!hits.length){spd.innerHTML='<div class="search-no-results"><i class="fas fa-search"></i>No results for "<strong>'+q+'</strong>"</div>';return;}
+  const hdr='<div class="search-results-header">Suggestions<span>'+hits.length+' found</span></div>';
+  const items=hits.map(function(p){const off=(p.mrp&&p.mrp>p.price&&p.price)?Math.round(((p.mrp-p.price)/p.mrp)*100):0,isrc=p.img||('https://placehold.co/52x52/f3f4f6/888?text='+p.brand.toUpperCase()),pr=(p.price&&p.price>0)?('₹'+p.price.toFixed(2)):'On enquiry',lu=BRAND_LOGOS[p.brand]||'';return'<div class="search-result-item" onclick="selectPopupItem(\''+p.name.replace(/'/g,"\\'")+'\')">'+'<img class="sri-img" src="'+isrc+'" onerror="this.src=\'https://placehold.co/52x52/f3f4f6/888?text=IMG\';" alt="'+p.name+'"/><div class="sri-info"><div class="sri-name">'+highlight(p.name,q)+'</div><div class="sri-meta"><img class="sri-brand-logo" src="'+lu+'" alt="'+p.brand+'" onerror="this.style.display=\'none\';"><span class="sri-code">'+highlight(p.code,q)+'</span><span class="sri-price">'+highlight(pr,q)+'</span>'+(off>0?'<span class="sri-off">'+off+'% off</span>':'')+'</div></div></div>';}).join('');
+  const va='<div class="search-view-all" onclick="doSearchFromPopup()">View all results for "<strong>'+q+'</strong>" &rarr;</div>';
+  spd.innerHTML=hdr+items+va;
 }
-
-function buildCard(p) { return buildCardHighlighted(p, null); }
-
-function buildCardHighlighted(p, q) {
-  const brandLogo = BRAND_LOGOS[p.brand] || '';
-  const brandAlt  = p.brand === 'doms' ? 'DOMS' : 'Youva';
-
-  let badgeHtml = '';
-  if (p.badge) {
-    const bc = p.badge.toLowerCase() === 'stellar' ? 'badge-stellar'
-             : p.badge.toLowerCase() === 'hq'      ? 'badge-hq'
-             : 'badge-new';
-    badgeHtml = '<span class="prod-badge ' + bc + '">' + p.badge + '</span>';
-  }
-
-  const priceDisplay = (p.price != null && p.price > 0) ? ('₹' + p.price.toFixed(2)) : '';
-  const mrpDisplay   = (p.mrp   != null && p.mrp   > 0) ? ('₹' + p.mrp.toFixed(2))   : '';
-  const off = (p.mrp && p.mrp > p.price && p.price)
-    ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
-
-  let priceHtml = '';
-  if (p.price != null && p.price > 0) {
-    const dispPrice = q ? highlight(priceDisplay, q) : priceDisplay;
-    const dispMrp   = q ? highlight(mrpDisplay,   q) : mrpDisplay;
-    priceHtml  = '<div class="prod-price">' + dispPrice + '</div>';
-    if (p.mrp && p.mrp > p.price) priceHtml += '<div class="prod-mrp">' + dispMrp + '</div>';
-    if (off > 0) priceHtml += '<div class="prod-off">' + off + '% off</div>';
-  } else {
-    priceHtml = '<div class="prod-price-na">Price on enquiry</div>';
-  }
-
-  const full  = Math.floor(p.rating);
-  const half  = p.rating % 1 >= 0.5 ? 1 : 0;
-  const empty = 5 - full - half;
-  const stars = '\u2605'.repeat(full) + (half ? '\u00BD' : '') + '\u2606'.repeat(empty);
-
-  const imgSrc = p.img || ('https://placehold.co/280x210/f3f4f6/888?text=' + encodeURIComponent(p.name.slice(0, 10)));
-  const catLabel = p.cat.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-
-  const dispName = q ? highlight(p.name, q) : p.name;
-  const dispCode = q ? highlight(p.code, q) : p.code;
-
-  return '<div class="product-card" data-brand="' + p.brand + '" data-cat="' + p.cat + '">'
-    + badgeHtml
-    + '<div class="prod-brand-tag"><img src="' + brandLogo + '" alt="' + brandAlt + '" onerror="this.onerror=null;this.style.display=\'none\';this.nextSibling.style.display=\'inline\';"><span style="display:none;font-size:.62rem;font-weight:700;color:var(--dark);">' + brandAlt + '</span></div>'
-    + '<div class="prod-img"><img src="' + imgSrc + '" onerror="this.onerror=null;this.src=\'https://placehold.co/280x210/f3f4f6/888?text=No+Image\';" alt="' + p.name + '" loading="lazy"/><div class="prod-wishlist" onclick="toggleWishlist(this)"><i class="far fa-heart"></i></div></div>'
-    + '<div class="prod-body">'
-    +   '<div class="prod-category">' + brandAlt + ' - ' + catLabel + '</div>'
-    +   '<div class="prod-code">'    + dispCode + '</div>'
-    +   '<div class="prod-name">'    + dispName + '</div>'
-    +   '<div class="prod-rating"><div class="stars">' + stars + '</div><span class="rating-count">(' + p.rating + ')</span></div>'
-    +   '<div class="prod-price-row">' + priceHtml + '</div>'
-    +   '<button class="btn-view" onclick="viewProduct(\'' + p.name.replace(/'/g, "\\'") + '\')">View</button>'
-    + '</div>'
-    + '</div>';
-}
-
-function viewProduct(name) { showToast('Viewing: ' + name); }
-
-const searchOverlay       = document.getElementById('searchOverlay');
-const searchPopupInput    = document.getElementById('searchPopupInput');
-const searchPopupDropdown = document.getElementById('searchPopupDropdown');
-const openSearchBtn       = document.getElementById('openSearchBtn');
-const closeSearchPopupEl  = document.getElementById('closeSearchPopup');
-
-function openSearchOverlay() { searchOverlay.classList.add('active'); searchPopupInput.focus(); }
-function closeSearchOverlay() { searchOverlay.classList.remove('active'); searchPopupInput.value = ''; searchPopupDropdown.innerHTML = ''; }
-
-openSearchBtn.addEventListener('click', openSearchOverlay);
-closeSearchPopupEl.addEventListener('click', closeSearchOverlay);
-searchOverlay.addEventListener('click', function(e) { if (e.target === searchOverlay) closeSearchOverlay(); });
-
-searchPopupInput.addEventListener('input', function() {
-  const q = this.value.trim().toLowerCase();
-  if (q.length < 1) { searchPopupDropdown.innerHTML = ''; return; }
-  if (!ALL.length) { searchPopupDropdown.innerHTML = '<div class="search-no-results"><i class="fas fa-spinner fa-spin"></i> Loading...</div>'; return; }
-  const hits = matchProducts(q, ALL).slice(0, 8);
-  renderPopupDropdown(hits, q);
-});
-
-searchPopupInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); doSearchFromPopup(); } });
-
-function matchProducts(q, list) {
-  return list.filter(function(p) {
-    const priceStr = (p.price != null && p.price > 0) ? String(p.price.toFixed(2)) : '';
-    const mrpStr   = (p.mrp   != null && p.mrp   > 0) ? String(p.mrp.toFixed(2))   : '';
-    return p.name.toLowerCase().includes(q)
-      || p.code.toLowerCase().includes(q)
-      || p.cat.toLowerCase().replace(/_/g, ' ').includes(q)
-      || p.brand.toLowerCase().includes(q)
-      || p.brandLabel.toLowerCase().includes(q)
-      || p.tags.some(function(t) { return t.toLowerCase().includes(q); })
-      || priceStr.includes(q)
-      || mrpStr.includes(q);
-  });
-}
-
-function renderPopupDropdown(hits, q) {
-  if (!hits.length) {
-    searchPopupDropdown.innerHTML = '<div class="search-no-results"><i class="fas fa-search"></i>No results for "<strong>' + q + '</strong>"</div>';
-    return;
-  }
-  const header = '<div class="search-results-header">Suggestions<span>' + hits.length + ' found</span></div>';
-  const items = hits.map(function(p) {
-    const off = (p.mrp && p.mrp > p.price && p.price) ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
-    const imgSrc   = p.img || ('https://placehold.co/52x52/f3f4f6/888?text=' + p.brand.toUpperCase());
-    const priceRaw = (p.price && p.price > 0) ? ('₹' + p.price.toFixed(2)) : 'On enquiry';
-    const logoUrl  = BRAND_LOGOS[p.brand] || '';
-    const dispName  = highlight(p.name,   q);
-    const dispCode  = highlight(p.code,   q);
-    const dispPrice = highlight(priceRaw, q);
-    return '<div class="search-result-item" onclick="selectPopupItem(\'' + p.name.replace(/'/g, "\\'") + '\')">'
-      + '<img class="sri-img" src="' + imgSrc + '" onerror="this.src=\'https://placehold.co/52x52/f3f4f6/888?text=IMG\';" alt="' + p.name + '"/>'
-      + '<div class="sri-info">'
-      +   '<div class="sri-name">'  + dispName  + '</div>'
-      +   '<div class="sri-meta">'
-      +     '<img class="sri-brand-logo" src="' + logoUrl + '" alt="' + p.brand + '" onerror="this.style.display=\'none\';">'
-      +     '<span class="sri-code">' + dispCode  + '</span>'
-      +     '<span class="sri-price">' + dispPrice + '</span>'
-      +     (off > 0 ? '<span class="sri-off">' + off + '% off</span>' : '')
-      +   '</div>'
-      + '</div>'
-      + '</div>';
-  }).join('');
-  const viewAll = '<div class="search-view-all" onclick="doSearchFromPopup()">View all results for "<strong>' + q + '</strong>" &rarr;</div>';
-  searchPopupDropdown.innerHTML = header + items + viewAll;
-}
-
-function selectPopupItem(name) { searchPopupInput.value = name; doSearchFromPopup(); }
-function doSearchFromPopup() {
-  const q = searchPopupInput.value.trim();
-  if (!q) return;
-  const hits = matchProducts(q.toLowerCase(), ALL);
-  showSearchResults(hits, q);
-  closeSearchOverlay();
-}
-
-const searchSection = document.getElementById('searchResultsSection');
-const searchGrid    = document.getElementById('searchResultsGrid');
-const searchTitle   = document.getElementById('searchResultsTitle');
-
-function showSearchResults(hits, q) {
-  document.getElementById('products-section').style.display = 'none';
-  searchSection.style.display = 'block';
-  searchTitle.innerHTML = '<span>' + hits.length + '</span> result' + (hits.length !== 1 ? 's' : '') + ' for "<span>' + q + '</span>"';
-  if (!hits.length) {
-    searchGrid.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><h3>No results for "' + q + '"</h3><p>Try different keywords or product codes.</p></div>';
-    return;
-  }
-  searchGrid.innerHTML = hits.map(function(p) { return buildCardHighlighted(p, q.toLowerCase()); }).join('');
-  searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function clearSearch() {
-  searchSection.style.display = 'none';
-  document.getElementById('products-section').style.display = 'block';
-}
-
-function filterTab(btn, value) {
-  document.querySelectorAll('.filter-tab').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  showingAll = false;
-  currentFilter.sort = document.getElementById('sortSelect').value;
-  if (value === 'popular') { currentFilter.mode = 'popular'; currentFilter.brand = 'all'; currentFilter.cat = 'all'; }
-  else if (value === 'doms' || value === 'youva') { currentFilter.mode = 'brand'; currentFilter.brand = value; currentFilter.cat = 'all'; }
-  else { currentFilter.mode = 'cat'; currentFilter.brand = 'all'; currentFilter.cat = value; }
-  renderFeaturedGrid();
-}
-
-function filterByCat(cat) {
-  showingAll = false;
-  currentFilter.mode = 'cat'; currentFilter.cat = cat; currentFilter.brand = 'all';
-  clearSearch();
-  document.querySelectorAll('.filter-tab').forEach(function(b) { b.classList.toggle('active', b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + cat + "'")); });
-  renderFeaturedGrid();
-  document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
-}
-
-function filterByBrand(brand) {
-  showingAll = false;
-  currentFilter.mode = 'brand'; currentFilter.brand = brand; currentFilter.cat = 'all';
-  clearSearch();
-  document.querySelectorAll('.filter-tab').forEach(function(b) { b.classList.toggle('active', b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + brand + "'")); });
-  renderFeaturedGrid();
-  document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
-}
-
-function applySort() { currentFilter.sort = document.getElementById('sortSelect').value; renderFeaturedGrid(); }
-
-function getFilteredList() {
-  let list = ALL.slice();
-  if      (currentFilter.mode === 'popular') list = list.slice(0, 80);
-  else if (currentFilter.mode === 'brand')   list = list.filter(function(p) { return p.brand === currentFilter.brand; });
-  else if (currentFilter.mode === 'cat')     list = list.filter(function(p) { return p.cat === currentFilter.cat || p.cat.includes(currentFilter.cat); });
-  if (currentFilter.sort === 'low')  list.sort(function(a, b) { return (a.price || 9999) - (b.price || 9999); });
-  if (currentFilter.sort === 'high') list.sort(function(a, b) { return (b.price || 0)    - (a.price || 0); });
-  if (currentFilter.sort === 'name') list.sort(function(a, b) { return a.name.localeCompare(b.name); });
-  return list;
-}
-
-function renderFeaturedGrid() {
-  if (!ALL.length) return;
-  const list        = getFilteredList();
-  const grid        = document.getElementById('productGrid');
-  const viewAllWrap = document.getElementById('viewAllWrap');
-  if (!list.length) {
-    grid.innerHTML = '<div class="empty-state"><i class="fas fa-box-open"></i><h3>No products found</h3><p>Try a different filter.</p></div>';
-    viewAllWrap.style.display = 'none';
-    return;
-  }
-  const toShow = showingAll ? list : list.slice(0, PAGE_SIZE);
-  grid.innerHTML = toShow.map(function(p) { return buildCard(p); }).join('');
-  viewAllWrap.style.display = (!showingAll && list.length > PAGE_SIZE) ? 'block' : 'none';
-}
-
-function showAllProducts() { showingAll = true; renderFeaturedGrid(); }
-
-function updateCategoryCounts() {
-  ['notebooks','pencils','colours','kits','markers','geometry_boxes'].forEach(function(cat) {
-    const el = document.getElementById('cnt-' + cat);
-    if (el) el.textContent = ALL.filter(function(p) { return p.cat === cat; }).length + ' products';
-  });
-}
-
-function openCart() { showToast('Cart has ' + cartCount + ' item(s)'); }
-function toggleWishlist(el) {
-  el.classList.toggle('active');
-  const icon = el.querySelector('i');
-  if (el.classList.contains('active')) { icon.classList.replace('far', 'fas'); showToast('Added to Wishlist'); }
-  else { icon.classList.replace('fas', 'far'); }
-}
+function selectPopupItem(n){spi.value=n;doSearchFromPopup();}
+function doSearchFromPopup(){const q=spi.value.trim();if(!q)return;showSearchResults(matchProducts(q.toLowerCase(),ALL),q);closeSearchOverlay();}
+const ss=document.getElementById('searchResultsSection'),sg=document.getElementById('searchResultsGrid'),st2=document.getElementById('searchResultsTitle');
+function showSearchResults(hits,q){document.getElementById('products-section').style.display='none';ss.style.display='block';st2.innerHTML='<span>'+hits.length+'</span> result'+(hits.length!==1?'s':'')+' for "<span>'+q+'</span>"';sg.innerHTML=hits.length?hits.map(function(p){return buildCardHighlighted(p,q.toLowerCase());}).join(''):'<div class="empty-state"><i class="fas fa-search"></i><h3>No results for "'+q+'"</h3><p>Try different keywords or product codes.</p></div>';ss.scrollIntoView({behavior:'smooth',block:'start'});}
+function clearSearch(){ss.style.display='none';document.getElementById('products-section').style.display='block';}
+function filterTab(btn,v){document.querySelectorAll('.filter-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');showingAll=false;currentFilter.sort=document.getElementById('sortSelect').value;if(v==='popular'){currentFilter.mode='popular';currentFilter.brand='all';currentFilter.cat='all';}else if(v==='doms'||v==='youva'){currentFilter.mode='brand';currentFilter.brand=v;currentFilter.cat='all';}else{currentFilter.mode='cat';currentFilter.brand='all';currentFilter.cat=v;}renderFeaturedGrid();}
+function filterByCat(c){showingAll=false;currentFilter.mode='cat';currentFilter.cat=c;currentFilter.brand='all';clearSearch();document.querySelectorAll('.filter-tab').forEach(function(b){b.classList.toggle('active',b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+c+"'"));});renderFeaturedGrid();document.getElementById('products-section').scrollIntoView({behavior:'smooth'});}
+function filterByBrand(b){showingAll=false;currentFilter.mode='brand';currentFilter.brand=b;currentFilter.cat='all';clearSearch();document.querySelectorAll('.filter-tab').forEach(function(t){t.classList.toggle('active',t.getAttribute('onclick')&&t.getAttribute('onclick').includes("'"+b+"'"));});renderFeaturedGrid();document.getElementById('products-section').scrollIntoView({behavior:'smooth'});}
+function applySort(){currentFilter.sort=document.getElementById('sortSelect').value;renderFeaturedGrid();}
+function getFilteredList(){let l=ALL.slice();if(currentFilter.mode==='popular')l=l.slice(0,80);else if(currentFilter.mode==='brand')l=l.filter(function(p){return p.brand===currentFilter.brand;});else if(currentFilter.mode==='cat')l=l.filter(function(p){return p.cat===currentFilter.cat||p.cat.includes(currentFilter.cat);});if(currentFilter.sort==='low')l.sort(function(a,b){return(a.price||9999)-(b.price||9999);});if(currentFilter.sort==='high')l.sort(function(a,b){return(b.price||0)-(a.price||0);});if(currentFilter.sort==='name')l.sort(function(a,b){return a.name.localeCompare(b.name);});return l;}
+function renderFeaturedGrid(){if(!ALL.length)return;const l=getFilteredList(),g=document.getElementById('productGrid'),vaw=document.getElementById('viewAllWrap');if(!l.length){g.innerHTML='<div class="empty-state"><i class="fas fa-box-open"></i><h3>No products found</h3><p>Try a different filter.</p></div>';vaw.style.display='none';return;}const ts=showingAll?l:l.slice(0,PAGE_SIZE);g.innerHTML=ts.map(function(p){return buildCard(p);}).join('');vaw.style.display=(!showingAll&&l.length>PAGE_SIZE)?'block':'none';}
+function showAllProducts(){showingAll=true;renderFeaturedGrid();}
+function updateCategoryCounts(){['notebooks','pencils','colours','kits','markers','geometry_boxes'].forEach(function(c){const el=document.getElementById('cnt-'+c);if(el)el.textContent=ALL.filter(function(p){return p.cat===c;}).length+' products';});}
+function openCart(){showToast('Cart has '+cartCount+' item(s)');}
+function toggleWishlist(el){el.classList.toggle('active');const i=el.querySelector('i');if(el.classList.contains('active')){i.classList.replace('far','fas');showToast('Added to Wishlist');}else{i.classList.replace('fas','far');}}
 let toastTimer;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  document.getElementById('toastMsg').textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(function() { t.classList.remove('show'); }, 2800);
-}
-
-function goSlide(n) {
-  slideIndex = n;
-  document.getElementById('slides').style.transform = 'translateX(-' + (n * 100) + '%)';
-  document.querySelectorAll('.dot').forEach(function(d, i) { d.classList.toggle('active', i === n); });
-  resetSlideTimer();
-  restartTypewriter(n);
-}
-function changeSlide(dir) { const total = document.querySelectorAll('.slide').length; goSlide((slideIndex + dir + total) % total); }
-function resetSlideTimer() { clearInterval(slideTimer); slideTimer = setInterval(function() { changeSlide(1); }, 6000); }
-
-/* restart typewriter when slide changes */
-function restartTypewriter(slideIdx) {
-  const titleId = slideIdx === 0 ? 'slide1-title' : 'slide2-title';
-  const el = document.getElementById(titleId);
-  if (!el) return;
-  el.querySelectorAll('.typewriter-line').forEach(function(line) {
-    line.style.animation = 'none';
-    line.style.borderRightColor = 'transparent';
-    line.offsetHeight; /* force reflow */
-    line.style.animation = '';
-    line.style.borderRightColor = '';
-  });
-}
-
-window.addEventListener('scroll', function() {
-  document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  loadProducts();
-  resetSlideTimer();
-});
+function showToast(msg){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.classList.remove('show');},2800);}
+function goSlide(n){slideIndex=n;document.getElementById('slides').style.transform='translateX(-'+(n*100)+'%)';document.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('active',i===n);});resetSlideTimer();restartTypewriter(n);}
+function changeSlide(dir){const total=document.querySelectorAll('.slide').length;goSlide((slideIndex+dir+total)%total);}
+function resetSlideTimer(){clearInterval(slideTimer);slideTimer=setInterval(function(){changeSlide(1);},6000);}
+function restartTypewriter(idx){const el=document.getElementById(idx===0?'slide1-title':'slide2-title');if(!el)return;el.querySelectorAll('.typewriter-line').forEach(function(line){line.style.animation='none';line.style.borderRightColor='transparent';line.offsetHeight;line.style.animation='';line.style.borderRightColor='';});}
+window.addEventListener('scroll',function(){document.getElementById('backTop').classList.toggle('visible',window.scrollY>400);});
+document.addEventListener('DOMContentLoaded',function(){loadProducts();resetSlideTimer();});
 </script>
 </body>
 </html>
