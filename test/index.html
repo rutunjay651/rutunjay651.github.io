@@ -26,7 +26,7 @@
     header{position:sticky;top:0;z-index:1000;background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,.08);}
     .header-inner{max-width:1300px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;gap:20px;}
 
-    .header-left{display:flex;align-items:center;gap:12px;}
+    .header-left{display:flex;align-items:center;gap:22px;}
 
     .logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
     .logo-icon{width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0;}
@@ -185,7 +185,7 @@
     .filter-tabs{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
     .filter-tab{padding:8px 20px;border-radius:50px;font-size:.8rem;font-weight:600;cursor:pointer;border:2px solid var(--border);background:var(--white);color:var(--gray);transition:all .2s;font-family:inherit;}
     .filter-tab.active,.filter-tab:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
-    .filter-right-actions{display:flex;align-items:center;gap:14px;}
+    .filter-right-actions{display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
     .view-all-link{
       color:var(--primary);font-size:.85rem;font-weight:700;
       text-decoration:none;cursor:pointer;
@@ -513,13 +513,13 @@
         <button class="filter-tab" onclick="filterTab(this,'geometry_boxes')">Geometry Box</button>
       </div>
       <div class="filter-right-actions">
-        <a href="#" class="view-all-link" onclick="showAllProducts();return false;">View All <i class="fas fa-arrow-right"></i></a>
         <select class="sort-select" id="sortSelect" onchange="applySort()">
           <option value="featured">Sort: Featured</option>
           <option value="low">Price: Low to High</option>
           <option value="high">Price: High to Low</option>
           <option value="name">Name: A–Z</option>
         </select>
+        <a href="#" class="view-all-link" onclick="showAllProducts();return false;">View All <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
     <div class="product-grid" id="productGrid">
