@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Products — Shrikant Paper Products</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --primary:#4ade80;--secondary:#4ade80;--dark:#1a1a2e;--light:#f9f9f9;
+      --white:#ffffff;--gray:#6c757d;--light-gray:#f3f4f6;--border:#e2e8f0;
+      --shadow:0 4px 24px rgba(0,0,0,.10);--radius:12px;
+      --sidebar:280px;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'Poppins',sans-serif;background:var(--light);color:var(--dark);overflow-x:hidden;}
+
+    /* ══════════════════════════════════════════
+       HEADER  (identical to main site)
+    ══════════════════════════════════════════ */
+    header{position:sticky;top:0;z-index:1000;background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,.08);}
+    .header-inner{max-width:1400px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;gap:20px;}
+    .header-left{display:flex;align-items:center;gap:22px;}
+    .logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .logo-icon{width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0;}
+    .logo-icon img{width:100%;height:100%;object-fit:contain;background:#fff;}
+    .header-actions{display:flex;align-items:center;gap:16px;}
+    .hdr-btn{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;background:transparent;border:none;font-family:inherit;color:var(--dark);font-size:.7rem;font-weight:600;transition:color .3s;text-decoration:none;position:relative;}
+    .hdr-btn svg{width:26px;height:26px;stroke:var(--dark);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s;}
+    .hdr-btn:hover svg{stroke:var(--primary);}
+    .hdr-btn:hover{color:var(--primary);}
+    .hdr-btn-label{font-size:.58rem;font-weight:700;color:var(--primary);max-height:0;overflow:hidden;opacity:0;transition:max-height .3s,opacity .3s;line-height:1;white-space:nowrap;}
+    .hdr-btn:hover .hdr-btn-label{max-height:14px;opacity:1;}
+    .cart-wrap{position:relative;}
+    .cart-badge{position:absolute;top:-8px;right:-10px;background:#e63329;color:#fff;border-radius:50%;width:20px;height:20px;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;pointer-events:none;border:2px solid #fff;}
+
+    /* ══════════════════════════════════════════
+       NAV  (identical to main site)
+    ══════════════════════════════════════════ */
+    nav{background:var(--dark);border-top:3px solid var(--primary);}
+    .nav-inner{max-width:1400px;margin:auto;display:flex;align-items:center;padding:0 24px;gap:4px;overflow-x:auto;}
+    .nav-inner::-webkit-scrollbar{height:0;}
+    .nav-link{white-space:nowrap;color:rgba(255,255,255,.85);text-decoration:none;font-size:.82rem;font-weight:500;padding:13px 18px;border-bottom:3px solid transparent;transition:color .2s,border-color .2s;}
+    .nav-link:hover,.nav-link.active{color:#fff;border-color:var(--primary);}
+    .nav-link i{margin-right:5px;font-size:.8rem;}
+
+    /* ══════════════════════════════════════════
+       SEARCH OVERLAY
+    ══════════════════════════════════════════ */
+    .search-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:2000;display:none;align-items:flex-start;justify-content:center;padding-top:80px;backdrop-filter:blur(4px);}
+    .search-overlay.active{display:flex;animation:fadeIn .2s ease;}
+    .search-popup{width:90%;max-width:500px;background:var(--white);border-radius:50px;box-shadow:0 8px 32px rgba(0,0,0,.2);display:flex;flex-direction:column;overflow:hidden;animation:slideDown .25s ease;}
+    .search-popup-header{display:flex;align-items:center;border-bottom:1px solid var(--border);}
+    .search-popup-input{flex:1;padding:14px 20px;border:none;font-family:inherit;font-size:1rem;outline:none;}
+    .search-popup-close{padding:0 16px;cursor:pointer;font-size:1.4rem;color:var(--gray);transition:color .2s;}
+    .search-popup-close:hover{color:var(--primary);}
+    #searchDropdown{max-height:400px;overflow-y:auto;}
+    .search-result-item{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .18s;}
+    .search-result-item:hover{background:var(--light-gray);}
+    .sri-img{width:48px;height:48px;border-radius:8px;object-fit:contain;background:var(--light-gray);flex-shrink:0;padding:4px;border:1px solid var(--border);}
+    .sri-info{flex:1;min-width:0;}
+    .sri-name{font-size:.84rem;font-weight:600;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
+    .sri-meta{font-size:.72rem;color:var(--gray);}
+    .search-no-results{padding:24px;text-align:center;color:var(--gray);}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    @keyframes slideDown{from{transform:translateY(-30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+
+    /* ══════════════════════════════════════════
+       PAGE SHELL
+    ══════════════════════════════════════════ */
+    .page-hero{background:linear-gradient(135deg,var(--dark) 0%,#0f3460 100%);padding:36px 24px;}
+    .page-hero-inner{max-width:1400px;margin:auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+    .page-hero h1{font-size:1.7rem;font-weight:800;color:#fff;}
+    .page-hero h1 span{color:var(--primary);}
+    .breadcrumb{display:flex;align-items:center;gap:6px;font-size:.75rem;color:rgba(255,255,255,.5);}
+    .breadcrumb a{color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;}
+    .breadcrumb a:hover{color:var(--primary);}
+    .breadcrumb i{font-size:.6rem;}
+
+    /* ══════════════════════════════════════════
+       SHOP LAYOUT  (sidebar + content)
+    ══════════════════════════════════════════ */
+    .shop-wrapper{max-width:1400px;margin:0 auto;padding:28px 24px 60px;display:flex;gap:24px;align-items:flex-start;}
+
+    /* ── SIDEBAR ── */
+    .sidebar{width:var(--sidebar);flex-shrink:0;position:sticky;top:80px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;}
+    .sidebar-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--dark);color:#fff;}
+    .sidebar-header h3{font-size:.88rem;font-weight:700;display:flex;align-items:center;gap:8px;}
+    .sidebar-header h3 i{color:var(--primary);}
+    .btn-clear-all{background:transparent;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.7);font-size:.7rem;font-weight:600;padding:4px 10px;border-radius:50px;cursor:pointer;font-family:inherit;transition:all .2s;}
+    .btn-clear-all:hover{border-color:var(--primary);color:var(--primary);}
+
+    /* filter block */
+    .filter-block{border-bottom:1px solid var(--border);}
+    .filter-block-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;cursor:pointer;user-select:none;}
+    .filter-block-header .fbl{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;color:var(--dark);}
+    .filter-block-header .fbl i{width:18px;text-align:center;color:var(--primary);font-size:.8rem;}
+    .filter-block-header .fb-toggle{font-size:.7rem;color:var(--gray);transition:transform .25s;}
+    .filter-block-header .fb-toggle.open{transform:rotate(180deg);}
+    .filter-body{padding:0 20px 16px;display:flex;flex-direction:column;gap:8px;}
+    .filter-body.hidden{display:none;}
+
+    /* checkbox option */
+    .f-option{display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 0;}
+    .f-option input[type=checkbox]{appearance:none;width:16px;height:16px;border:2px solid var(--border);border-radius:4px;cursor:pointer;flex-shrink:0;transition:all .2s;position:relative;}
+    .f-option input[type=checkbox]:checked{background:var(--primary);border-color:var(--primary);}
+    .f-option input[type=checkbox]:checked::after{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;font-size:.55rem;color:#fff;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+    .f-option label{font-size:.78rem;color:var(--dark);cursor:pointer;display:flex;align-items:center;justify-content:space-between;flex:1;}
+    .f-option label .f-count{font-size:.68rem;color:var(--gray);background:var(--light-gray);padding:1px 7px;border-radius:50px;}
+
+    /* brand logo in filter */
+    .f-brand-logo{height:16px;width:auto;object-fit:contain;margin-left:4px;}
+
+    /* price range */
+    .price-range-wrap{padding:6px 0 4px;}
+    .price-inputs{display:flex;gap:8px;align-items:center;margin-bottom:12px;}
+    .price-inputs input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:7px 10px;font-size:.75rem;font-family:inherit;outline:none;transition:border-color .2s;}
+    .price-inputs input:focus{border-color:var(--primary);}
+    .price-sep{font-size:.75rem;color:var(--gray);flex-shrink:0;}
+    .range-slider{width:100%;accent-color:var(--primary);cursor:pointer;}
+    .price-labels{display:flex;justify-content:space-between;font-size:.7rem;color:var(--gray);margin-top:6px;}
+
+    /* active filter chips */
+    .active-chips{padding:12px 20px 0;display:flex;flex-wrap:wrap;gap:6px;}
+    .chip{display:inline-flex;align-items:center;gap:5px;background:rgba(74,222,128,.12);color:var(--dark);border:1px solid rgba(74,222,128,.3);border-radius:50px;padding:3px 10px;font-size:.7rem;font-weight:600;}
+    .chip button{background:none;border:none;cursor:pointer;color:var(--gray);font-size:.65rem;padding:0;line-height:1;display:flex;align-items:center;}
+    .chip button:hover{color:#e63329;}
+
+    /* ── MAIN CONTENT ── */
+    .shop-main{flex:1;min-width:0;}
+
+    /* toolbar */
+    .shop-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+    .results-info{font-size:.82rem;color:var(--gray);}
+    .results-info strong{color:var(--dark);font-weight:700;}
+    .toolbar-right{display:flex;align-items:center;gap:10px;}
+    .sort-label{font-size:.78rem;color:var(--gray);font-weight:500;}
+    .sort-select{padding:8px 14px;border-radius:8px;border:2px solid var(--border);font-family:inherit;font-size:.78rem;color:var(--dark);background:var(--white);outline:none;cursor:pointer;transition:border-color .2s;}
+    .sort-select:focus{border-color:var(--primary);}
+    .view-btns{display:flex;gap:4px;}
+    .view-btn{width:34px;height:34px;border-radius:8px;border:2px solid var(--border);background:var(--white);color:var(--gray);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:all .2s;}
+    .view-btn.active,.view-btn:hover{border-color:var(--primary);color:var(--primary);background:rgba(74,222,128,.07);}
+
+    /* mobile filter toggle */
+    .btn-mobile-filter{display:none;align-items:center;gap:8px;padding:9px 18px;border-radius:8px;border:2px solid var(--border);background:var(--white);color:var(--dark);font-family:inherit;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;}
+    .btn-mobile-filter:hover{border-color:var(--primary);color:var(--primary);}
+
+    /* product grid */
+    .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .product-grid.list-view{grid-template-columns:1fr;}
+
+    /* product card */
+    .product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07);border:1px solid var(--border);transition:transform .3s,box-shadow .3s;position:relative;}
+    .product-card:hover{transform:translateY(-5px);box-shadow:0 14px 32px rgba(0,0,0,.12);}
+    .prod-badge{position:absolute;top:12px;left:12px;z-index:5;font-size:.62rem;font-weight:700;padding:3px 10px;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;}
+    .badge-new{background:#10b981;color:#fff;}
+    .badge-stellar{background:#0f3460;color:#fff;}
+    .badge-hq{background:#1a1a2e;color:#fff;}
+    .prod-brand-tag{position:absolute;top:12px;right:12px;z-index:5;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);border-radius:8px;padding:4px 8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+    .prod-brand-tag img{height:18px;width:auto;object-fit:contain;}
+    .prod-img{height:200px;position:relative;overflow:hidden;background:var(--light-gray);display:flex;align-items:center;justify-content:center;}
+    .prod-img img{width:100%;height:100%;object-fit:contain;padding:12px;transition:transform .4s;}
+    .product-card:hover .prod-img img{transform:scale(1.07);}
+    .prod-wishlist{position:absolute;bottom:12px;right:12px;z-index:5;width:32px;height:32px;border-radius:50%;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;color:var(--gray);transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+    .prod-wishlist:hover,.prod-wishlist.active{color:#e63329;border-color:#e63329;}
+    .prod-body{padding:14px;}
+    .prod-category{font-size:.65rem;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px;}
+    .prod-code{font-size:.6rem;color:var(--gray);font-family:monospace;margin-bottom:5px;}
+    .prod-name{font-size:.84rem;font-weight:700;color:var(--dark);margin-bottom:7px;line-height:1.4;}
+    .prod-rating{display:flex;align-items:center;gap:5px;margin-bottom:9px;}
+    .stars{color:#f59e0b;font-size:.75rem;}
+    .rating-count{font-size:.68rem;color:var(--gray);}
+    .prod-price-row{display:flex;align-items:center;gap:7px;margin-bottom:11px;}
+    .prod-price{font-size:1.02rem;font-weight:800;color:var(--dark);}
+    .prod-mrp{font-size:.76rem;color:var(--gray);text-decoration:line-through;}
+    .prod-off{font-size:.7rem;font-weight:700;color:#10b981;}
+    .prod-price-na{font-size:.8rem;color:var(--gray);font-style:italic;}
+    .btn-view{width:100%;padding:9px;border-radius:8px;background:linear-gradient(135deg,var(--primary),#3b9b5f);color:#fff;border:none;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .25s;}
+    .btn-view:hover{transform:scale(1.02);box-shadow:0 6px 16px rgba(74,222,128,.35);}
+
+    /* list view card override */
+    .list-view .product-card{display:flex;flex-direction:row;}
+    .list-view .prod-img{width:180px;height:auto;min-height:160px;flex-shrink:0;}
+    .list-view .prod-body{flex:1;padding:20px;}
+    .list-view .prod-name{font-size:.95rem;}
+    .list-view .btn-view{width:auto;padding:9px 24px;}
+
+    /* empty / loading */
+    .loading-state,.empty-state{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--gray);}
+    .loading-state i,.empty-state i{font-size:2.8rem;color:var(--border);display:block;margin-bottom:14px;}
+    .loading-state i{color:var(--primary);animation:spin 1s linear infinite;}
+    .empty-state h3{font-size:1.1rem;font-weight:700;margin-bottom:6px;color:var(--dark);}
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    /* pagination */
+    .pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:36px;}
+    .page-btn{width:36px;height:36px;border-radius:8px;border:2px solid var(--border);background:var(--white);color:var(--dark);cursor:pointer;font-family:inherit;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+    .page-btn:hover,.page-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;}
+    .page-btn:disabled{opacity:.4;cursor:not-allowed;}
+
+    /* toast */
+    .toast{position:fixed;bottom:32px;right:28px;z-index:3000;background:var(--dark);color:#fff;padding:12px 20px;border-radius:10px;font-size:.82rem;font-weight:500;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translateX(130%);transition:transform .35s;border-left:4px solid var(--primary);}
+    .toast.show{transform:translateX(0);}
+    .toast i{color:var(--primary);}
+
+    /* mobile overlay sidebar */
+    .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;backdrop-filter:blur(3px);}
+    .sidebar-overlay.open{display:block;}
+
+    /* highlight */
+    mark.hl{background:#fef3c7;color:#92400e;font-weight:700;border-radius:3px;padding:0 2px;}
+
+    /* footer (same as main) */
+    footer{background:var(--dark);padding:48px 24px 0;}
+    .footer-inner{max-width:1400px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08);}
+    .footer-logo-icon{width:48px;height:48px;border-radius:10px;overflow:hidden;background:#fff;flex-shrink:0;}
+    .footer-logo-icon img{width:100%;height:100%;object-fit:contain;}
+    .footer-about{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.75;margin:14px 0 18px;}
+    .footer-social{display:flex;gap:10px;}
+    .social-btn{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;transition:transform .25s;}
+    .social-btn svg{width:17px;height:17px;fill:rgba(255,255,255,.7);}
+    .social-btn:hover{transform:scale(1.25);}
+    .footer-col h4{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:16px;position:relative;padding-bottom:10px;}
+    .footer-col h4::after{content:'';position:absolute;bottom:0;left:0;width:26px;height:3px;border-radius:2px;background:var(--primary);}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
+    .footer-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;display:flex;align-items:center;gap:7px;transition:color .2s;}
+    .footer-links a i{font-size:.62rem;color:var(--primary);}
+    .footer-links a:hover{color:#fff;}
+    .footer-bottom{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:18px 0;flex-wrap:wrap;gap:12px;}
+    .footer-bottom p{font-size:.73rem;color:rgba(255,255,255,.3);}
+    .pay-icons{display:flex;gap:8px;}
+    .pay-icon{background:rgba(255,255,255,.08);color:rgba(255,255,255,.45);padding:4px 10px;border-radius:6px;font-size:.68rem;font-weight:600;}
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media(max-width:1100px){.product-grid{grid-template-columns:repeat(2,1fr);}.footer-inner{grid-template-columns:1fr 1fr;}}
+    @media(max-width:860px){
+      .sidebar{
+        position:fixed;top:0;left:-320px;height:100%;z-index:600;
+        width:300px;border-radius:0;overflow-y:auto;transition:left .3s ease;
+      }
+      .sidebar.mobile-open{left:0;}
+      .shop-wrapper{padding-top:20px;}
+      .btn-mobile-filter{display:flex;}
+    }
+    @media(max-width:600px){.product-grid{grid-template-columns:1fr;}.footer-inner{grid-template-columns:1fr;}.list-view .product-card{flex-direction:column;}.list-view .prod-img{width:100%;height:180px;}}
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="hdr-btn" onclick="history.back()" title="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="7" x2="21" y2="7"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="17" x2="21" y2="17"/>
+        </svg>
+        <span class="hdr-btn-label">Menu</span>
+      </button>
+      <a href="index.html" class="logo-wrap">
+        <div class="logo-icon">
+          <img src="https://rutunjay651.github.io/resources/logo/spp.png"
+               onerror="this.onerror=null;this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';"
+               alt="SPP"/>
+        </div>
+        <img src="https://rutunjay651.github.io/resources/logo/spp3.png"
+             alt="Shrikant Paper Products"
+             style="height:53px;width:auto;object-fit:contain;"
+             onerror="this.onerror=null;this.style.display='none';"/>
+      </a>
+    </div>
+    <div class="header-actions">
+      <button class="hdr-btn" id="openSearchBtn" title="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <span class="hdr-btn-label">Search</span>
+      </button>
+      <a href="#" class="hdr-btn" title="Account">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span class="hdr-btn-label">Account</span>
+      </a>
+      <a href="#" class="hdr-btn" title="Wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="hdr-btn-label">Wishlist</span>
+      </a>
+      <div class="cart-wrap">
+        <a href="#" class="hdr-btn" title="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="hdr-btn-label">Cart</span>
+        </a>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-link"><i class="fas fa-home"></i>Home</a>
+    <a href="#" class="nav-link"><i class="fas fa-pencil-alt"></i>DOMS</a>
+    <a href="#" class="nav-link"><i class="fas fa-book"></i>Youva</a>
+    <a href="#" class="nav-link"><i class="fas fa-th-large"></i>Categories</a>
+    <a href="shop.html" class="nav-link active"><i class="fas fa-store"></i>All Products</a>
+  </div>
+</nav>
+
+<!-- ══ SEARCH OVERLAY ══ -->
+<div id="searchOverlay" class="search-overlay">
+  <div class="search-popup">
+    <div class="search-popup-header">
+      <input type="text" id="searchInput" class="search-popup-input" placeholder="Search products…" autocomplete="off"/>
+      <div class="search-popup-close" id="closeSearch">&times;</div>
+    </div>
+    <div id="searchDropdown"></div>
+  </div>
+</div>
+
+<!-- ══ PAGE HERO ══ -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div>
+      <h1>Browse <span>All Products</span></h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>All Products</span>
+      </div>
+    </div>
+    <div style="color:rgba(255,255,255,.5);font-size:.82rem;" id="heroCount">Loading products…</div>
+  </div>
+</div>
+
+<!-- ══ SHOP WRAPPER ══ -->
+<div class="shop-wrapper">
+
+  <!-- ── SIDEBAR OVERLAY (mobile) ── -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeMobileSidebar()"></div>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h3><i class="fas fa-sliders-h"></i>Filters</h3>
+      <button class="btn-clear-all" onclick="clearAllFilters()">Clear All</button>
+    </div>
+
+    <!-- Active chips -->
+    <div class="active-chips" id="activeChips" style="display:none;padding-bottom:12px;"></div>
+
+    <!-- BRAND -->
+    <div class="filter-block">
+      <div class="filter-block-header" onclick="toggleBlock(this)">
+        <span class="fbl"><i class="fas fa-tag"></i>Brand</span>
+        <i class="fas fa-chevron-down fb-toggle open"></i>
+      </div>
+      <div class="filter-body" id="brandFilterBody">
+        <label class="f-option">
+          <input type="checkbox" value="doms" onchange="applyFilters()"/>
+          <label style="cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.78rem;flex:1;">
+            <img src="https://rutunjay651.github.io/resources/logo/doms.webp" class="f-brand-logo" alt="DOMS" onerror="this.style.display='none'">
+            DOMS
+            <span class="f-count" id="bc-doms">0</span>
+          </label>
+        </label>
+        <label class="f-option">
+          <input type="checkbox" value="youva" onchange="applyFilters()"/>
+          <label style="cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.78rem;flex:1;">
+            <img src="https://rutunjay651.github.io/resources/logo/youva.png" class="f-brand-logo" alt="Youva" onerror="this.style.display='none'">
+            Youva
+            <span class="f-count" id="bc-youva">0</span>
+          </label>
+        </label>
+      </div>
+    </div>
+
+    <!-- CATEGORY -->
+    <div class="filter-block">
+      <div class="filter-block-header" onclick="toggleBlock(this)">
+        <span class="fbl"><i class="fas fa-layer-group"></i>Category</span>
+        <i class="fas fa-chevron-down fb-toggle open"></i>
+      </div>
+      <div class="filter-body" id="catFilterBody">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <!-- PRICE -->
+    <div class="filter-block">
+      <div class="filter-block-header" onclick="toggleBlock(this)">
+        <span class="fbl"><i class="fas fa-rupee-sign"></i>Price Range</span>
+        <i class="fas fa-chevron-down fb-toggle open"></i>
+      </div>
+      <div class="filter-body">
+        <div class="price-range-wrap">
+          <div class="price-inputs">
+            <input type="number" id="priceMin" placeholder="Min" min="0" oninput="syncPriceFromInput()"/>
+            <span class="price-sep">—</span>
+            <input type="number" id="priceMax" placeholder="Max" min="0" oninput="syncPriceFromInput()"/>
+          </div>
+          <input type="range" class="range-slider" id="priceSlider" min="0" max="1000" value="1000" oninput="syncPriceFromSlider()"/>
+          <div class="price-labels">
+            <span>₹0</span><span id="sliderMaxLabel">₹1000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RATING -->
+    <div class="filter-block">
+      <div class="filter-block-header" onclick="toggleBlock(this)">
+        <span class="fbl"><i class="fas fa-star"></i>Min Rating</span>
+        <i class="fas fa-chevron-down fb-toggle open"></i>
+      </div>
+      <div class="filter-body">
+        <label class="f-option"><input type="radio" name="rating" value="0" checked onchange="applyFilters()"/><label style="font-size:.78rem;cursor:pointer;">Any rating</label></label>
+        <label class="f-option"><input type="radio" name="rating" value="3" onchange="applyFilters()"/><label style="font-size:.78rem;cursor:pointer;">★★★ &amp; above</label></label>
+        <label class="f-option"><input type="radio" name="rating" value="4" onchange="applyFilters()"/><label style="font-size:.78rem;cursor:pointer;">★★★★ &amp; above</label></label>
+        <label class="f-option"><input type="radio" name="rating" value="4.5" onchange="applyFilters()"/><label style="font-size:.78rem;cursor:pointer;">★★★★½ &amp; above</label></label>
+      </div>
+    </div>
+
+    <!-- AVAILABILITY -->
+    <div class="filter-block" style="border-bottom:none;">
+      <div class="filter-block-header" onclick="toggleBlock(this)">
+        <span class="fbl"><i class="fas fa-box-open"></i>Availability</span>
+        <i class="fas fa-chevron-down fb-toggle open"></i>
+      </div>
+      <div class="filter-body">
+        <label class="f-option"><input type="checkbox" id="inStockOnly" onchange="applyFilters()"/><label style="font-size:.78rem;cursor:pointer;">Has listed price</label></label>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="shop-main">
+
+    <!-- Toolbar -->
+    <div class="shop-toolbar">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <button class="btn-mobile-filter" onclick="openMobileSidebar()">
+          <i class="fas fa-sliders-h"></i> Filters
+          <span id="filterBadge" style="background:var(--primary);color:#fff;border-radius:50%;width:18px;height:18px;font-size:.6rem;font-weight:700;display:none;align-items:center;justify-content:center;">0</span>
+        </button>
+        <div class="results-info" id="resultsInfo">Showing <strong>—</strong> products</div>
+      </div>
+      <div class="toolbar-right">
+        <span class="sort-label">Sort by:</span>
+        <select class="sort-select" id="sortSelect" onchange="applyFilters()">
+          <option value="featured">Featured</option>
+          <option value="price-low">Price: Low → High</option>
+          <option value="price-high">Price: High → Low</option>
+          <option value="az">Name: A → Z</option>
+          <option value="za">Name: Z → A</option>
+          <option value="rating">Top Rated</option>
+          <option value="discount">Best Discount</option>
+        </select>
+        <div class="view-btns">
+          <button class="view-btn active" id="gridViewBtn" onclick="setView('grid')" title="Grid view">
+            <i class="fas fa-th-large"></i>
+          </button>
+          <button class="view-btn" id="listViewBtn" onclick="setView('list')" title="List view">
+            <i class="fas fa-list"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="productGrid">
+      <div class="loading-state"><i class="fas fa-circle-notch"></i><p style="margin-top:8px;">Loading products…</p></div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination"></div>
+  </main>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+        <div class="footer-logo-icon"><img src="https://rutunjay651.github.io/resources/logo/spp.jpg" onerror="this.src='https://placehold.co/48x48/4ade80/fff?text=SPP';" alt=""/></div>
+        <div style="margin-left:0;">
+          <div style="font-size:1.05rem;font-weight:800;color:#fff;">Shrikant Paper Products</div>
+          <div style="font-size:.62rem;font-weight:500;color:var(--primary);text-transform:uppercase;letter-spacing:1px;">Your Stationery Destination</div>
+        </div>
+      </a>
+      <div class="footer-about">Authorized dealer of DOMS and Youva stationery brands. Serving students, teachers, and artists in Jalna, Maharashtra since 2008.</div>
+      <div class="footer-social">
+        <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://wa.me/919422218909" class="social-btn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+        <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a1a2e"/></svg></a>
+        <a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html"><i class="fas fa-chevron-right"></i>Home</a></li><li><a href="#"><i class="fas fa-chevron-right"></i>DOMS Products</a></li><li><a href="#"><i class="fas fa-chevron-right"></i>Youva Products</a></li><li><a href="shop.html"><i class="fas fa-chevron-right"></i>All Products</a></li></ul></div>
+    <div class="footer-col"><h4>Customer Care</h4><ul class="footer-links"><li><a href="#"><i class="fas fa-chevron-right"></i>My Account</a></li><li><a href="#"><i class="fas fa-chevron-right"></i>Shipping Policy</a></li><li><a href="#"><i class="fas fa-chevron-right"></i>Return &amp; Refund</a></li><li><a href="#"><i class="fas fa-chevron-right"></i>FAQs</a></li></ul></div>
+    <div class="footer-col"><h4>Contact Us</h4><ul class="footer-links"><li><a href="#"><i class="fas fa-map-marker-alt"></i>Old Mondha, Jalna — 431203</a></li><li><a href="tel:+919422218909"><i class="fas fa-phone-alt"></i>+91 94222 18909</a></li><li><a href="mailto:shrikantpaperproducts@gmail.com"><i class="fas fa-envelope"></i>shrikantpaperproducts@gmail.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Shrikant Paper Products, Jalna. All rights reserved.</p><div class="pay-icons"><span class="pay-icon">UPI</span><span class="pay-icon">Visa</span><span class="pay-icon">MC</span><span class="pay-icon">RuPay</span><span class="pay-icon">COD</span></div></div>
+</footer>
+
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Done!</span></div>
+
+<script>
+/* ═══════════════════════════════════════
+   CONSTANTS
+═══════════════════════════════════════ */
+const BRAND_LOGOS = {
+  doms:  'https://rutunjay651.github.io/resources/logo/doms.webp',
+  youva: 'https://rutunjay651.github.io/resources/logo/youva.png'
+};
+const CAT_LABELS = {
+  notebooks:'Notebooks', pencils:'Pencils', colours:'Colours',
+  kits:'Art Kits', markers:'Sketch / Markers', geometry_boxes:'Geometry Box'
+};
+const PAGE_SIZE = 16;
+
+/* ═══════════════════════════════════════
+   STATE
+═══════════════════════════════════════ */
+let ALL = [];
+let filtered = [];
+let currentPage = 1;
+let viewMode = 'grid';
+let maxPrice = 1000;
+
+/* active filter state */
+let fState = {
+  brands: new Set(),
+  cats: new Set(),
+  priceMax: Infinity,
+  rating: 0,
+  inStock: false,
+  sort: 'featured'
+};
+
+/* ═══════════════════════════════════════
+   LOAD DATA
+═══════════════════════════════════════ */
+async function loadProducts() {
+  try {
+    const [r1, r2] = await Promise.all([
+      fetch('https://shrikantpaperproducts.github.io/resources/doms.json'),
+      fetch('https://shrikantpaperproducts.github.io/resources/youva.json')
+    ]);
+    const d = await r1.json(), y = await r2.json();
+    ALL = [
+      ...d.map(p => norm(p, 'doms')),
+      ...y.map(p => norm(p, 'youva'))
+    ];
+    initFilters();
+    applyFilters();
+  } catch(e) {
+    console.error(e);
+    document.getElementById('productGrid').innerHTML =
+      '<div class="empty-state"><i class="fas fa-exclamation-circle"></i><h3>Could not load products</h3><p>Check connection.</p></div>';
+  }
+}
+
+function norm(p, brand) {
+  return {
+    id: p.id, code: p.code||'', name: p.name||'', brand,
+    brandLabel: p.brand||brand,
+    price: p.price != null ? parseFloat(p.price) : null,
+    mrp: p.originalPrice != null ? parseFloat(p.originalPrice) : null,
+    rating: p.rating||4.0, badge: p.badge||null,
+    img: p.img||'', cat: p.cat||'', tags: Array.isArray(p.tags)?p.tags:[]
+  };
+}
+
+/* ═══════════════════════════════════════
+   INIT FILTERS (dynamic counts)
+═══════════════════════════════════════ */
+function initFilters() {
+  /* brand counts */
+  document.getElementById('bc-doms').textContent = ALL.filter(p=>p.brand==='doms').length;
+  document.getElementById('bc-youva').textContent = ALL.filter(p=>p.brand==='youva').length;
+
+  /* category checkboxes */
+  const cats = {};
+  ALL.forEach(p => { cats[p.cat] = (cats[p.cat]||0)+1; });
+  const body = document.getElementById('catFilterBody');
+  body.innerHTML = '';
+  Object.entries(cats).sort((a,b)=>b[1]-a[1]).forEach(([cat, count]) => {
+    const label = CAT_LABELS[cat] || cat.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+    body.innerHTML += `
+      <label class="f-option">
+        <input type="checkbox" value="${cat}" onchange="applyFilters()"/>
+        <label style="cursor:pointer;font-size:.78rem;flex:1;display:flex;align-items:center;justify-content:space-between;">
+          ${label}<span class="f-count">${count}</span>
+        </label>
+      </label>`;
+  });
+
+  /* price slider max */
+  const prices = ALL.filter(p=>p.price&&p.price>0).map(p=>p.price);
+  maxPrice = Math.ceil(Math.max(...prices) / 100) * 100;
+  const slider = document.getElementById('priceSlider');
+  slider.max = maxPrice;
+  slider.value = maxPrice;
+  document.getElementById('sliderMaxLabel').textContent = '₹'+maxPrice;
+  document.getElementById('priceMax').placeholder = maxPrice;
+  fState.priceMax = maxPrice;
+
+  /* hero count */
+  document.getElementById('heroCount').textContent = ALL.length + ' products';
+}
+
+/* ═══════════════════════════════════════
+   APPLY FILTERS + SORT
+═══════════════════════════════════════ */
+function applyFilters() {
+  /* read brand checkboxes */
+  fState.brands = new Set(
+    [...document.querySelectorAll('#brandFilterBody input[type=checkbox]:checked')].map(i=>i.value)
+  );
+  /* read cat checkboxes */
+  fState.cats = new Set(
+    [...document.querySelectorAll('#catFilterBody input[type=checkbox]:checked')].map(i=>i.value)
+  );
+  /* rating */
+  const rEl = document.querySelector('input[name=rating]:checked');
+  fState.rating = rEl ? parseFloat(rEl.value) : 0;
+  /* instock */
+  fState.inStock = document.getElementById('inStockOnly').checked;
+  /* sort */
+  fState.sort = document.getElementById('sortSelect').value;
+
+  /* filter */
+  filtered = ALL.filter(p => {
+    if(fState.brands.size && !fState.brands.has(p.brand)) return false;
+    if(fState.cats.size && !fState.cats.has(p.cat)) return false;
+    if(fState.priceMax < maxPrice) {
+      if(p.price == null || p.price <= 0 || p.price > fState.priceMax) return false;
+    }
+    if(fState.rating > 0 && p.rating < fState.rating) return false;
+    if(fState.inStock && (p.price == null || p.price <= 0)) return false;
+    return true;
+  });
+
+  /* sort */
+  switch(fState.sort) {
+    case 'price-low':  filtered.sort((a,b)=>(a.price||9999)-(b.price||9999)); break;
+    case 'price-high': filtered.sort((a,b)=>(b.price||0)-(a.price||0)); break;
+    case 'az':         filtered.sort((a,b)=>a.name.localeCompare(b.name)); break;
+    case 'za':         filtered.sort((a,b)=>b.name.localeCompare(a.name)); break;
+    case 'rating':     filtered.sort((a,b)=>b.rating-a.rating); break;
+    case 'discount':   filtered.sort((a,b)=>calcOff(b)-calcOff(a)); break;
+  }
+
+  currentPage = 1;
+  renderChips();
+  renderPage();
+  renderPagination();
+  updateFilterBadge();
+}
+
+function calcOff(p) {
+  if(!p.mrp||!p.price||p.mrp<=p.price) return 0;
+  return Math.round(((p.mrp-p.price)/p.mrp)*100);
+}
+
+/* ═══════════════════════════════════════
+   ACTIVE CHIPS
+═══════════════════════════════════════ */
+function renderChips() {
+  const wrap = document.getElementById('activeChips');
+  const chips = [];
+  fState.brands.forEach(b => chips.push({label: b==='doms'?'DOMS':'Youva', clear:()=>uncheckBrand(b)}));
+  fState.cats.forEach(c => chips.push({label: CAT_LABELS[c]||c, clear:()=>uncheckCat(c)}));
+  if(fState.priceMax < maxPrice) chips.push({label:'≤ ₹'+fState.priceMax, clear:resetPrice});
+  if(fState.rating>0) chips.push({label:'★'+fState.rating+'+', clear:resetRating});
+  if(fState.inStock) chips.push({label:'Has price', clear:()=>{document.getElementById('inStockOnly').checked=false;applyFilters();}});
+
+  if(chips.length===0) { wrap.style.display='none'; return; }
+  wrap.style.display='flex';
+  wrap.innerHTML = chips.map((c,i)=>`
+    <div class="chip">${c.label}
+      <button onclick="chipClear(${i})"><i class="fas fa-times"></i></button>
+    </div>`).join('');
+  /* store for onclick */
+  window._chipClearFns = chips.map(c=>c.clear);
+}
+window.chipClear = i => { window._chipClearFns[i](); };
+function uncheckBrand(b){
+  const el=document.querySelector(`#brandFilterBody input[value="${b}"]`);
+  if(el)el.checked=false;applyFilters();
+}
+function uncheckCat(c){
+  const el=document.querySelector(`#catFilterBody input[value="${c}"]`);
+  if(el)el.checked=false;applyFilters();
+}
+function resetPrice(){
+  fState.priceMax=maxPrice;
+  document.getElementById('priceSlider').value=maxPrice;
+  document.getElementById('priceMin').value='';
+  document.getElementById('priceMax').value='';
+  applyFilters();
+}
+function resetRating(){document.querySelector('input[name=rating][value="0"]').checked=true;applyFilters();}
+
+function clearAllFilters(){
+  document.querySelectorAll('.sidebar input[type=checkbox]').forEach(i=>i.checked=false);
+  document.querySelector('input[name=rating][value="0"]').checked=true;
+  resetPrice();
+}
+
+function updateFilterBadge(){
+  const total = fState.brands.size + fState.cats.size +
+    (fState.priceMax<maxPrice?1:0) + (fState.rating>0?1:0) + (fState.inStock?1:0);
+  const badge = document.getElementById('filterBadge');
+  badge.textContent = total;
+  badge.style.display = total ? 'flex' : 'none';
+}
+
+/* ═══════════════════════════════════════
+   RENDER PAGE
+═══════════════════════════════════════ */
+function renderPage() {
+  const grid = document.getElementById('productGrid');
+  const start = (currentPage-1)*PAGE_SIZE;
+  const slice = filtered.slice(start, start+PAGE_SIZE);
+
+  /* results info */
+  const from = filtered.length ? start+1 : 0;
+  const to = Math.min(start+PAGE_SIZE, filtered.length);
+  document.getElementById('resultsInfo').innerHTML =
+    `Showing <strong>${from}–${to}</strong> of <strong>${filtered.length}</strong> products`;
+
+  if(!filtered.length){
+    grid.innerHTML='<div class="empty-state"><i class="fas fa-box-open"></i><h3>No products found</h3><p>Try adjusting your filters.</p></div>';
+    return;
+  }
+  grid.innerHTML = slice.map(buildCard).join('');
+}
+
+/* ═══════════════════════════════════════
+   BUILD CARD
+═══════════════════════════════════════ */
+function buildCard(p) {
+  const ba = p.brand==='doms'?'DOMS':'Youva';
+  const bl = BRAND_LOGOS[p.brand]||'';
+  let bh='';
+  if(p.badge){
+    const bc=p.badge.toLowerCase()==='stellar'?'badge-stellar':p.badge.toLowerCase()==='hq'?'badge-hq':'badge-new';
+    bh=`<span class="prod-badge ${bc}">${p.badge}</span>`;
+  }
+  const priceDisplay = (p.price&&p.price>0)?`₹${p.price.toFixed(2)}`:'';
+  const mrpDisplay   = (p.mrp&&p.mrp>0)?`₹${p.mrp.toFixed(2)}`:'';
+  const off = calcOff(p);
+  let ph='';
+  if(p.price&&p.price>0){
+    ph=`<div class="prod-price">${priceDisplay}</div>`;
+    if(p.mrp&&p.mrp>p.price) ph+=`<div class="prod-mrp">${mrpDisplay}</div>`;
+    if(off>0) ph+=`<div class="prod-off">${off}% off</div>`;
+  } else {
+    ph='<div class="prod-price-na">Price on enquiry</div>';
+  }
+  const full=Math.floor(p.rating),half=p.rating%1>=0.5?1:0,empty=5-full-half;
+  const stars='★'.repeat(full)+(half?'½':'')+' ☆'.repeat(empty).trim();
+  const img = p.img||`https://placehold.co/280x200/f3f4f6/888?text=${encodeURIComponent(p.name.slice(0,10))}`;
+  const catLabel = (CAT_LABELS[p.cat]||p.cat.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase()));
+
+  return `<div class="product-card">
+    ${bh}
+    <div class="prod-brand-tag"><img src="${bl}" alt="${ba}" onerror="this.style.display='none'"></div>
+    <div class="prod-img">
+      <img src="${img}" onerror="this.src='https://placehold.co/280x200/f3f4f6/888?text=No+Image';" alt="${p.name}" loading="lazy"/>
+      <div class="prod-wishlist" onclick="toggleWishlist(this)"><i class="far fa-heart"></i></div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-category">${ba} · ${catLabel}</div>
+      <div class="prod-code">${p.code}</div>
+      <div class="prod-name">${p.name}</div>
+      <div class="prod-rating"><div class="stars">${stars}</div><span class="rating-count">(${p.rating})</span></div>
+      <div class="prod-price-row">${ph}</div>
+      <button class="btn-view" onclick="showToast('Viewing: ${p.name.replace(/'/g,"\\'")}')">
+        <i class="fas fa-eye"></i> View Product
+      </button>
+    </div>
+  </div>`;
+}
+
+/* ═══════════════════════════════════════
+   PAGINATION
+═══════════════════════════════════════ */
+function renderPagination() {
+  const total = Math.ceil(filtered.length / PAGE_SIZE);
+  const wrap = document.getElementById('pagination');
+  if(total<=1){wrap.innerHTML='';return;}
+
+  let html = `<button class="page-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>
+    <i class="fas fa-chevron-left"></i></button>`;
+
+  for(let i=1;i<=total;i++){
+    if(i===1||i===total||Math.abs(i-currentPage)<=1){
+      html+=`<button class="page-btn${i===currentPage?' active':''}" onclick="goPage(${i})">${i}</button>`;
+    } else if(Math.abs(i-currentPage)===2){
+      html+=`<span style="color:var(--gray);font-size:.8rem;padding:0 2px;">…</span>`;
+    }
+  }
+  html+=`<button class="page-btn" onclick="goPage(${currentPage+1})" ${currentPage===total?'disabled':''}>
+    <i class="fas fa-chevron-right"></i></button>`;
+  wrap.innerHTML=html;
+}
+
+function goPage(n){
+  const total=Math.ceil(filtered.length/PAGE_SIZE);
+  if(n<1||n>total)return;
+  currentPage=n;
+  renderPage();renderPagination();
+  document.querySelector('.shop-main').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ═══════════════════════════════════════
+   PRICE SLIDER / INPUTS
+═══════════════════════════════════════ */
+function syncPriceFromSlider(){
+  const v = parseInt(document.getElementById('priceSlider').value);
+  document.getElementById('priceMax').value = v;
+  fState.priceMax = v;
+  applyFilters();
+}
+function syncPriceFromInput(){
+  const min = parseInt(document.getElementById('priceMin').value)||0;
+  const max = parseInt(document.getElementById('priceMax').value)||maxPrice;
+  document.getElementById('priceSlider').value = max;
+  fState.priceMax = max;
+  applyFilters();
+}
+
+/* ═══════════════════════════════════════
+   UI HELPERS
+═══════════════════════════════════════ */
+function setView(v){
+  viewMode=v;
+  const grid=document.getElementById('productGrid');
+  if(v==='list') grid.classList.add('list-view');
+  else grid.classList.remove('list-view');
+  document.getElementById('gridViewBtn').classList.toggle('active',v==='grid');
+  document.getElementById('listViewBtn').classList.toggle('active',v==='list');
+}
+
+function toggleBlock(header){
+  const toggle = header.querySelector('.fb-toggle');
+  const body = header.nextElementSibling;
+  toggle.classList.toggle('open');
+  body.classList.toggle('hidden');
+}
+
+function openMobileSidebar(){
+  document.getElementById('sidebar').classList.add('mobile-open');
+  document.getElementById('sidebarOverlay').classList.add('open');
+}
+function closeMobileSidebar(){
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+}
+
+function toggleWishlist(el){
+  el.classList.toggle('active');
+  const i=el.querySelector('i');
+  if(el.classList.contains('active')){i.classList.replace('far','fas');showToast('Added to Wishlist');}
+  else{i.classList.replace('fas','far');}
+}
+
+let toastTimer;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+/* ═══════════════════════════════════════
+   SEARCH OVERLAY
+═══════════════════════════════════════ */
+const searchOverlay = document.getElementById('searchOverlay');
+const searchInput   = document.getElementById('searchInput');
+const searchDrop    = document.getElementById('searchDropdown');
+document.getElementById('openSearchBtn').addEventListener('click',()=>{searchOverlay.classList.add('active');searchInput.focus();});
+document.getElementById('closeSearch').addEventListener('click',()=>{searchOverlay.classList.remove('active');searchInput.value='';searchDrop.innerHTML='';});
+searchOverlay.addEventListener('click',e=>{if(e.target===searchOverlay){searchOverlay.classList.remove('active');searchInput.value='';searchDrop.innerHTML='';}});
+searchInput.addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase();
+  if(!q||!ALL.length){searchDrop.innerHTML='';return;}
+  const hits=ALL.filter(p=>p.name.toLowerCase().includes(q)||p.code.toLowerCase().includes(q)||p.cat.includes(q)).slice(0,8);
+  if(!hits.length){searchDrop.innerHTML='<div class="search-no-results"><i class="fas fa-search" style="display:block;font-size:1.5rem;color:var(--border);margin-bottom:8px;"></i>No results</div>';return;}
+  searchDrop.innerHTML=hits.map(p=>`
+    <div class="search-result-item" onclick="searchOverlay.classList.remove('active');searchInput.value='';searchDrop.innerHTML='';">
+      <img class="sri-img" src="${p.img||'https://placehold.co/48x48/f3f4f6/888?text=IMG'}" onerror="this.src='https://placehold.co/48x48/f3f4f6/888?text=IMG';" alt="${p.name}"/>
+      <div class="sri-info">
+        <div class="sri-name">${p.name}</div>
+        <div class="sri-meta">${p.brand==='doms'?'DOMS':'Youva'} · ${p.price&&p.price>0?'₹'+p.price.toFixed(2):'On enquiry'}</div>
+      </div>
+    </div>`).join('');
+});
+
+/* ═══════════════════════════════════════
+   INIT
+═══════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', loadProducts);
+</script>
+</body>
+</html>
