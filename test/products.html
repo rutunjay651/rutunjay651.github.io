@@ -251,58 +251,8 @@
 </head>
 <body>
 
-<!-- ══ HEADER ══ -->
-<header>
-  <div class="header-inner">
-    <div class="header-left">
-      <button class="hdr-btn" onclick="history.back()" title="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="7" x2="21" y2="7"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <line x1="3" y1="17" x2="21" y2="17"/>
-        </svg>
-        <span class="hdr-btn-label">Menu</span>
-      </button>
-      <a href="index.html" class="logo-wrap">
-        <div class="logo-icon">
-          <img src="https://rutunjay651.github.io/resources/logo/spp.png"
-               onerror="this.onerror=null;this.src='https://placehold.co/52x52/4ade80/ffffff?text=SPP';"
-               alt="SPP"/>
-        </div>
-        <img src="https://rutunjay651.github.io/resources/logo/spp3.png"
-             alt="Shrikant Paper Products"
-             style="height:53px;width:auto;object-fit:contain;"
-             onerror="this.onerror=null;this.style.display='none';"/>
-      </a>
-    </div>
-    <div class="header-actions">
-      <button class="hdr-btn" id="openSearchBtn" title="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-        <span class="hdr-btn-label">Search</span>
-      </button>
-      <a href="#" class="hdr-btn" title="Account">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        <span class="hdr-btn-label">Account</span>
-      </a>
-      <a href="#" class="hdr-btn" title="Wishlist">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        <span class="hdr-btn-label">Wishlist</span>
-      </a>
-      <div class="cart-wrap">
-        <a href="#" class="hdr-btn" title="Cart">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-          </svg>
-          <span class="hdr-btn-label">Cart</span>
-        </a>
-        <span class="cart-badge" id="cartBadge">0</span>
-      </div>
-    </div>
-  </div>
-</header>
+<!-- ══ NAVBAR PLACEHOLDER ══ -->
+<div id="navbar-placeholder"></div>
 
 <!-- ══ NAV ══ -->
 <nav>
@@ -314,17 +264,6 @@
     <a href="shop.html" class="nav-link active"><i class="fas fa-store"></i>All Products</a>
   </div>
 </nav>
-
-<!-- ══ SEARCH OVERLAY ══ -->
-<div id="searchOverlay" class="search-overlay">
-  <div class="search-popup">
-    <div class="search-popup-header">
-      <input type="text" id="searchInput" class="search-popup-input" placeholder="Search products…" autocomplete="off"/>
-      <div class="search-popup-close" id="closeSearch">&times;</div>
-    </div>
-    <div id="searchDropdown"></div>
-  </div>
-</div>
 
 <!-- ══ PAGE HERO ══ -->
 <div class="page-hero">
@@ -914,6 +853,83 @@ searchInput.addEventListener('input',function(){
    INIT
 ═══════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', loadProducts);
+</script>
+<script>
+/* ═══════════════════════════════════════
+   LOAD NAVBAR
+═══════════════════════════════════════ */
+async function loadNavbar() {
+  try {
+    const response = await fetch('navbar.html');
+    const html = await response.text();
+    document.getElementById('navbar-placeholder').innerHTML = html;
+    
+    // Re-attach search event listeners since they're dynamically loaded
+    attachSearchEvents();
+  } catch (e) {
+    console.error('Failed to load navbar:', e);
+  }
+}
+
+function attachSearchEvents() {
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchInput = document.getElementById('searchPopupInput');
+  const searchDropdown = document.getElementById('searchPopupDropdown');
+  const openBtn = document.getElementById('openSearchBtn');
+  const closeBtn = document.getElementById('closeSearchPopup');
+
+  if (!searchOverlay || !searchInput || !searchDropdown) return;
+
+  openBtn?.addEventListener('click', () => {
+    searchOverlay.classList.add('active');
+    searchInput.focus();
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    searchOverlay.classList.remove('active');
+    searchInput.value = '';
+    searchDropdown.innerHTML = '';
+  });
+
+  searchOverlay.addEventListener('click', (e) => {
+    if (e.target === searchOverlay) {
+      searchOverlay.classList.remove('active');
+      searchInput.value = '';
+      searchDropdown.innerHTML = '';
+    }
+  });
+
+  searchInput.addEventListener('input', function() {
+    const q = this.value.trim().toLowerCase();
+    if (!q || !ALL.length) { searchDropdown.innerHTML = ''; return; }
+    const hits = ALL.filter(p => 
+      p.name.toLowerCase().includes(q) || 
+      p.code.toLowerCase().includes(q) || 
+      p.cat.includes(q)
+    ).slice(0, 8);
+
+    if (!hits.length) {
+      searchDropdown.innerHTML = '<div class="search-no-results"><i class="fas fa-search" style="display:block;font-size:1.5rem;color:var(--border);margin-bottom:8px;"></i>No results</div>';
+      return;
+    }
+
+    searchDropdown.innerHTML = hits.map(p => `
+      <div class="search-result-item" onclick="document.getElementById('searchOverlay').classList.remove('active');document.getElementById('searchPopupInput').value='';document.getElementById('searchPopupDropdown').innerHTML='';">
+        <img class="sri-img" src="${p.img||'https://placehold.co/48x48/f3f4f6/888?text=IMG'}" onerror="this.src='https://placehold.co/48x48/f3f4f6/888?text=IMG';" alt="${p.name}"/>
+        <div class="sri-info">
+          <div class="sri-name">${p.name}</div>
+          <div class="sri-meta">${p.brand==='doms'?'DOMS':'Youva'} · ${p.price&&p.price>0?'₹'+p.price.toFixed(2):'On enquiry'}</div>
+        </div>
+      </div>
+    `).join('');
+  });
+}
+
+// Call loadNavbar when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  loadNavbar();
+  loadProducts();
+});
 </script>
 </body>
 </html>
