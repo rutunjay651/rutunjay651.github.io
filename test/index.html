@@ -2,711 +2,502 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Shrikant Paper Products — Jalna</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum=5"/>
+<title>All Products — Shrikant Paper Products</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/font-awesome/6.0/all.min.css"/>
 <style>
-/* ═══════════════════════════════════════════
-   DESIGN TOKENS
-═══════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --ivory:#FAF9F6;
-  --cream:#F4F1EB;
-  --sand:#EAE4D9;
-  --wheat:#D8CFBF;
-  --green:#22c55e;
-  --green-d:#16a34a;
-  --green-pale:#f0fdf4;
-  --forest:#1a5c34;
-  --ink:#141414;
-  --ink-2:#3a3a3a;
-  --ink-3:#777777;
-  --border:#E2DDD4;
-  --border-s:#C8C0B0;
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'DM Sans',sans-serif;
-  --max:1300px;
-  --shadow-nav:0 8px 40px -8px rgba(0,0,0,.12),0 2px 8px -2px rgba(0,0,0,.06);
+  --bg:#0d0d11;--surface:#16171b;--surface-2:#1e1e26;
+  --green:#2D6A4F;--green-glow:rgba(45,106,79,.15);
+  --white:#FFFFFF;--white-70:rgba(255,255,255,.7);
+  --white-50:rgba(255,255,255,.5);
+  --white-30:rgba(255,255,255,.3);
+  --white-20:rgba(255,255,255,.2);
+  --white-10:rgba(255,255,255,.1);
+  --white-05:rgba(255,255,255,.05);
+  --ink:#FFFFFF;--ink-70:rgba(255,255,255,.7);
+  --ink-50:rgba(255,255,255,.5);
+  --ink-30:rgba(255,255,255,.3);
+  --ink-15:rgba(255,255,255,.15);
+  --ink-08:rgba(255,255,255,.08);
+  --sans:'DM Sans',sans-serif;--max:1280px;
 }
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
-body{font-family:var(--sans);background:var(--ivory);color:var(--ink-2);overflow-x:hidden;font-size:15px;line-height:1.6;}
-
-/* subtle paper texture */
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
-  opacity:.018;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
+body{font-family:var(--sans);background:var(--bg);color:var(--ink-50);overflow-x:hidden;font-size:14px;line-height:1.6;}
 a{text-decoration:none;color:inherit;}
-button{cursor:pointer;font-family:var(--sans);}
+button{cursor:pointer;font-family:var(--sans);border:none;background:none;}
 img{display:block;max-width:100%;}
-::selection{background:var(--green);color:#fff;}
 
-/* ═══ FLOATING SNACKBAR NAV ═══ */
-.snackbar{
-  position:fixed;top:14px;left:50%;transform:translateX(-50%);
-  z-index:900;padding:0 20px;width:100%;
-  pointer-events:none;
-  transition:top .4s cubic-bezier(.16,1,.3,1);
-}
-.snackbar-inner{
-  max-width:var(--max);margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;gap:20px;
-  height:56px;padding:0 18px;
-  background:rgba(250,249,246,.92);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border:1px solid var(--border);
-  border-radius:50px;
-  box-shadow:var(--shadow-nav);
-  pointer-events:all;
-}
-
-/* logo */
-.logo{display:flex;align-items:center;gap:9px;flex-shrink:0;}
-.logo-icon{width:32px;height:32px;border-radius:9px;overflow:hidden;flex-shrink:0;}
+/* ═══ FLOATING SNACKBAR (frosted glass for dark bg) ═══ */
+.snackbar{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:900;padding:0 20px;width:100%;pointer-events:none;transition:top .4s cubic-bezier(.16,1,.3,1);}
+.snackbar-wrap{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:52px;padding:0 18px;background:rgba(13,13,17,.55);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.06);border-radius:50px;box-shadow:0 8px 32px rgba(0,0,0,.2);pointer-events:all;}
+.logo{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.logo-icon{width:28px;height:28px;border-radius:50%;overflow:hidden;flex-shrink:0;}
 .logo-icon img{width:100%;height:100%;object-fit:contain;}
-.logo-wordmark{height:32px;width:auto;object-fit:contain;}
-
-/* nav links */
-.nav-links{display:flex;align-items:center;gap:1px;}
-.nav-link{
-  padding:6px 14px;border-radius:50px;
-  font-size:.76rem;font-weight:500;color:var(--ink-3);
-  transition:background .15s,color .15s;white-space:nowrap;
-  position:relative;
-}
-.nav-link::after{content:'';position:absolute;bottom:4px;left:14px;right:14px;height:1px;background:var(--forest);width:0;transition:width .25s ease;}
-.nav-link:hover{color:var(--ink);}
-.nav-link:hover::after{width:calc(100% - 28px);}
-.nav-link.active{color:var(--ink);font-weight:600;}
-
-/* right icons: Search | Wishlist | Cart | Account */
+.logo-wordmark{height:28px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.85;}
+.nav-links{display:flex;align-items:center;gap:0;}
+.nav-link{padding:5px 12px;border-radius:50px;font-size:.72rem;font-weight:500;color:var(--ink-30);transition:all .15s;white-space:nowrap;}
+.nav-link:hover{background:var(--white-05);color:var(--white);}
+.nav-link.active{background:var(--white-08);color:var(--white);}
 .nav-actions{display:flex;align-items:center;gap:2px;}
-.nav-icon{
-  width:36px;height:36px;border-radius:50%;border:none;background:transparent;
-  color:var(--ink-3);font-size:.82rem;display:flex;align-items:center;justify-content:center;
-  transition:background .15s,color .15s;position:relative;
-}
-.nav-icon:hover{background:var(--sand);color:var(--ink);}
-.cart-pip{
-  position:absolute;top:4px;right:4px;width:14px;height:14px;border-radius:50%;
-  background:var(--green);color:#fff;font-size:.48rem;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-  pointer-events:none;border:2px solid var(--ivory);
-}
+.nav-icon{width:32px;height:32px;border-radius:50%;color:var(--ink-30);font-size:.78rem;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.nav-icon:hover{background:var(--white-05);color:var(--white);}
+.cart-pip{position:absolute;top:2px;right:2px;width:12px;height:12px;border-radius:50%;background:var(--green);color:#fff;font-size:.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;pointer-events:none;border:1.5px solid var(--bg);}
+.hamburger{display:none;width:32px;height:32px;border-radius:50%;color:var(--ink-30);font-size:.8rem;align-items:center;justify-content:center;transition:background:none;}
+.hamburger:hover{background:var(--white-05);}
 
-/* mobile hamburger */
-.hamburger{display:none;width:36px;height:36px;border-radius:50%;border:none;background:transparent;color:var(--ink-2);font-size:.9rem;align-items:center;justify-content:center;transition:background .15s;}
-.hamburger:hover{background:var(--sand);}
-
-/* ═══ MOBILE MENU ═══ */
-.mobile-menu{
-  position:fixed;inset:0;z-index:850;
-  background:rgba(250,249,246,.98);backdrop-filter:blur(20px);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
-  opacity:0;pointer-events:none;transition:opacity .35s ease;
-}
-.mobile-menu.open{opacity:1;pointer-events:all;}
-.mobile-menu-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--ink-2);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .15s;}
-.mobile-menu-close:hover{background:var(--sand);}
-.mobile-nav-link{font-family:var(--serif);font-size:2.6rem;font-weight:300;color:var(--ink-2);transition:color .2s;}
-.mobile-nav-link:hover{color:var(--forest);}
-
-/* ═══ SEARCH OVERLAY ═══ */
-.search-overlay{
-  position:fixed;inset:0;z-index:2000;
-  background:rgba(20,20,20,.35);backdrop-filter:blur(8px);
-  display:none;align-items:flex-start;justify-content:center;padding-top:80px;
-}
+/* ═══ SEARCH OVERLAY (pill on dark) ═══ */
+.search-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding-top:80px;}
 .search-overlay.open{display:flex;animation:fade .15s ease;}
-.search-box{
-  width:90%;max-width:580px;
-  background:var(--ivory);border-radius:20px;border:1px solid var(--border);
-  box-shadow:0 20px 60px rgba(0,0,0,.12);overflow:hidden;
-  animation:drop .2s cubic-bezier(.16,1,.3,1);
-}
-.search-row{display:flex;align-items:center;padding:4px 4px 4px 18px;gap:8px;border-bottom:1px solid var(--border);}
-.search-row i{color:var(--ink-3);font-size:.78rem;flex-shrink:0;}
-.search-row input{flex:1;border:none;outline:none;font-family:var(--sans);font-size:.95rem;color:var(--ink);background:transparent;padding:13px 0;}
-.search-row input::placeholder{color:var(--ink-3);}
-.search-close{width:38px;height:38px;border-radius:10px;border:none;background:transparent;color:var(--ink-3);display:flex;align-items:center;justify-content:center;transition:background .15s;}
-.search-close:hover{background:var(--sand);}
-#searchDrop{max-height:420px;overflow-y:auto;}
-.sri{display:flex;align-items:center;gap:12px;padding:11px 18px;cursor:pointer;transition:background .12s;border-bottom:1px solid var(--border);}
-.sri:last-child{border-bottom:none;}
-.sri:hover{background:var(--cream);}
-.sri-img{width:46px;height:46px;border-radius:10px;object-fit:contain;background:var(--sand);padding:4px;flex-shrink:0;}
-.sri-name{font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:2px;}
-.sri-sub{font-size:.7rem;color:var(--ink-3);}
-.sri-price{font-size:.82rem;font-weight:500;color:var(--ink);margin-left:auto;flex-shrink:0;}
-.search-hint{padding:10px 18px;font-size:.68rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border);}
-.search-empty{padding:28px;text-align:center;color:var(--ink-3);font-size:.85rem;}
-
+.search-box{width:90%;max-width:520px;background:var(--surface-2);border-radius:16px;border:1px solid rgba(255,255,255,.08);box-shadow:0 20px 60px rgba(0,0,0,.3);overflow:hidden;animation:drop .2s cubic-bezier(.16,1,.3,1);}
+.search-row{display:flex;align-items:center;padding:3px 3px 3px 16px;gap:8px;border-bottom:1px solid rgba(255,255,255,.06);}
+.search-row i{color:var(--ink-30);font-size:.78rem;flex-shrink:0;}
+.search-row input{flex:1;border:none;outline:none;font-family:var(--sans);font-size:.92rem;color:var(--white);background:transparent;padding:12px 0;}
+.search-row input::placeholder{color:var(--ink-30);}
+.search-close{width:34px;height:34px;border-radius:50%;background:transparent;color:var(--ink-30);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background:none;}
+.search-close:hover{background:var(--white-05);}
+#searchDrop{max-height:400px;overflow-y:auto;}
+.sri{display:flex;align-items:center;gap:12px;padding:10px 16px;cursor:pointer;transition:background:none;border-radius:8px;margin:0 8px;}
+.sri:hover{background:var(--white-05);}
+.sri-img{width:42px;height:42px;border-radius:8px;object-fit:contain;background:var(--surface);padding:3px;flex-shrink:0;}
+.sri-name{font-size:.8rem;font-weight:500;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sri-sub{font-size:.68rem;color:var(--ink-30);}
+.sri-price{font-size:.8rem;font-weight:500;color:var(--white-70);margin-left:auto;flex-shrink:0;}
+.search-hint{padding:10px 16px;font-size:.62rem;font-weight:600;color:var(--ink-15);text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid rgba(255,255,255,.04);}
+.search-empty{padding:24px;text-align:center;color:var(--ink-30);font-size:.82rem;}
 @keyframes fade{from{opacity:0;}to{opacity:1;}}
-@keyframes drop{from{transform:translateY(-16px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+@keyframes drop{from{transform:translateY(-12px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 
-/* ═══ REVEAL ANIMATIONS ═══ */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.reveal-d1{transition-delay:.08s;}
-.reveal-d2{transition-delay:.16s;}
-.reveal-d3{transition-delay:.24s;}
-.reveal-d4{transition-delay:.32s;}
-.reveal-d5{transition-delay:.40s;}
-.reveal-d6{transition-delay:.48s;}
-
-.manifesto-line{opacity:0;transform:translateY(22px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1);}
-.manifesto-line.visible{opacity:1;transform:translateY(0);}
-
-/* ═══ HERO ═══ */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;}
+/* ═══ HERO — full-bleed, cinematic ═══ */
+.hero{position:relative;height:80vh;overflow:hidden;background:var(--bg);}
 .hero-bg{position:absolute;inset:0;}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,rgba(250,249,246,.88) 0%,rgba(250,249,246,.6) 50%,rgba(250,249,246,.15) 100%);}
-.hero-bg::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to top,var(--ivory) 0%,transparent 30%);}
-.hero-content{position:relative;z-index:2;width:100%;max-width:var(--max);margin:0 auto;padding:0 32px;padding-top:120px;padding-bottom:80px;}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:500;text-transform:uppercase;letter-spacing:.22em;color:var(--forest);border:1px solid rgba(26,92,52,.25);border-radius:50px;padding:6px 16px;background:rgba(250,249,246,.6);backdrop-filter:blur(8px);margin-bottom:28px;}
-.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
-.hero-title{font-family:var(--serif);font-size:clamp(2.6rem,6vw,5.4rem);font-weight:300;color:var(--ink);line-height:1.08;letter-spacing:-.02em;margin-bottom:24px;}
-.hero-title em{font-style:italic;color:var(--forest);}
-.hero-desc{font-size:.95rem;color:var(--ink-3);line-height:1.75;max-width:380px;margin-bottom:36px;font-weight:300;}
-.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:52px;}
-.btn-fill{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:50px;border:none;background:var(--forest);color:#fff;font-size:.8rem;font-weight:500;letter-spacing:.02em;transition:all .25s;box-shadow:0 8px 24px -6px rgba(26,92,52,.35);}
-.btn-fill:hover{background:var(--green-d);transform:translateY(-2px);}
-.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:50px;border:1px solid var(--border-s);background:rgba(250,249,246,.5);color:var(--ink-2);font-size:.8rem;font-weight:500;letter-spacing:.02em;transition:all .25s;backdrop-filter:blur(8px);}
-.btn-outline:hover{border-color:var(--forest);color:var(--forest);transform:translateY(-2px);}
-.hero-scroll{display:flex;align-items:center;gap:10px;color:var(--ink-3);opacity:.6;font-size:.68rem;text-transform:uppercase;letter-spacing:.18em;}
-.hero-scroll i{animation:bounce 2s ease-in-out infinite;}
-@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transform:scale(1.02);transition:transform 8s linear;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,rgba(13,13,17,.1) 0%,transparent 55%);}
+.hero-content{position:absolute;inset:0;z-index:2;display:flex;align-items:flex-end;width:100%;max-width:var(--max);margin:0 auto;padding:0 40px;padding-bottom:60px;}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--white-70);border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:5px 14px;background:rgba(255,255,255,.05);backdrop-filter:blur(6px);margin-bottom:20px;}
+.hero-dot{width:5px;height:5px;border-radius:50%;background:var(--green);}
+.hero-title{font-family:var(--sans);font-size:clamp(2.2rem,5vw,3.6rem);font-weight:600;color:var(--white);line-height:1.08;margin-bottom:14px;letter-spacing:-.01em;text-shadow:0 2px 20px rgba(0,0,0,.3);}
+.hero-desc{font-size:.88rem;color:var(--white-50);line-height:1.7;max-width:340px;margin-bottom:28px;}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-fill{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border-radius:50px;background:var(--white);color:#111;font-size:.78rem;font-weight:600;transition:all .2s;}
+.btn-fill:hover{background:var(--white-08);box-shadow:0 6px 20px rgba(255,255,255,.1);}
+.btn-outline{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border-radius:50px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:var(--white-70);font-size:.78rem;font-weight:500;transition:all .2s;backdrop-filter:blur(6px);}
+.btn-outline:hover{border-color:var(--white-30);background:rgba(255,255,255,.08);}
+.hero-scroll{display:flex;align-items:center;gap:8px;color:var(--white-30);font-size:.62rem;text-transform:uppercase;letter-spacing:.18em;}
+.hero-scroll i{animation:bounce 2.2s ease-in-out infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
 
-/* hero bottom panel */
-.hero-panel{
-  display:grid;grid-template-columns:1fr 1fr;
-  border-top:1px solid var(--border);
-  background:var(--ivory);
-}
-.hero-panel-text{padding:40px 48px;border-right:1px solid var(--border);}
-.hero-panel-eyebrow{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--green);display:block;margin-bottom:12px;}
-.hero-panel-heading{font-family:var(--serif);font-size:1.85rem;font-weight:300;color:var(--ink);line-height:1.2;margin-bottom:14px;letter-spacing:-.01em;}
-.hero-panel-heading em{font-style:italic;color:var(--forest);}
-.hero-panel-body{font-size:.84rem;color:var(--ink-3);line-height:1.75;max-width:420px;margin-bottom:22px;font-weight:300;}
-.hero-panel-meta{display:flex;flex-wrap:wrap;gap:18px;}
-.hero-meta-item{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--ink-3);}
-.hero-meta-item i{color:var(--green);font-size:.7rem;}
-.hero-panel-img{position:relative;overflow:hidden;background:var(--sand);}
-.hero-panel-img img{width:100%;height:100%;min-height:260px;object-fit:cover;transition:transform .6s ease;}
-.hero-panel-img:hover img{transform:scale(1.04);}
-.hero-panel-badge{position:absolute;bottom:16px;left:16px;background:rgba(250,249,246,.9);backdrop-filter:blur(8px);border-radius:10px;padding:8px 14px;font-size:.72rem;font-weight:500;color:var(--ink);border:1px solid var(--border);}
+/* ═══ TRUST BAR — minimal on dark ═══ */
+.trust-bar{background:var(--bg);}
+.trust-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);padding:0 40px;}
+.trust-item{display:flex;align-items:center;gap:12px;padding:22px 20px;}
+.trust-icon{width:36px;height:36px;border-radius:8px;background:var(--green-glow);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--green);flex-shrink:0;}
+.trust-title{font-size:.78rem;font-weight:600;color:var(--white-70);}
+.trust-sub{font-size:.66rem;color:var(--white-30);}
 
-/* ═══ TRUST BAR ═══ */
-.trust-bar{border-bottom:1px solid var(--border);}
-.trust-inner{max-width:var(--max);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);}
-.trust-item{display:flex;align-items:center;gap:14px;padding:24px;border-right:1px solid var(--border);}
-.trust-item:last-child{border-right:none;}
-.trust-icon-wrap{width:42px;height:42px;border-radius:12px;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:.95rem;color:var(--forest);flex-shrink:0;}
-.trust-title{font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:2px;}
-.trust-sub{font-size:.7rem;color:var(--ink-3);}
+/* ═══ CATEGORIES — horizontal scroll ═══ */
+.cat-scroll-wrap{padding:0 40px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;}
+.cat-scroll{display:flex;gap:10px;padding:4px 0;}
+.cat-scroll::-webkit-scrollbar{height:4px;}
+.cat-scroll{scrollbar-width:4px;}
+.cat-card{flex:0 0 140px;background:var(--surface);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;}
+.cat-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.15);}
+.cat-img{height:110px;overflow:hidden;background:var(--surface-2);display:flex;align-items:center;justify-content:center;}
+.cat-img img{width:100%;height:100%;object-fit:cover;}
+.cat-info{padding:10px 12px 14px;}
+.cat-name{font-size:.72rem;font-weight:600;color:var(--white-70);}
+.cat-count{font-size:.6rem;color:var(--white-30);}
 
-/* ═══ SECTION TEMPLATE ═══ */
-.section{padding:80px 32px;max-width:var(--max);margin:0 auto;}
-.section-sm{padding:64px 32px;max-width:var(--max);margin:0 auto;}
-.section-label{display:inline-block;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.28em;color:var(--forest);margin-bottom:10px;}
-.section-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3.2rem);font-weight:300;color:var(--ink);line-height:1.15;letter-spacing:-.01em;}
-.section-title em{font-style:italic;color:var(--forest);}
-.section-sub{font-size:.88rem;color:var(--ink-3);margin-top:10px;max-width:500px;line-height:1.72;font-weight:300;}
-.divider{height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);}
-
-/* ═══ SEARCH RESULTS ═══ */
-#searchResultsSection{display:none;padding:60px 32px;max-width:var(--max);margin:0 auto;}
-.sr-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
-.sr-title{font-family:var(--serif);font-size:1.4rem;font-weight:300;color:var(--ink);}
-.sr-title span{color:var(--forest);font-style:italic;}
-.btn-clear{padding:7px 18px;border-radius:50px;border:1px solid var(--border);background:var(--ivory);color:var(--ink-3);font-size:.76rem;font-weight:500;transition:all .15s;}
-.btn-clear:hover{border-color:var(--border-s);color:var(--ink);}
-
-/* ═══ CATEGORIES ═══ */
-.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
-.cat-card{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 12px;border-radius:18px;border:1px solid var(--border);background:var(--ivory);cursor:pointer;transition:all .25s;text-align:center;}
-.cat-card:hover{border-color:rgba(26,92,52,.3);background:var(--green-pale);transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,92,52,.08);}
-.cat-img-wrap{width:58px;height:58px;border-radius:14px;overflow:hidden;background:var(--cream);display:flex;align-items:center;justify-content:center;}
-.cat-img-wrap img{width:100%;height:100%;object-fit:cover;}
-.cat-name{font-size:.74rem;font-weight:600;color:var(--ink);}
-.cat-count{font-size:.66rem;color:var(--ink-3);}
-
-/* ═══ BRANDS ═══ */
-.brand-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
-.brand-card{border-radius:20px;overflow:hidden;border:1px solid var(--border);background:var(--ivory);transition:box-shadow .3s,transform .3s;}
-.brand-card:hover{box-shadow:0 20px 48px rgba(0,0,0,.1);transform:translateY(-4px);}
-.brand-img{height:210px;overflow:hidden;background:var(--sand);}
-.brand-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+/* ═══ BRANDS — image-forward ═══ */
+.brand-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding:0 40px;}
+.brand-card{border-radius:14px;overflow:hidden;background:var(--surface);transition:transform .3s,box-shadow .3s;}
+.brand-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.15);}
+.brand-img{height:200px;overflow:hidden;}
+.brand-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
 .brand-card:hover .brand-img img{transform:scale(1.05);}
-.brand-body{padding:26px 30px;}
-.brand-name{font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--ink);margin-bottom:8px;}
-.brand-desc{font-size:.82rem;color:var(--ink-3);line-height:1.72;margin-bottom:16px;font-weight:300;}
-.brand-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;}
-.brand-tag{padding:3px 11px;border-radius:50px;background:var(--cream);border:1px solid var(--border);font-size:.68rem;font-weight:500;color:var(--ink-3);}
-.btn-brand{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:50px;border:1.5px solid rgba(26,92,52,.4);color:var(--forest);font-size:.78rem;font-weight:500;transition:all .22s;background:transparent;}
-.btn-brand:hover{background:var(--forest);color:#fff;}
+.brand-body{padding:22px 24px;}
+.brand-name{font-size:1.4rem;font-weight:600;color:var(--white);margin-bottom:6px;}
+.brand-desc{font-size:.8rem;color:var(--ink-50);line-height:1.7;margin-bottom:16px;}
+.brand-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:18px;}
+.brand-tag{padding:3px 10px;border-radius:50px;background:var(--surface-2);font-size:.62rem;font-weight:500;color:var(--ink-50);}
+.btn-brand{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:50px;border:1px solid rgba(255,255,255,.12);color:var(--white-70);font-size:.76rem;font-weight:500;transition:all .2s;background:none;}
+.btn-brand:hover{background:var(--white);color:#111;border-color:var(--white);}
 
 /* ═══ PRODUCTS ═══ */
-.filter-tabs-wrap{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:12px;}
+.filter-tabs-wrap{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px;flex-wrap:wrap;}
 .filter-tabs{display:flex;gap:2px;flex-wrap:wrap;}
-.ftab{padding:7px 18px;border-radius:50px;border:1px solid transparent;background:transparent;color:var(--ink-3);font-size:.74rem;font-weight:500;transition:all .18s;letter-spacing:.02em;}
-.ftab:hover{color:var(--ink);background:var(--cream);}
-.ftab.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.ftab{padding:5px 16px;border-radius:50px;border:1px solid transparent;background:transparent;color:var(--ink-30);font-size:.72rem;font-weight:500;transition:all .15s;}
+.ftab:hover{color:var(--white-50);background:var(--white-05);}
+.ftab.active{background:var(--white);color:#111;}
 .sort-wrap{display:flex;align-items:center;gap:6px;}
-.sort-label{font-size:.72rem;color:var(--ink-3);}
-.sort-select{padding:6px 12px;border-radius:8px;border:1px solid var(--border);font-family:var(--sans);font-size:.74rem;color:var(--ink);background:var(--ivory);outline:none;cursor:pointer;transition:border-color .15s;}
-.sort-select:focus{border-color:var(--border-s);}
-.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-.product-card{border-radius:18px;border:1px solid var(--border);background:var(--ivory);overflow:hidden;position:relative;transition:box-shadow .3s,transform .3s;cursor:pointer;}
-.product-card:hover{box-shadow:0 16px 40px rgba(0,0,0,.09);transform:translateY(-4px);}
-.prod-badge{position:absolute;top:10px;left:10px;z-index:3;font-size:.57rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:4px 10px;border-radius:50px;}
-.badge-new{background:#059669;color:#fff;}
-.badge-stellar{background:#1e40af;color:#fff;}
-.badge-hq{background:var(--ink);color:#fff;}
-.prod-brand-mark{position:absolute;top:10px;right:10px;z-index:3;background:rgba(250,249,246,.9);border:1px solid var(--border);border-radius:7px;padding:3px 7px;display:flex;align-items:center;backdrop-filter:blur(4px);}
-.prod-brand-mark img{height:14px;width:auto;object-fit:contain;}
-.prod-img-wrap{height:190px;background:var(--cream);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
-.prod-img-wrap img{width:100%;height:100%;object-fit:contain;padding:12px;transition:transform .5s ease;}
-.product-card:hover .prod-img-wrap img{transform:scale(1.06);}
-.prod-wish{position:absolute;bottom:10px;right:10px;z-index:3;width:30px;height:30px;border-radius:50%;background:var(--ivory);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.76rem;color:var(--ink-3);transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.06);}
-.prod-wish:hover,.prod-wish.active{color:#ef4444;border-color:#fecaca;}
-.prod-body{padding:14px 16px 16px;}
-.prod-cat-row{font-size:.6rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--forest);margin-bottom:3px;}
-.prod-code{font-size:.58rem;color:var(--ink-3);font-family:monospace;margin-bottom:4px;}
-.prod-name{font-family:var(--serif);font-size:1.05rem;font-weight:300;color:var(--ink);line-height:1.35;margin-bottom:7px;}
-.product-card:hover .prod-name{color:var(--forest);}
-.prod-stars{display:flex;align-items:center;gap:4px;margin-bottom:8px;}
-.stars-txt{color:#d97706;font-size:.7rem;}
-.star-count{font-size:.66rem;color:var(--ink-3);}
-.prod-pricing{display:flex;align-items:baseline;gap:7px;margin-bottom:12px;flex-wrap:wrap;}
-.prod-price{font-size:.95rem;font-weight:600;color:var(--ink);}
-.prod-mrp{font-size:.7rem;color:var(--ink-3);text-decoration:line-through;}
-.prod-off{font-size:.66rem;font-weight:600;color:#059669;}
-.prod-na{font-size:.74rem;color:var(--ink-3);font-style:italic;}
-.btn-view{width:100%;padding:9px;border-radius:10px;border:1px solid var(--border);background:var(--ivory);color:var(--ink);font-size:.76rem;font-weight:500;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .18s;letter-spacing:.02em;}
-.btn-view:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
-.view-all-wrap{text-align:center;margin-top:32px;}
-.link-underline{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:500;color:var(--forest);border-bottom:1px solid rgba(26,92,52,.35);padding-bottom:2px;transition:all .2s;letter-spacing:.01em;}
-.link-underline:hover{gap:11px;border-color:var(--forest);}
-.loading-state,.empty-state{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--ink-3);}
-.loading-state i{font-size:1.8rem;color:var(--green);display:block;margin-bottom:10px;animation:spin 1s linear infinite;}
-.empty-state i{font-size:2rem;color:var(--border);display:block;margin-bottom:10px;}
-.empty-state h3{font-family:var(--serif);font-size:1.2rem;font-weight:300;color:var(--ink);margin-bottom:4px;}
-@keyframes spin{to{transform:rotate(360deg);}}
+.sort-label{font-size:.68rem;color:var(--ink-20);}
+.sort-select{padding:6px 12px;border-radius:50px;border:1px solid rgba(255,255,255,.1);font-family:var(--sans);font-size:.72rem;color:var(--white);background:transparent;outline:none;cursor:pointer;transition:border-color .15s;}
+.sort-select:focus{border-color:rgba(255,255,255,.3);}
+.sort-select option{background:var(--surface-2);color:var(--ink-50);}
+.view-btns{display:flex;gap:2px;border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;}
+.view-btn{width:32px;height:32px;border:none;background:transparent;color:var(--ink-30);font-size:.76rem;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.view-btn.active{background:var(--white-05);color:var(--white);}
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.product-card{border-radius:12px;background:var(--surface);overflow:hidden;transition:transform .3s,box-shadow .3s;position:relative;}
+.product-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.12);}
+.prod-brand-mark{position:absolute;top:8px;right:8px;z-index:3;background:rgba(22,23,17,.7);border-radius:6px;padding:2px 5px;display:flex;align-items:center;backdrop-filter:blur(6px);}
+.prod-brand-mark img{height:13px;width:auto;object-fit:contain;}
+.prod-img{height:220px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.prod-img img{width:100%;height:100%;object-fit:contain;padding:16px;transition:transform .4s;}
+.product-card:hover .prod-img img{transform:scale(1.05);}
+.prod-wish{position:absolute;bottom:8px;right:8px;z-index:3;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--ink-30);transition:all .2s;}
+.prod-wish:hover,.prod-wish.active{color:#ef4444;}
+.prod-body{padding:12px 14px 14px;}
+.prod-cat-row{font-size:.56rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--green);margin-bottom:2px;}
+.prod-code{font-size:.54rem;color:var(--ink-20);font-family:monospace;margin-bottom:3px;}
+.prod-name{font-family:var(--sans);font-size:.92rem;font-weight:500;color:var(--white);line-height:1.35;margin-bottom:6px;}
+.prod-stars{display:flex;align-items:center;gap:3px;margin-bottom:6px;}
+.stars-txt{color:#d97706;font-size:.66rem;}
+.star-count{font-size:.6rem;color:var(--ink-20);}
+.prod-pricing{display:flex;align-items:baseline;gap:6px;margin-bottom:10px;flex-wrap:wrap;}
+.prod-price{font-size:.9rem;font-weight:600;color:var(--white);}
+.prod-mrp{font-size:.68rem;color:var(--ink-30);text-decoration:line-through;}
+.prod-off{font-size:.62rem;font-weight:600;color:var(--green);}
+.prod-na{font-size:.7rem;color:var(--ink-30);font-style:italic;}
+.btn-view{width:100%;padding:8px;border-radius:8px;background:var(--white-05);color:var(--ink-30);font-size:.74rem;font-weight:500;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .18s;border:none;}
+.btn-view:hover{background:var(--white);color:#111;box-shadow:0 4px 16px rgba(255,255,255,.08);}
+.view-all-wrap{text-align:center;margin-top:28px;}
+.link-arrow{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:500;color:var(--white-50);border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:2px;transition:all .2s;}
+.link-arrow:hover{gap:10px;border-color:rgba(255,255,255,.4);}
+.loading-state,.empty-state{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--ink-30);}
+.loading-state i,.empty-state i{font-size:1.8rem;display:block;margin-bottom:10px;}
+.loading-state i{color:var(--green);animation:spin 1s linear infinite;}
+.empty-state h3{font-size:1rem;font-weight:500;color:var(--white-70);margin-bottom:4px;}
+@keyframes spin{to{transform:rotate(360deg;}}
 
-/* ═══ PROMO STRIP ═══ */
-.promo-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-.promo-inner{max-width:var(--max);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(3,1fr);}
-.promo-item{position:relative;height:190px;overflow:hidden;cursor:pointer;border-right:1px solid var(--border);}
-.promo-item:last-child{border-right:none;}
+/* ═══ EDITORIAL BREAK — cinematic ═══ */
+.editorial{position:relative;height:50vh;overflow:hidden;}
+.editorial img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease;}
+.editorial:hover img{transform:scale(1.02);}
+.editorial-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;}
+.editorial-tag{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.25em;color:rgba(255,255,255,.5);margin-bottom:14px;}
+.editorial-title{font-family:var(--sans);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:600;color:#fff;line-height:1.1;font-style:italic;margin-bottom:20px;}
+.editorial-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border-radius:50px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;font-size:.76rem;font-weight:500;transition:all .2s;backdrop-filter:blur(6px);}
+.editorial-btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);}
+
+/* ═══ PROMO STRIP — rounded dark cards ═══ */
+.promo-wrap{padding:0 40px;}
+.promo-inner{max-width:var(--max);display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.promo-item{position:relative;height:170px;overflow:hidden;border-radius:12px;cursor:pointer;}
 .promo-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
 .promo-item:hover img{transform:scale(1.05);}
-.promo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,20,20,.65) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 22px;}
-.promo-label{font-size:.62rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:4px;}
-.promo-title{font-family:var(--serif);font-size:1.05rem;font-weight:300;color:#fff;margin-bottom:10px;line-height:1.3;}
-.promo-link{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:500;color:rgba(255,255,255,.85);border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:1px;width:fit-content;transition:all .2s;}
-.promo-link:hover{color:#86efac;border-color:#86efac;gap:8px;}
-
-/* ═══ EDITORIAL BREAK ═══ */
-.editorial{position:relative;height:55vh;overflow:hidden;}
-.editorial img{width:100%;height:100%;object-fit:cover;}
-.editorial-overlay{position:absolute;inset:0;background:rgba(20,20,20,.32);display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;}
-.editorial-tag{font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.28em;color:rgba(255,255,255,.6);margin-bottom:18px;}
-.editorial-title{font-family:var(--serif);font-size:clamp(2.2rem,5vw,4rem);font-weight:300;color:#fff;line-height:1.1;letter-spacing:-.02em;font-style:italic;margin-bottom:28px;}
+.promo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,17,.6) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:16px 18px;border-radius:12px;}
+.promo-label{font-size:.58rem;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:3px;}
+.promo-title{font-family:var(--sans);font-size:.92rem;font-weight:400;color:#fff;margin-bottom:8px;line-height:1.3;}
+.promo-link{display:inline-flex;align-items:center;gap:4px;font-size:.64rem;font-weight:500;color:rgba(255,255,255,.75);border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:1px;width:fit-content;transition:all .2s;}
+.promo-link:hover{color:#fff;border-color:var(--green);gap:6px;}
 
 /* ═══ NEWSLETTER ═══ */
-.newsletter-wrap{background:var(--forest);border-radius:24px;padding:64px;text-align:center;position:relative;overflow:hidden;}
-.newsletter-wrap::before{content:'';position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");}
-.nl-label{font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.28em;color:rgba(255,255,255,.45);display:block;margin-bottom:14px;}
-.nl-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,3rem);font-weight:300;color:#fff;margin-bottom:10px;line-height:1.2;}
-.nl-desc{font-size:.85rem;color:rgba(255,255,255,.5);max-width:380px;margin:0 auto 32px;line-height:1.72;font-weight:300;}
-.nl-form{display:flex;gap:8px;max-width:400px;margin:0 auto 12px;}
-.nl-form input{flex:1;padding:12px 20px;border-radius:50px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-family:var(--sans);font-size:.84rem;outline:none;transition:border-color .2s;}
-.nl-form input::placeholder{color:rgba(255,255,255,.35);}
+.newsletter-section{padding:0 40px 80px 40px;}
+.newsletter-inner{max-width:var(--max);display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;border-radius:16px;background:var(--surface);border:1px solid rgba(255,255,255,.06);padding:40px 44px;position:relative;overflow:hidden;}
+.newsletter-inner::before{content:'';position:absolute;inset:0;border-radius:16px;background:linear-gradient(135deg,rgba(45,106,79,.15) 0%,rgba(27,67,50,.15) 100%);opacity:.08;}
+.nl-text h2{font-size:1.6rem;font-weight:500;color:var(--white);margin-bottom:8px;line-height:1.2;}
+.nl-text p{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:20px;}
+.nl-form{display:flex;gap:8px;}
+.nl-form input{flex:1;padding:10px 18px;border-radius:50px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:var(--white);font-family:var(--sans);font-size:.82rem;outline:none;}
+.nl-form input::placeholder{color:var(--white-20);}
 .nl-form input:focus{border-color:rgba(255,255,255,.3);}
-.nl-form button{padding:12px 26px;border-radius:50px;border:none;background:var(--ivory);color:var(--forest);font-family:var(--sans);font-size:.8rem;font-weight:600;white-space:nowrap;transition:all .2s;}
-.nl-form button:hover{background:#fff;transform:translateY(-1px);}
-.nl-note{font-size:.68rem;color:rgba(255,255,255,.3);}
+.nl-form button{padding:10px 22px;border-radius:50px;border:none;background:var(--green);color:#fff;font-family:var(--sans);font-size:.78rem;font-weight:600;white-space:nowrap;transition:all .2s;}
+.nl-form button:hover{background:#1B4332;box-shadow:0 6px 20px rgba(45,106,79,.3);}
+.nl-note{font-size:.64rem;color:rgba(255,255,255,.2);margin-top:8px;}
+.nl-success{display:none;font-size:.76rem;color:var(--green);margin-top:10px;}
+.nl-success.show{display:block;}
 
-/* ═══ FOOTER ═══ */
-footer{border-top:1px solid var(--border);padding-top:0;}
-.footer-main{max-width:var(--max);margin:0 auto;padding:56px 32px 40px;display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:48px;border-bottom:1px solid var(--border);}
-.footer-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
-.footer-logo-icon{width:34px;height:34px;border-radius:9px;overflow:hidden;}
-.footer-logo-icon img{width:100%;height:100%;object-fit:contain;}
-.footer-brand-name{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--ink);}
-.footer-tagline{font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.15em;color:var(--green);}
-.footer-about{font-size:.78rem;color:var(--ink-3);line-height:1.75;margin-bottom:20px;font-weight:300;}
-.footer-socials{display:flex;gap:8px;}
-.social-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--ivory);display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:.82rem;transition:all .2s;}
-.social-btn:hover{border-color:rgba(26,92,52,.4);color:var(--forest);}
-.footer-col h4{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--ink-3);margin-bottom:18px;}
-.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
-.footer-links a{font-size:.78rem;color:var(--ink-3);transition:color .15s;font-weight:300;}
-.footer-links a:hover{color:var(--ink);}
-.footer-contact-list{display:flex;flex-direction:column;gap:11px;}
-.fci{display:flex;align-items:flex-start;gap:10px;}
-.fci-icon{width:26px;height:26px;border-radius:7px;background:var(--green-pale);color:var(--forest);display:flex;align-items:center;justify-content:center;font-size:.68rem;flex-shrink:0;margin-top:1px;}
-.fci-label{font-size:.6rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:1px;}
-.fci-val{font-size:.76rem;color:var(--ink-2);font-weight:300;}
-.footer-bottom{max-width:var(--max);margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.footer-bottom p{font-size:.7rem;color:var(--ink-3);font-weight:300;}
+/* ═══ FOOTER — dark minimal ═══ */
+footer{background:var(--bg);border-top:1px solid rgba(255,255,255,.05);}
+.footer-main{max-width:var(--max);margin:0 auto;padding:48px 40px 36px;display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:40px;}
+.footer-logo-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.footer-logo-icon{width:28px;height:28px;border-radius:6px;overflow:hidden;background:var(--surface);flex-shrink:0;}
+.footer-logo-icon img{width:100%;height:100%;object-fit:contain;filter:brightness(0) invert(1);}
+.footer-brand-name{font-size:.9rem;font-weight:600;color:var(--white);}
+.footer-tagline{font-size:.56rem;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--green);display:block;}
+.footer-about{font-size:.74rem;color:var(--ink-30);line-height:1.7;margin-bottom:16px;}
+.footer-socials{display:flex;gap:6px;}
+.social-btn{width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:var(--ink-30);font-size:.72rem;transition:all .2s;}
+.social-btn:hover{border-color:var(--green);color:var(--green);}
+.footer-col h4{font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:var(--white-20);margin-bottom:14px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-links a{font-size:.74rem;color:var(--ink-30);transition:color .15s;}
+.footer-links a:hover{color:var(--white-70);}
+.footer-contact-list{display:flex;flex-direction:column;gap:10px;}
+.fci{display:flex;align-items:flex-start;gap:9px;}
+.fci-icon{width:22px;height:22px;border-radius:5px;background:rgba(45,106,79,.15);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:.62rem;flex-shrink:0;margin-top:2px;}
+.fci-label{font-size:.54rem;color:var(--white-15);text-transform:uppercase;letter-spacing:.6px;margin-bottom:1px;}
+.fci-val{font-size:.72rem;color:var(--white-50);}
+.footer-bottom{max-width:var(--max);margin:0 auto;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid rgba(255,255,255,.04);}
+.footer-bottom p{font-size:.66rem;color:var(--white-15);}
 .pay-icons{display:flex;gap:6px;}
-.pay-icon{padding:3px 9px;border-radius:5px;border:1px solid var(--border);font-size:.64rem;font-weight:500;color:var(--ink-3);}
-
-/* toast */
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);z-index:3000;background:var(--forest);color:#fff;padding:12px 22px;border-radius:50px;font-size:.78rem;font-weight:500;display:flex;align-items:center;gap:9px;box-shadow:0 10px 30px rgba(26,92,52,.3);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.16,1,.3,1);}
+.pay-icon{color:var(--white-15);padding:3px 8px;border:1px solid rgba(255,255,255,.06);border-radius:4px;font-size:.6rem;font-weight:500;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:3000;background:var(--surface-2);color:#fff;padding:10px 18px;border-radius:50px;font-size:.76rem;font-weight:500;display:flex;align-items:center;gap:8px;box-shadow:0 12px 36px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.16,1,.3,1);}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
-
-/* back to top */
-.back-top{position:fixed;bottom:28px;right:28px;z-index:999;width:42px;height:42px;border-radius:50%;background:var(--ivory);border:1px solid var(--border);color:var(--ink-3);font-size:.82rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.08);opacity:0;pointer-events:none;transition:all .3s;}
+.toast i{color:var(--green);}
+.back-top{position:fixed;bottom:24px;right:24px;z-index:999;width:38px;height:38px;border-radius:50%;background:var(--surface);border:1px solid rgba(255,255,255,.08);color:var(--ink-30);font-size:.78rem;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.05);opacity:0;pointer-events:none;transition:all .3s;}
 .back-top.visible{opacity:1;pointer-events:all;}
-.back-top:hover{color:var(--ink);border-color:var(--border-s);}
-
-mark.hl{background:#fef9c3;color:#854d0e;font-weight:600;border-radius:2px;padding:0 1px;}
+.back-top:hover{border-color:rgba(255,255,255,.2);color:var(--white);}
 
 /* ═══ RESPONSIVE ═══ */
-@media(max-width:1100px){
-  .product-grid{grid-template-columns:repeat(3,1fr);}
-  .cat-grid{grid-template-columns:repeat(4,1fr);}
-  .footer-main{grid-template-columns:1fr 1fr;}
-  .trust-inner{grid-template-columns:repeat(2,1fr);}
-  .trust-item:nth-child(2){border-right:none;}
-}
+@media(max-width:1100px){.product-grid{grid-template-columns:repeat(3,1fr);}.footer-main{grid-template-columns:1fr 1fr;}}
 @media(max-width:860px){
-  .hero-content{padding:0 24px;padding-top:110px;padding-bottom:60px;}
-  .hero-panel{grid-template-columns:1fr;}
-  .hero-panel-text{border-right:none;border-bottom:1px solid var(--border);padding:28px 24px;}
-  .hero-panel-img{height:220px;}
+  .hero{height:65vh;}
   .brand-grid{grid-template-columns:1fr;}
-  .promo-inner{grid-template-columns:1fr;padding:0;}
-  .promo-item{border-right:none;border-bottom:1px solid var(--border);}
-  .promo-item:last-child{border-bottom:none;}
+  .promo-inner{grid-template-columns:1fr;}
   .nav-links{display:none;}
   .hamburger{display:flex;}
   .product-grid{grid-template-columns:repeat(2,1fr);}
-  .cat-grid{grid-template-columns:repeat(3,1fr);}
-  .newsletter-wrap{padding:40px 28px;}
-  .snackbar{padding:0 12px;}
+  .cat-scroll{padding:0 20px;}
+  .snackbar{padding:0 10px;top:8px;}
+  .snackbar-inner{border-radius:14px;height:48px;}
+  .section{padding:48px 20px;}
+  .newsletter-section{padding:0 20px 60px;}
+  .footer-main,.footer-bottom{padding-left:20px;padding-right:20px;}
+  .promo-wrap{padding:0 20px;}
 }
 @media(max-width:600px){
-  .section,.section-sm,.footer-main,.footer-bottom{padding-left:20px;padding-right:20px;}
-  .trust-inner{grid-template-columns:1fr;padding:0 20px;}
-  .trust-item{border-right:none;border-bottom:1px solid var(--border);}
-  .trust-item:last-child{border-bottom:none;}
   .product-grid{grid-template-columns:1fr;}
-  .cat-grid{grid-template-columns:repeat(2,1fr);}
-  .nl-form{flex-direction:column;}
-  .footer-main{grid-template-columns:1fr;gap:32px;}
-  .snackbar{padding:0 8px;top:8px;}
-  .snackbar-inner{border-radius:14px;height:50px;}
-  .hero-title{font-size:2.4rem;}
+  .cat-scroll{gap:8px;padding:0 16px;}
+  .section{padding:36px 16px;}
+  .snackbar{padding:0 8px;top:6px;}
+  .snackbar-inner{border-radius:12px;height:46px;}
+  .hero-content{padding:0 20px;padding-bottom:40px;}
+  .hero-title{font-size:1.8rem;}
+  .hero-desc{font-size:.82rem;max-width:280px;}
+  .hero-btns{margin-bottom:20px;}
+  .nl-form{flex-direction:column;gap:6px;}
+  .footer-main{grid-template-columns:1fr;gap:24px;}
+  .hero{height:50vh;}
+  .promo-item{height:140px;}
+  .brand-img{height:160px;}
+  .brand-body{padding:18px 20px;}
+  .brand-name{font-size:1.2rem;}
+  .brand-desc{font-size:.76rem;}
+  .brand-tags{gap:4px;}
+  .brand-tag{padding:2px 8px;border-radius:50px;font-size:.58rem;}
+  .btn-brand{padding:7px 16px;font-size:.72rem;}
+  .prod-img{height:180px;}
+  .prod-body{padding:10px 12px 12px;}
+  .prod-name{font-size:.84rem;}
+  .prod-img{padding:10px;}
+  .brand-img img{height:13px;}
 }
+
+::selection{background:var(--green);color:#fff;}
 </style>
 </head>
 <body>
 
-<!-- ═══ FLOATING SNACKBAR NAV ═══ -->
-<nav class="snackbar" id="snackbar">
-  <div class="snackbar-inner">
-    <a href="#" class="logo">
-      <div class="logo-icon">
-        <img src="https://rutunjay651.github.io/resources/logo/spp.png"
-             onerror="this.onerror=null;this.src='https://placehold.co/32x32/22c55e/fff?text=S';" alt="SPP"/>
-      </div>
-      <img src="https://rutunjay651.github.io/resources/logo/spp3.png"
-           class="logo-wordmark"
-           onerror="this.onerror=null;this.style.display='none';" alt="Shrikant Paper Products"/>
-    </a>
+<!-- SNACKBAR PLACEHOLDER -->
+<div id="snackbar-root"></div>
 
-    <nav class="nav-links">
-      <a href="#" class="nav-link active">Home</a>
-      <a href="#doms" class="nav-link">DOMS</a>
-      <a href="#youva" class="nav-link">Youva</a>
-      <a href="#categories" class="nav-link">Categories</a>
-      <a href="shop.html" class="nav-link">All Products</a>
-    </nav>
-
-    <!-- Search | Wishlist | Cart | Account -->
-    <div class="nav-actions">
-      <button class="nav-icon" id="openSearch" title="Search"><i class="fas fa-search"></i></button>
-      <button class="nav-icon" title="Wishlist"><i class="far fa-heart"></i></button>
-      <button class="nav-icon" title="Cart" style="position:relative;" onclick="openCart()">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="cart-pip" id="cartBadge">0</span>
-      </button>
-      <!-- Account LAST -->
-      <button class="nav-icon" title="Account"><i class="far fa-user"></i></button>
-      <button class="hamburger" id="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
-    </div>
-  </div>
-</nav>
-
-<!-- ═══ MOBILE MENU ═══ -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-menu-close" id="mobileClose"><i class="fas fa-times"></i></button>
-  <a href="#" class="mobile-nav-link" data-mobile-link>Home</a>
-  <a href="#doms" class="mobile-nav-link" data-mobile-link>DOMS</a>
-  <a href="#youva" class="mobile-nav-link" data-mobile-link>Youva</a>
-  <a href="#categories" class="mobile-nav-link" data-mobile-link>Categories</a>
-  <a href="shop.html" class="mobile-nav-link">All Products</a>
-</div>
-
-<!-- ═══ SEARCH OVERLAY ═══ -->
+<!-- SEARCH OVERLAY (pill on dark) -->
 <div class="search-overlay" id="searchOverlay">
   <div class="search-box">
     <div class="search-row">
       <i class="fas fa-search"></i>
-      <input type="text" id="searchInput" placeholder="Search products, codes, categories, prices…" autocomplete="off"/>
-      <button class="search-close" id="closeSearch"><i class="fas fa-times"></i></button>
+      <input type="text" id="searchPopupInput" placeholder="Search products…" autocomplete="off"/>
+      <button class="search-close" id="closeSearchPopup"><i class="fas fa-times"></i></button>
     </div>
-    <div id="searchDrop"></div>
+    <div id="searchPopupDropdown"></div>
   </div>
 </div>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero" id="hero">
+<!-- HERO — full-bleed cinematic -->
+<section class="hero">
   <div class="hero-bg">
     <img src="https://www.navneetstore.com/cdn/shop/files/youva_main_banner_1.jpg"
-         id="heroBgImg"
-         onerror="this.src='https://placehold.co/1920x1080/e8e4d9/1a5c34?text=SPP';"
-         alt="Hero background" class="hero-parallax"/>
+         onerror="this.src='https://placehold.co/1920x1080/0d0d12/2D6A4F?text=Youva+Banner';"
+         alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;"/>
   </div>
-  <div class="hero-content">
-    <div class="manifesto-line hero-tag">
-      <span class="hero-dot"></span>
-      Authorized Dealer · Jalna, Maharashtra · Since 2008
-    </div>
-    <h1 class="hero-title">
-      <span class="manifesto-line block">Your favourite</span>
-      <span class="manifesto-line block">stationery, <em id="heroTypeTitle">Write Better.</em></span>
-    </h1>
-    <p class="hero-desc manifesto-line">
-      Authorized dealer of DOMS and Youva — India's most loved stationery brands. Pencils, notebooks, art kits, geometry boxes and more, for every student, artist, and creator.
-    </p>
-    <div class="hero-btns manifesto-line">
-      <a href="#products" class="btn-fill"><i class="fas fa-shopping-bag"></i>Shop Now</a>
-      <a href="#brands" class="btn-outline">Explore Brands <i class="fas fa-chevron-down" style="font-size:.65rem;"></i></a>
-    </div>
-    <div class="hero-scroll manifesto-line">
-      <i class="fas fa-mouse"></i>
-      <span>Scroll to discover</span>
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <div class="manifesto-line hero-tag"><span class="hero-dot"></span>Authorized Dealer · Jalna · Since 2008</div>
+      <h1 class="hero-title manifesto-line block">Your favourite stationery,<em>delivered.</em></h1>
+      <p class="hero-desc manifesto-line">Authorized dealer of DOMS and Youva — India's most loved stationery brands, for every student, artist and creator.</p>
+      <div class="hero-btns manifesto-line">
+        <a href="#products" class="btn-fill"><i class="fas fa-shopping-bag"></i>Shop Now</a>
+        <a href="#brands" class="btn-outline">Explore Brands</a>
+      </div>
+      <div class="hero-scroll manifesto-line"><i class="fas fa-mouse"></i><span>Scroll to discover</span></div>
     </div>
   </div>
 </section>
 
-<div class="hero-panel">
-  <div class="hero-panel-text">
-    <span class="hero-panel-eyebrow">India's most trusted stationery</span>
-    <h2 class="hero-panel-heading">Quality you trust,<br>prices you <em>love.</em></h2>
-    <p class="hero-panel-body">From pencils to art kits, notebooks to geometry boxes — every product is 100% genuine, sourced directly from DOMS and Youva. Serving Jalna since 2008.</p>
-    <div class="hero-panel-meta">
-      <div class="hero-meta-item"><i class="fas fa-shield-halved"></i>100% Genuine</div>
-      <div class="hero-meta-item"><i class="fas fa-map-marker-alt"></i>Jalna, MH</div>
-      <div class="hero-meta-item"><i class="fas fa-phone"></i>+91 94222 18909</div>
-      <div class="hero-meta-item"><i class="fas fa-clock"></i>Since 2008</div>
-    </div>
-  </div>
-  <div class="hero-panel-img">
-    <img src="https://domsindia.com/wp-content/uploads/2025/07/Range-Shots-scaled.webp"
-         onerror="this.src='https://placehold.co/600x300/e8e4d9/1a5c34?text=DOMS+Range';"
-         alt="DOMS Range"/>
-    <div class="hero-panel-badge"><i class="fas fa-box-open" style="color:var(--green);margin-right:5px;font-size:.7rem;"></i>DOMS Complete Range</div>
-  </div>
-</div>
-
-<!-- ═══ TRUST BAR ═══ -->
+<!-- TRUST BAR — minimal on dark -->
 <div class="trust-bar">
   <div class="trust-inner">
-    <div class="trust-item"><div class="trust-icon-wrap"><i class="fas fa-shield-halved"></i></div><div><div class="trust-title">100% Genuine</div><div class="trust-sub">Authorized dealer</div></div></div>
-    <div class="trust-item"><div class="trust-icon-wrap"><i class="fas fa-rotate-left"></i></div><div><div class="trust-title">Easy Returns</div><div class="trust-sub">Hassle-free policy</div></div></div>
-    <div class="trust-item"><div class="trust-icon-wrap"><i class="fas fa-headset"></i></div><div><div class="trust-title">Customer Support</div><div class="trust-sub">Mon–Sat, 10 AM – 9 PM</div></div></div>
-    <div class="trust-item"><div class="trust-icon-wrap"><i class="fas fa-calendar-check"></i></div><div><div class="trust-title">Serving Since 2008</div><div class="trust-sub">Trusted in Jalna</div></div></div>
+    <div class="trust-item"><div class="trust-icon"><i class="fas fa-shield-halved"></i></div><div><div class="trust-title">100% Genuine</div><div class="trust-sub">Authorized dealer</div></div>
+    <div class="trust-item"><div class="trust-icon"><i class="fas fa-rotate-left"></i></div><div><div class="trust-title">Easy Returns</div><div class="trust-sub">Hassle-free policy</div></div>
+    <div class="trust-item"><div class="trust-icon"><i class="fas fa-headset"></i></div><div><div class="trust-title">Customer Support</div><div class="trust-sub">Mon–Sat, 10 AM – 9 PM</div></div>
+    <div class="trust-item"><div class="trust-icon"><i class="fas fa-calendar-check"></i></div><div><div class="trust-title">Serving Since 2008</div><div class="trust-sub">Trusted in Jalna</div></div>
   </div>
 </div>
 
-<!-- ═══ SEARCH RESULTS ═══ -->
-<div id="searchResultsSection">
-  <div class="sr-bar">
-    <div class="sr-title" id="srTitle">Results for "<span></span>"</div>
-    <button class="btn-clear" onclick="clearSearch()"><i class="fas fa-times"></i> Clear</button>
-  </div>
+<!-- SEARCH RESULTS -->
+<div id="searchResultsSection" style="display:none;padding:48px 20px;max-width:1280px;margin:0 auto;">
+  <div class="sr-bar"><div class="sr-title" id="srTitle">Results for "<span></span>"</div><button class="btn-clear" onclick="clearSearch()"><i class="fas fa-times"></i> Clear</button></div>
   <div class="product-grid" id="srGrid"></div>
 </div>
 
-<!-- ═══ CATEGORIES ═══ -->
-<div id="categories" style="background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="section">
-    <div class="sec-head reveal" style="margin-bottom:36px;">
-      <div class="section-label">Browse by</div>
-      <h2 class="section-title">Shop by <em>Category</em></h2>
-      <p class="section-sub">Find exactly what you need from our wide range of stationery categories.</p>
-    </div>
-    <div class="cat-grid reveal">
-      <div class="cat-card" onclick="filterByCat('notebooks')"><div class="cat-img-wrap"><img src="https://www.navneetstore.com/cdn/shop/products/Youva_Spiral_Longbook_2.jpg" onerror="this.src='https://placehold.co/58x58/e8e4d9/1a5c34?text=NB';" alt=""/></div><div class="cat-name">Notebooks</div><div class="cat-count" id="cnt-notebooks">—</div></div>
-      <div class="cat-card" onclick="filterByCat('pencils')"><div class="cat-img-wrap"><img src="https://domsindia.com/wp-content/uploads/2023/04/ZOOM-ULTIMATE-DARK-PENCIL-BOX-PACK.png" onerror="this.src='https://placehold.co/58x58/e8e4d9/1a5c34?text=PEN';" alt=""/></div><div class="cat-name">Pencils</div><div class="cat-count" id="cnt-pencils">—</div></div>
-      <div class="cat-card" onclick="filterByCat('colours')"><div class="cat-img-wrap"><img src="https://domsindia.com/wp-content/uploads/2023/04/Colour-Pencils-24-Shades.png" onerror="this.src='https://placehold.co/58x58/e8e4d9/1a5c34?text=CLR';" alt=""/></div><div class="cat-name">Colours</div><div class="cat-count" id="cnt-colours">—</div></div>
-      <div class="cat-card" onclick="filterByCat('kits')"><div class="cat-img-wrap"><img src="https://domsindia.com/wp-content/uploads/2023/04/Fun-Fiesta-Kit.png" onerror="this.src='https://placehold.co/58x58/e8e4d9/1a5c34?text=KIT';" alt=""/></div><div class="cat-name">Art Kits</div><div class="cat-count" id="cnt-kits">—</div></div>
-      <div class="cat-card" onclick="filterByCat('markers')"><div class="cat-img-wrap"><img src="https://domsindia.com/wp-content/uploads/2023/04/SKETCH-MAX-JUMBO-SKETCH-PEN-12-Shades.png" onerror="this.src='https://placehold.co/58x58/e8e4d9/1a5c34?text=MKR';" alt=""/></div><div class="cat-name">Sketch / Markers</div><div class="cat-count" id="cnt-markers">—</div></div>
-      <div class="cat-card" onclick="filterByCat('geometry_boxes')"><div class="cat-img-wrap"><img src="https://domsindia.com/wp-content/uploads/2023/04/GEOMMY-Mathematical-Drawing-Instrument-Box.png" onerror="this.src='https://placehold.co/58x58/e8e4d9/1a5c34?text=GEO';" alt=""/></div><div class="cat-name">Geometry Box</div><div class="cat-count" id="cnt-geometry_boxes">—</div></div>
+<!-- CATEGORIES — horizontal scroll -->
+<div id="categories" style="padding:32px 40px;">
+  <div class="cat-scroll-wrap">
+    <div class="cat-scroll" id="catScroll">
+      <div class="cat-card" onclick="filterByCat('notebooks')"><div class="cat-img"><img src="https://www.navneetstore.com/cdn/shop/products/Youva_Spiral_Longbook_2.jpg" onerror="this.src='https://placehold.co/110x110/16171b/2D6A4F?text=NB';" alt=""/></div><div class="cat-info"><div class="cat-name">Notebooks</div><div class="cat-count" id="cnt-notebooks">—</div></div></div>
+      <div class="cat-card" onclick="filterByCat('pencils')"><div class="cat-img"><img src="https://domsindia.com/wp-content/uploads/2023/04/ZOOM-ULTIMATE-DARK-PENCIL-BOX-PACK.png" onerror="this.src='https://placehold.co/110x110/16171b/2D6A4F?text=PEN';" alt=""/></div><div class="cat-info"><div class="cat-name">Pencils</div><div class="cat-count" id="cnt-pencils">—</div></div></div>
+      <div class="cat-card" onclick="filterByCat('colours')"><div class="cat-img"><img src="https://domsindia.com/wp-content/uploads/2023/04/Colour-Pencils-24-Shades.png" onerror="this.src='https://placehold.co/110x110/16171b/2D6A4F?text=CLR';" alt=""/></div><div class="cat-info"><div class="cat-name">Colours</div><div class="cat-count" id="cnt-colours">—</div></div></div>
+      <div class="cat-card" onclick="filterByCat('kits')"><div class="cat-img"><img src="https://domsindia.com/wp-content/uploads/2023/04/Fun-Fiesta-Kit.png" onerror="this.src='https://placehold.co/110x110/16171b/2D6A4F?text=KIT';" alt=""/></div><div class="cat-info"><div class="cat-name">Art Kits</div><div class="cat-count" id="cnt-kits">—</div></div></div>
+      <div class="cat-card" onclick="filterByCat('markers')"><div class="cat-img"><img src="https://domsindia.com/wp-content/uploads/2023/04/SKETCH-MAX-JUMBO-SKETCH-PEN-12-Shades.png" onerror="this.src='https://placehold.co/110x110/16171b/2D6A4F?text=MKR';" alt=""/></div><div class="cat-info"><div class="cat-name">Sketch / Markers</div><div class="cat-count" id="cnt-markers">—</div></div></div>
+      <div class="cat-card" onclick="filterByCat('geometry_boxes')"><div class="cat-img"><img src="https://domsindia.com/wp-content/uploads/2023/04/GEOMMY-Mathematical-Drawing-Instrument-Box.png" onerror="this.src='https://placehold.co/110x110/16171b/2D6A4F?text=GEO';" alt=""/></div><div class="cat-info"><div class="cat-name">Geometry Box</div><div class="cat-count" id="cnt-geometry_boxes">—</div></div>
     </div>
   </div>
 </div>
 
-<!-- ═══ BRANDS ═══ -->
-<div id="brands" style="border-bottom:1px solid var(--border);">
-  <div class="section">
-    <div class="sec-head reveal" style="margin-bottom:36px;">
-      <div class="section-label">Our brands</div>
-      <h2 class="section-title">Shop by <em>Brand</em></h2>
-      <p class="section-sub">Authorized dealer of two of India's most trusted stationery brands.</p>
+<!-- BRANDS — image-forward -->
+<div style="padding:0 40px 48px;">
+  <div class="brand-grid">
+    <div class="brand-card" id="doms">
+      <div class="brand-img"><img src="https://domsindia.com/wp-content/uploads/2025/07/Range-Shots-scaled.webp" onerror="this.src='https://placehold.co/700x200/16171b/2D6A4F?text=DOMS';" alt=""/></div>
+      <div class="brand-body">
+        <div class="brand-name">DOMS Industries</div>
+        <p class="brand-desc">Pioneer in stationery since 1976. Pencils, colour pencils, sketch pens, erasers, mathematical instruments, and art materials.</p>
+        <div class="brand-tags"><span class="brand-tag">Pencils</span><span class="brand-tag">Colour Pencils</span><span class="brand-tag">Sketch Pens</span><span class="brand-tag">Erasers</span><span class="brand-tag">Geometry Box</span></div>
+        <a href="#" class="btn-brand" onclick="filterByBrand('doms');return false;">Explore DOMS <i class="fas fa-arrow-right" style="font-size:.6rem;"></i></a>
+      </div>
     </div>
-    <div class="brand-grid reveal">
-      <div class="brand-card" id="doms">
-        <div class="brand-img"><img src="https://domsindia.com/wp-content/uploads/2025/07/Range-Shots-scaled.webp" onerror="this.src='https://placehold.co/700x210/e8e4d9/141414?text=DOMS';" alt="DOMS"/></div>
-        <div class="brand-body">
-          <div class="brand-name">DOMS Industries</div>
-          <p class="brand-desc">Pioneer in stationery manufacturing since 1976. Pencils, colour pencils, sketch pens, erasers, mathematical instruments, and a wide range of art materials.</p>
-          <div class="brand-tags"><span class="brand-tag">Pencils</span><span class="brand-tag">Colour Pencils</span><span class="brand-tag">Sketch Pens</span><span class="brand-tag">Erasers</span><span class="brand-tag">Geometry Box</span></div>
-          <a href="#" class="btn-brand" onclick="filterByBrand('doms');return false;">Explore DOMS <i class="fas fa-arrow-right" style="font-size:.65rem;"></i></a>
+    <div class="brand-card" id="youva">
+      <div class="brand-img"><img src="https://www.navneetstore.com/cdn/shop/files/Revised_Youva_collage_banner.jpg?format=pjpg" onerror="this.src='https://placehold.co/700x200/16171b/2D6A4F?text=Youva';" alt=""/></div>
+      <div class="brand-body">
+        <div class="brand-name">Youva by Navneet</div>
+        <p class="brand-desc">Vibrant stationery brand. Spiral long books, hardcover notebooks, drawing books, oil pastels, colour pencils and geometry boxes.</p>
+        <div class="brand-tags"><span class="brand-tag">Notebooks</span><span class="brand-tag">Long Books</span><span class="brand-tag">Drawing Books</span><span class="brand-tag">Oil Pastels</span><span class="brand-tag">Pencils</span></div>
+        <a href="#" class="btn-brand" onclick="filterByBrand('youva');return false;">Explore Youva <i class="fas fa-arrow-right" style="font-size:.58rem;"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div id="products" style="padding:0 40px 40px;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:10px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <button class="btn-mobile-filter" onclick="openMobileSidebar()"><i class="fas fa-sliders-h"></i> Filters
+          <span id="filterBadge" style="background:var(--green);color:#fff;border-radius:50%;width:16px;height:16px;font-size:.55rem;font-weight:700;display:none;align-items:center;justify-content:center;"></span>
+        </button>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="results-info" id="resultsInfo">Showing <strong>—</strong> products</div>
+        <div class="toolbar-right">
+          <span class="sort-label">Sort:</span>
+          <select class="sort-select" id="sortSelect" onchange="applySort()">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: Low → High</option>
+            <option value="price-high">Price: High → Low</option>
+            <option value="az">Name: A → Z</option>
+            <option value="rating">Top Rated</option>
+            <option value="discount">Best Discount</option>
+          </select>
+          <div class="view-btns">
+            <button class="view-btn active" id="gridViewBtn" onclick="setView('grid')" title="Grid"><i class="fas fa-th-large"></i></button>
+            <button class="view-btn" id="listViewBtn" onclick="setView('list')" title="List"><i class="fas fa-list"></i></button>
+          </div>
         </div>
       </div>
-      <div class="brand-card" id="youva">
-        <div class="brand-img"><img src="https://www.navneetstore.com/cdn/shop/files/Revised_Youva_collage_banner.jpg?format=pjpg" onerror="this.src='https://placehold.co/700x210/f0fdf4/1a5c34?text=Youva';" alt="Youva"/></div>
-        <div class="brand-body">
-          <div class="brand-name">Youva by Navneet</div>
-          <p class="brand-desc">Vibrant stationery brand for students and professionals. Spiral long books, hardcover notebooks, drawing books, oil pastels, colour pencils and geometry boxes.</p>
-          <div class="brand-tags"><span class="brand-tag">Notebooks</span><span class="brand-tag">Long Books</span><span class="brand-tag">Drawing Books</span><span class="brand-tag">Oil Pastels</span><span class="brand-tag">Pencils</span></div>
-          <a href="#" class="btn-brand" onclick="filterByBrand('youva');return false;">Explore Youva <i class="fas fa-arrow-right" style="font-size:.65rem;"></i></a>
-        </div>
+      <div class="product-grid" id="productGrid">
+        <div class="loading-state"><i class="fas fa-circle-notch fa-spin" style="font-size:1.6rem;color:var(--green);display:block;margin-bottom:8px;"></div>
       </div>
-    </div>
+      <div class="view-all-wrap" id="viewAllWrap" style="display:none;">
+        <a href="shop.html" class="link-arrow"><i class="fas fa-arrow-down" style="font-size:.68rem;"></i>View all products</a>
+      </div>
   </div>
 </div>
 
-<!-- ═══ PRODUCTS ═══ -->
-<div id="products">
-  <div class="section">
-    <div class="sec-head reveal" style="margin-bottom:36px;">
-      <div class="section-label">Top picks</div>
-      <h2 class="section-title">Featured <em>Products</em></h2>
-      <p class="section-sub">Hand-picked bestsellers from DOMS and Youva.</p>
-    </div>
-    <div class="filter-tabs-wrap reveal">
-      <div class="filter-tabs">
-        <button class="ftab active" onclick="filterTab(this,'doms')">DOMS</button>
-        <button class="ftab" onclick="filterTab(this,'youva')">Youva</button>
-        <button class="ftab" onclick="filterTab(this,'notebooks')">Notebooks</button>
-        <button class="ftab" onclick="filterTab(this,'colours')">Colours</button>
-        <button class="ftab" onclick="filterTab(this,'pencils')">Pencils</button>
-        <button class="ftab" onclick="filterTab(this,'kits')">Art Kits</button>
-        <button class="ftab" onclick="filterTab(this,'markers')">Sketch / Markers</button>
-        <button class="ftab" onclick="filterTab(this,'geometry_boxes')">Geometry Box</button>
-      </div>
-      <div class="sort-wrap">
-        <span class="sort-label">Sort:</span>
-        <select class="sort-select" id="sortSelect" onchange="applySort()">
-          <option value="featured">Featured</option>
-          <option value="low">Price: Low → High</option>
-          <option value="high">Price: High → Low</option>
-          <option value="az">Name: A → Z</option>
-        </select>
-      </div>
-    </div>
-    <div class="product-grid" id="productGrid">
-      <div class="loading-state"><i class="fas fa-circle-notch"></i><p>Loading products…</p></div>
-    </div>
-    <div class="view-all-wrap" id="viewAllWrap" style="display:none;">
-      <a href="shop.html" class="link-underline">View all products <i class="fas fa-arrow-right" style="font-size:.72rem;"></i></a>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ EDITORIAL BREAK ═══ -->
-<div class="editorial reveal">
+<!-- EDITORIAL BREAK — cinematic -->
+<section class="editorial">
   <img src="https://domsindia.com/wp-content/uploads/2025/07/Untitled-design-scaled.webp"
-       onerror="this.src='https://placehold.co/1920x800/e8e4d9/1a5c34?text=DOMS+Art+Collection';"
-       alt="DOMS Art Collection"/>
+       onerror="this.src='https://placehold.co/1920x800/0d0d12/2D6A4F?text=DOMS+Art';"
+       alt="" style="width:100%;height:100%;object-fit:cover;"/>
   <div class="editorial-overlay">
-    <div>
-      <p class="editorial-tag">DOMS Art Collection</p>
-      <h2 class="editorial-title">Every ambition needs<br>the right tools.</h2>
-      <a href="#" class="btn-outline" onclick="filterByBrand('doms');return false;" style="margin:0 auto;">Explore Art Kits <i class="fas fa-arrow-right" style="font-size:.65rem;"></i></a>
-    </div>
+    <p class="editorial-tag">DOMS Art Collection</p>
+    <h2 class="editorial-title">Every ambition needs the right tools.</h2>
+    <a href="#" class="editorial-btn" onclick="filterByBrand('doms');return false;">Explore Art Kits <i class="fas fa-arrow-right" style="font-size:.58rem;"></i></a>
   </div>
-</div>
+</section>
 
-<!-- ═══ PROMO STRIP ═══ -->
-<div class="promo-strip">
+<!-- PROMO STRIP — rounded dark cards in a row -->
+<div class="promo-wrap">
   <div class="promo-inner">
     <div class="promo-item" onclick="filterByBrand('doms')">
-      <img src="https://domsindia.com/wp-content/uploads/2023/03/DOMS-Web-Banner-scaled.jpg" onerror="this.src='https://placehold.co/430x190/141414/fff?text=DOMS';" alt=""/>
-      <div class="promo-overlay"><div class="promo-label">Back to School</div><div class="promo-title">DOMS School Kits for Every Student</div><div class="promo-link">Shop Now <i class="fas fa-arrow-right" style="font-size:.6rem;"></i></div></div>
+      <img src="https://domsindia.com/wp-content/uploads/2023/03/DOMS-Web-Banner-scaled.jpg" onerror="this.src='https://placehold.co/430x170/0d0d12/111/fff?text=DOMS';" alt=""/>
+      <div class="promo-overlay"><div class="promo-label">Back to School</div><div class="promo-title">DOMS School Kits for Every Student</div><div class="promo-link">Shop Now <i class="fas fa-arrow-right" style="font-size:.58rem;"></i></div></div>
     </div>
     <div class="promo-item" onclick="filterByBrand('youva')">
-      <img src="https://www.navneetstore.com/cdn/shop/files/youva_main_banner_1.jpg" onerror="this.src='https://placehold.co/430x190/141414/fff?text=Youva';" alt=""/>
-      <div class="promo-overlay"><div class="promo-label">Youva Collection</div><div class="promo-title">Vibrant Notebooks for Creators</div><div class="promo-link">Shop Now <i class="fas fa-arrow-right" style="font-size:.6rem;"></i></div></div>
+      <img src="https://www.navneetstore.com/cdn/shop/files/youva_main_banner_1.jpg" onerror="this.src='https://placehold.co/430x170/0d0d12/111/fff?text=Youva';" alt=""/>
+      <div class="promo-overlay"><div class="promo-label">Youva Collection</div><div class="promo-title">Vibrant Notebooks for Creators</div><div class="promo-link">Shop Now <i class="fas fa-arrow-right" style="font-size:.58rem;"></i></div></div>
     </div>
     <div class="promo-item" onclick="filterByCat('kits')">
-      <img src="https://domsindia.com/wp-content/uploads/2024/01/DOMS-Banner-Art-Materials.jpg" onerror="this.src='https://placehold.co/430x190/141414/fff?text=Art+Kits';" alt=""/>
-      <div class="promo-overlay"><div class="promo-label">Art Special</div><div class="promo-title">Complete Art Collections by DOMS</div><div class="promo-link">Shop Now <i class="fas fa-arrow-right" style="font-size:.6rem;"></i></div></div>
+      <img src="https://domsindia.com/wp-content/uploads/2024/01/DOMS-Banner-Art-Materials.jpg" onerror="this.src='https://placehold.co/430x170/0d0d12/111/fff?text=Art';" alt=""/>
+      <div class="promo-overlay"><div class="promo-label">Art Special</div><div class="promo-title">Complete Art Collections</div><div class="promo-link">Shop Now <i class="fas fa-arrow-right" style="font-size:.58rem;"></i></div></div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSLETTER ═══ -->
-<div class="section">
-  <div class="newsletter-wrap reveal">
-    <span class="nl-label">Stay in the loop</span>
-    <h2 class="nl-title">New arrivals & offers</h2>
-    <p class="nl-desc">Subscribe to get updates on new products from DOMS and Youva, stationery tips, and exclusive offers. No spam, ever.</p>
+<!-- NEWSLETTER — dark glass card -->
+<div style="padding:0 40px 80px;">
+  <div class="newsletter-inner">
+    <h2 class="nl-title">Stay updated</h2>
+    <p class="nl-desc">Get new products, stationery tips, and exclusive offers delivered to your inbox.</p>
     <div class="nl-form">
       <input type="email" placeholder="your@email.com" id="nlEmail"/>
       <button onclick="nlSubmit()">Subscribe</button>
     </div>
-    <p class="nl-note" id="nlMsg" style="display:none;color:rgba(255,255,255,.6);margin-top:10px;font-size:.76rem;">✓ Welcome! You're subscribed.</p>
     <p class="nl-note">We respect your privacy. Unsubscribe anytime.</p>
+    <p class="nl-success" id="nlMsg" style="display:none;">✓ Welcome! You're subscribed.</p>
   </div>
 </div>
 
-<!-- ═══ FOOTER ═══ -->
+<!-- FOOTER — dark minimal -->
+<footer>
 <footer>
   <div class="footer-main">
     <div>
-      <div class="footer-logo-wrap">
-        <div class="footer-logo-icon"><img src="https://rutunjay651.github.io/resources/logo/spp.jpg" onerror="this.src='https://placehold.co/34x34/22c55e/fff?text=S';" alt=""/></div>
-        <div>
-          <div class="footer-brand-name">Shrikant Paper Products</div>
-          <div class="footer-tagline">Your Stationery Destination</div>
-        </div>
+      <div class="footer-logo-row">
+        <div class="footer-logo-icon"><img src="https://rutunjay651.github.io/resources/logo/spp.jpg" onerror="this.src='https://placehold.co/28x28/2D6A4F/fff?text=S';" alt=""/></div>
+        <span class="footer-brand-name">Shrikant Paper Products</span>
+        <span class="footer-tagline">Your Stationery Destination</span>
       </div>
       <p class="footer-about">Authorized dealer of DOMS and Youva stationery brands. Serving students, teachers, and artists in Jalna, Maharashtra since 2008.</p>
       <div class="footer-socials">
-        <a href="#" class="social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/919422218909" class="social-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" class="social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" class="social-btn" title="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/919422218909" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="social-btn"><i class="fab fa-x-twitter"></i></a>
       </div>
     </div>
-    <div class="footer-col"><h4>Shop</h4><ul class="footer-links"><li><a href="#">New Arrivals</a></li><li><a href="#doms">DOMS Products</a></li><li><a href="#youva">Youva Products</a></li><li><a href="#categories">Categories</a></li><li><a href="shop.html">All Products</a></li></ul></div>
-    <div class="footer-col"><h4>Customer Care</h4><ul class="footer-links"><li><a href="#">My Account</a></li><li><a href="#">Shipping Policy</a></li><li><a href="#">Return &amp; Refund</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">FAQs</a></li></ul></div>
+    <div class="footer-col"><h4>Quick Links</h4>
+      <ul class="footer-links"><li><a href="#">Home</a></li><li><a href="#">DOMS Products</a></li><li><a href="#">Youva Products</a></li><li><a href="#">Categories</a></li><li><a href="#">All Products</a></li></ul>
+    </div>
+    <div class="footer-col"><h4>Customer Care</h4>
+      <ul class="footer-links"><li><a href="#">My Account</a></li><li><a href="#">Shipping Policy</a></li><li><a href="#">Return &amp; Refund</a></li><a href="#">Privacy Policy</a></li><li><a href="#">FAQs</a></li></ul>
+    </div>
     <div class="footer-col"><h4>Contact</h4>
       <div class="footer-contact-list">
-        <div class="fci"><div class="fci-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="fci-label">Address</div><div class="fci-val">Ganesh Jinning, Old Mondha, Jalna — 431203</div></div></div>
-        <div class="fci"><div class="fci-icon"><i class="fas fa-phone-alt"></i></div><div><div class="fci-label">Phone</div><div class="fci-val">+91 94222 18909</div></div></div>
-        <div class="fci"><div class="fci-icon"><i class="fas fa-envelope"></i></div><div><div class="fci-label">Email</div><div class="fci-val">shrikantpaperproducts@gmail.com</div></div></div>
-        <div class="fci"><div class="fci-icon"><i class="fas fa-clock"></i></div><div><div class="fci-label">Hours</div><div class="fci-val">Mon–Sat: 10 AM – 9 PM</div></div></div>
+        <div class="fci"><div class="fci-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="fci-label">Address</div><div class="fci-val">Old Mondha, Jalna — 431203</div></div>
+        <div class="fci"><div class="fci-icon"><i class="fas fa-phone-alt"></i></div><div class="fci-label">Phone</div><div class="fci-val">+91 94222 18909</div></div>
+        <div class="fci"><div class="fci-icon"><i class="fas fa-envelope"></i></div><div class="fci-label">Email</div><div class="fci-val">shrikantpaperproducts@gmail.com</div></div>
+        <div class="fci"><div class="fci-icon"><i class="fas fa-clock"></i></div><div class="fci-label">Hours</div><div class="fci-val">Mon–Sat: 10 AM – 9 PM</div></div>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 Shrikant Paper Products, Jalna. All rights reserved. | Since 2008</p>
+    <p>© 2025 Shrikant Paper Products, Jalna. All rights reserved.</p>
     <div class="pay-icons"><span class="pay-icon">UPI</span><span class="pay-icon">Visa</span><span class="pay-icon">MC</span><span class="pay-icon">RuPay</span><span class="pay-icon">COD</span></div>
   </div>
 </footer>
@@ -715,25 +506,12 @@ mark.hl{background:#fef9c3;color:#854d0e;font-weight:600;border-radius:2px;paddi
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Done!</span></div>
 
 <script>
-/* ═══ CONSTANTS ═══ */
-const BRAND_LOGOS={
-  doms:'https://rutunjay651.github.io/resources/logo/doms.webp',
-  youva:'https://rutunjay651.github.io/resources/logo/youva.png'
-};
-
-/* ═══ STATE ═══ */
-let ALL=[],cartCount=0,slideIdx=0,slideTimer;
-let filter={mode:'brand',brand:'doms',cat:'all',sort:'featured'};
-let showingAll=false;
-const PG=8;
-
-/* ═══ INTERSECTION OBSERVER (TERREN pattern) ═══ */
-const revealObserver=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal,.manifesto-line').forEach(el=>revealObserver.observe(el));
-
-/* ═══ LOAD — rutunjay651.github.io ═══ */
+const BRAND_LOGOS={doms:'https://rutunjay651.github.io/resources/logo/doms.webp',youva:'https://rutunjay651.github.io/resources/logo/youva.png'};
+const CAT_LABELS={notebooks:'Notebooks',pencils:'Pencils',colours:'Colours',kits:'Art Kits',markers:'Sketch / Markers',geometry_boxes:'Geometry Box'};
+const PAGE_SIZE=16;
+let ALL=[],filtered=[],currentPage=1,viewMode='grid',cartCount=0,slideIdx=0,slideTimer;
+let fState={brands:new Set(),cats:new Set(),priceMax:Infinity,rating:0,inStock:false,sort:'featured'};
+document.addEventListener('DOMContentLoaded',loadProducts);
 async function loadProducts(){
   try{
     const[r1,r2]=await Promise.all([
@@ -742,151 +520,49 @@ async function loadProducts(){
     ]);
     const d=await r1.json(),y=await r2.json();
     ALL=[...d.map(p=>norm(p,'doms')),...y.map(p=>norm(p,'youva'))];
+    window.ALL=ALL;
     updateCounts();renderGrid();
   }catch(e){
     document.getElementById('productGrid').innerHTML='<div class="empty-state"><i class="fas fa-exclamation-circle"></i><h3>Could not load products</h3><p>Check your connection.</p></div>';
   }
 }
 function norm(p,b){return{id:p.id,code:p.code||'',name:p.name||'',brand:b,brandLabel:p.brand||b,price:p.price!=null?parseFloat(p.price):null,mrp:p.originalPrice!=null?parseFloat(p.originalPrice):null,rating:p.rating||4.0,badge:p.badge||null,img:p.img||'',cat:p.cat||'',tags:Array.isArray(p.tags)?p.tags:[]};}
-
-/* ═══ SEARCH (all JSON fields) ═══ */
-function matchProducts(q,list){
-  const lq=q.toLowerCase();
-  return list.filter(p=>{
-    const ps=(p.price&&p.price>0)?p.price.toFixed(2):'';
-    const ms=(p.mrp&&p.mrp>0)?p.mrp.toFixed(2):'';
-    return[p.name,p.code,p.cat,p.cat.replace(/_/g,' '),p.brand,p.brandLabel,p.badge||'',ps,'₹'+ps,ms,'₹'+ms,...(p.tags||[])].some(v=>String(v).toLowerCase().includes(lq));
+function updateCounts(){
+  ['notebooks','pencils','colours','kits','markers','geometry_boxes'].forEach(c=>{const el=document.getElementById('cnt-'+c);if(el)el.textContent=ALL.filter(p=>p.cat===c).length+' products';});
+}
+async function initSnackbar(){
+  const overlay=document.getElementById('searchOverlay');
+  const inp=document.getElementById('searchPopupInput');
+  const drop=document.getElementById('searchPopupDropdown');
+  if(!overlay||!inp)return;
+  overlay.classList.add('open');inp.focus();
+  document.getElementById('closeSearchPopup').addEventListener('click',closeSearch);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)closeSearch();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSearch();});
+  inp.addEventListener('input',function(){
+    const q=this.value.trim();
+    const list=window.ALL||[];
+    if(!q||!list.length){drop.innerHTML='';return;}
+    const hits=list.filter(p=>{const ps=(p.price&&p.price>0)?p.price.toFixed(2):'';const ms=(p.mrp&&p.mrp>0)?p.mrp.toFixed(2):'';return[p.name,p.code,p.cat,p.cat,p.brand,p.brandLabel,p.badge||'',ps,'₹'+ps,...(p.tags||[])].some(v=>String(v).toLowerCase().includes(q));}).slice(0,8);
+    if(!hits.length){drop.innerHTML='<div class="search-empty">No results for "'+q+'"</div>';return;}
+    drop.innerHTML=hits.map(p=>`
+      `<div class="sri" onclick="document.getElementById('searchOverlay').classList.remove('open');document.getElementById('searchPopupInput').value='';document.getElementById('searchPopupDropdown').innerHTML='';showToast('Product selected');">
+      <img class="sri-img" src="${p.img||'https://placehold.co/44x44/16171b/888?text=IMG';" onerror="this.src='https://placehold.co/44x44/16171b/888?text=IMG';" alt="${p.name}"/>
+      <div><div class="sri-name">${p.name}</div>
+      <div class="sri-sub">${p.brand==='doms'?'DOMS':'Youva'} · ${p.code}</div>
+      <div class="sri-price">${p.price&&p.price>0?'₹'+p.price.toFixed(2):'On enquiry'}</div>
+    </div>`).join('');
+  });
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();closeSearch();}});
+}
+function closeSearch(){overlay.classList.remove('open');inp.value='';drop.innerHTML='';}
+  window.ALL=ALL;
+  document.querySelectorAll('.snackbar-nav-item').forEach(a=>{
+    const href=a.getAttribute('href').split('#')[0].split('/').pop()||'index.html';
+    if(href===location.pathname.split('/').pop()||href===location.pathname.split('/').pop())a.classList.add('active');
   });
 }
-function hl(t,q){if(!q||!t)return t;return String(t).replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark class="hl">$1</mark>');}
-
-/* search overlay */
-const overlay=document.getElementById('searchOverlay');
-const inp=document.getElementById('searchInput');
-const drop=document.getElementById('searchDrop');
-document.getElementById('openSearch').addEventListener('click',()=>{overlay.classList.add('open');inp.focus();});
-document.getElementById('closeSearch').addEventListener('click',closeSearch);
-overlay.addEventListener('click',e=>{if(e.target===overlay)closeSearch();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSearch();});
-function closeSearch(){overlay.classList.remove('open');inp.value='';drop.innerHTML='';}
-inp.addEventListener('input',function(){
-  const q=this.value.trim();if(!q||!ALL.length){drop.innerHTML='';return;}
-  const hits=matchProducts(q,ALL).slice(0,8);
-  if(!hits.length){drop.innerHTML='<div class="search-empty">No results for "'+q+'"</div>';return;}
-  drop.innerHTML='<div class="search-hint">'+hits.length+' result'+(hits.length!==1?'s':'')+'</div>'+hits.map(p=>`<div class="sri" onclick="selectSearch('${p.name.replace(/'/g,"\\'")}')"><img class="sri-img" src="${p.img||'https://placehold.co/46x46/e8e4d9/888?text=IMG'}" onerror="this.src='https://placehold.co/46x46/e8e4d9/888?text=IMG';" alt="${p.name}"/><div><div class="sri-name">${hl(p.name,q)}</div><div class="sri-sub">${p.brand==='doms'?'DOMS':'Youva'} · ${hl(p.code,q)}</div></div><div class="sri-price">${p.price&&p.price>0?'₹'+p.price.toFixed(2):'On enquiry'}</div></div>`).join('');
-});
-inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();doSearch();}});
-function selectSearch(n){inp.value=n;doSearch();}
-function doSearch(){const q=inp.value.trim();if(!q)return;showSearchResults(matchProducts(q,ALL),q);closeSearch();}
-const srSec=document.getElementById('searchResultsSection');
-function showSearchResults(hits,q){
-  document.getElementById('products').style.display='none';
-  srSec.style.display='block';
-  document.getElementById('srTitle').innerHTML='<span>'+hits.length+'</span> result'+(hits.length!==1?'s':'')+' for "<span>'+q+'</span>"';
-  document.getElementById('srGrid').innerHTML=hits.length?hits.map(p=>buildCard(p,q)).join(''):'<div class="empty-state"><i class="fas fa-search"></i><h3>No results for "'+q+'"</h3><p>Try different keywords.</p></div>';
-  srSec.scrollIntoView({behavior:'smooth',block:'start'});
-}
-function clearSearch(){srSec.style.display='none';document.getElementById('products').style.display='block';}
-
-/* ═══ BUILD CARD ═══ */
-function buildCard(p,q){
-  const ba=p.brand==='doms'?'DOMS':'Youva',bl=BRAND_LOGOS[p.brand]||'';
-  let bh='';if(p.badge){const bc=p.badge.toLowerCase()==='stellar'?'badge-stellar':p.badge.toLowerCase()==='hq'?'badge-hq':'badge-new';bh=`<span class="prod-badge ${bc}">${p.badge}</span>`;}
-  const pd=(p.price&&p.price>0)?`₹${p.price.toFixed(2)}`:'',md=(p.mrp&&p.mrp>0)?`₹${p.mrp.toFixed(2)}`:'';
-  const off=(p.mrp&&p.mrp>p.price&&p.price)?Math.round(((p.mrp-p.price)/p.mrp)*100):0;
-  let ph='';
-  if(p.price&&p.price>0){ph=`<div class="prod-price">${q?hl(pd,q):pd}</div>`;if(p.mrp&&p.mrp>p.price)ph+=`<div class="prod-mrp">${q?hl(md,q):md}</div>`;if(off>0)ph+=`<div class="prod-off">${off}% off</div>`;}
-  else ph='<div class="prod-na">Price on enquiry</div>';
-  const f=Math.floor(p.rating),h=p.rating%1>=.5?1:0,e=5-f-h;
-  const stars='★'.repeat(f)+(h?'½':'')+' ☆'.repeat(e).trim();
-  const img=p.img||`https://placehold.co/280x190/f0ece3/888?text=${encodeURIComponent(p.name.slice(0,10))}`;
-  const cl=p.cat.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
-  const dn=q?hl(p.name,q):p.name,dc=q?hl(p.code,q):p.code;
-  return `<div class="product-card">
-    ${bh}
-    <div class="prod-brand-mark"><img src="${bl}" alt="${ba}" onerror="this.style.display='none'"></div>
-    <div class="prod-img-wrap">
-      <img src="${img}" onerror="this.src='https://placehold.co/280x190/f0ece3/888?text=No+Image';" alt="${p.name}" loading="lazy"/>
-      <button class="prod-wish" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-row">${ba} · ${cl}</div>
-      <div class="prod-code">${dc}</div>
-      <div class="prod-name">${dn}</div>
-      <div class="prod-stars"><span class="stars-txt">${stars}</span><span class="star-count">(${p.rating})</span></div>
-      <div class="prod-pricing">${ph}</div>
-      <button class="btn-view" onclick="showToast('Viewing: ${p.name.replace(/'/g,"\\'")}')">View product</button>
-    </div>
-  </div>`;
-}
-
-/* ═══ FILTER & RENDER ═══ */
-function getList(){
-  let l=ALL.slice();
-  if(filter.mode==='brand')l=l.filter(p=>p.brand===filter.brand);
-  else if(filter.mode==='cat')l=l.filter(p=>p.cat===filter.cat||p.cat.includes(filter.cat));
-  if(filter.sort==='low')l.sort((a,b)=>(a.price||9999)-(b.price||9999));
-  if(filter.sort==='high')l.sort((a,b)=>(b.price||0)-(a.price||0));
-  if(filter.sort==='az')l.sort((a,b)=>a.name.localeCompare(b.name));
-  return l;
-}
-function renderGrid(){
-  if(!ALL.length)return;
-  const l=getList(),g=document.getElementById('productGrid'),vaw=document.getElementById('viewAllWrap');
-  if(!l.length){g.innerHTML='<div class="empty-state"><i class="fas fa-box-open"></i><h3>No products found</h3><p>Try a different filter.</p></div>';vaw.style.display='none';return;}
-  const s=showingAll?l:l.slice(0,PG);
-  g.innerHTML=s.map(p=>buildCard(p,null)).join('');
-  vaw.style.display=(!showingAll&&l.length>PG)?'block':'none';
-}
-function filterTab(btn,v){document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showingAll=false;filter.sort=document.getElementById('sortSelect').value;if(v==='doms'||v==='youva'){filter.mode='brand';filter.brand=v;filter.cat='all';}else{filter.mode='cat';filter.brand='all';filter.cat=v;}renderGrid();}
-function filterByCat(c){showingAll=false;filter.mode='cat';filter.cat=c;filter.brand='all';clearSearch();document.querySelectorAll('.ftab').forEach(b=>b.classList.toggle('active',b.getAttribute('onclick')?.includes(`'${c}'`)));renderGrid();document.getElementById('products').scrollIntoView({behavior:'smooth'});}
-function filterByBrand(b){showingAll=false;filter.mode='brand';filter.brand=b;filter.cat='all';clearSearch();document.querySelectorAll('.ftab').forEach(t=>t.classList.toggle('active',t.getAttribute('onclick')?.includes(`'${b}'`)));renderGrid();document.getElementById('products').scrollIntoView({behavior:'smooth'});}
-function applySort(){filter.sort=document.getElementById('sortSelect').value;renderGrid();}
-function updateCounts(){['notebooks','pencils','colours','kits','markers','geometry_boxes'].forEach(c=>{const el=document.getElementById('cnt-'+c);if(el)el.textContent=ALL.filter(p=>p.cat===c).length+' products';});}
-
-/* ═══ MOBILE MENU ═══ */
-const hamburger=document.getElementById('hamburger');
-const mobileMenu=document.getElementById('mobileMenu');
-const mobileClose=document.getElementById('mobileClose');
-hamburger.addEventListener('click',()=>mobileMenu.classList.add('open'));
-mobileClose.addEventListener('click',()=>mobileMenu.classList.remove('open'));
-document.querySelectorAll('[data-mobile-link]').forEach(l=>l.addEventListener('click',()=>mobileMenu.classList.remove('open')));
-
-/* ═══ SNACKBAR HIDE ON SCROLL DOWN (TERREN pattern) ═══ */
-let lastScroll=0;
-const snackbar=document.getElementById('snackbar');
-window.addEventListener('scroll',()=>{
-  const s=window.scrollY;
-  if(s>100)snackbar.style.top=(s>lastScroll)?'-80px':'14px';
-  else snackbar.style.top='14px';
-  lastScroll=s;
-  document.getElementById('backTop').classList.toggle('visible',s>400);
-},{passive:true});
-
-/* ═══ HERO PARALLAX (TERREN pattern) ═══ */
-const heroBg=document.querySelector('.hero-parallax');
-window.addEventListener('scroll',()=>{
-  if(heroBg&&window.scrollY<window.innerHeight){
-    heroBg.style.transform=`scale(${1+window.scrollY*.0002}) translateY(${window.scrollY*.12}px)`;
-  }
-},{passive:true});
-
-/* ═══ HERO TYPE CYCLE ═══ */
-const heroWords=['Write Better.','Think Brighter.','Create More.','Art Begins Here.'];
-let hwIdx=0;
-const hwEl=document.getElementById('heroTypeTitle');
-if(hwEl){setInterval(()=>{hwEl.style.opacity='0';setTimeout(()=>{hwIdx=(hwIdx+1)%heroWords.length;hwEl.textContent=heroWords[hwIdx];hwEl.style.opacity='1';},300);},2800);}
-if(hwEl)hwEl.style.transition='opacity .3s ease';
-
-/* ═══ MISC ═══ */
-function toggleWish(el){el.classList.toggle('active');const i=el.querySelector('i');if(el.classList.contains('active')){i.classList.replace('far','fas');showToast('Added to wishlist ♡');}else{i.classList.replace('fas','far');}}
-function openCart(){showToast('Cart has '+cartCount+' item(s)');}
-let toastTimer;
-function showToast(msg){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2800);}
-function nlSubmit(){const v=document.getElementById('nlEmail').value.trim();if(!v)return;document.getElementById('nlEmail').value='';const m=document.getElementById('nlMsg');m.style.display='block';setTimeout(()=>m.style.display='none',4000);}
-
-/* ═══ INIT ═══ */
-document.addEventListener('DOMContentLoaded',loadProducts);
+</script>
 </script>
 </body>
 </html>
