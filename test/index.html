@@ -719,6 +719,55 @@ footer{border-top:1px solid var(--g-border);background:rgba(5,6,12,.7);backdrop-
   .nl-form{flex-direction:column;}
 }
 ::selection{background:var(--green);color:#fff;}
+
+/* ═══════════════════════════════════════════════
+   LIGHT MODE
+═══════════════════════════════════════════════ */
+body.light{
+  --bg:#eef4ee;
+  --bg-2:#e4ede4;
+  --g1:rgba(0,0,0,0.03);
+  --g2:rgba(0,0,0,0.055);
+  --g3:rgba(0,0,0,0.09);
+  --g-border:rgba(0,0,0,0.09);
+  --g-border-strong:rgba(0,0,0,0.17);
+  --g-shine:rgba(255,255,255,0.80);
+  --w100:rgba(0,0,0,1.00);
+  --w80:rgba(0,0,0,0.80);
+  --w60:rgba(0,0,0,0.65);
+  --w40:rgba(0,0,0,0.45);
+  --w20:rgba(0,0,0,0.22);
+  --w10:rgba(0,0,0,0.10);
+  --w06:rgba(0,0,0,0.06);
+  --green-glow:rgba(46,204,113,0.14);
+  --green-glow-strong:rgba(46,204,113,0.26);
+  color:rgba(0,0,0,0.65);
+}
+body.light .nav-wrap{
+  background:rgba(230,240,230,.82);
+  border-color:rgba(0,0,0,.08);
+  box-shadow:0 8px 32px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.75);
+}
+body.light .search-box{background:rgba(235,243,235,.94);}
+body.light .search-row input{color:#111;}
+body.light footer{background:rgba(220,232,220,.75);border-color:rgba(0,0,0,.08);}
+body.light .trust-item::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);}
+body.light .orb-1{background:radial-gradient(circle,rgba(46,204,113,.22) 0%,transparent 70%);}
+body.light .orb-2{background:radial-gradient(circle,rgba(20,120,70,.16) 0%,transparent 70%);}
+body.light .hero-bg::after{background:linear-gradient(to top,rgba(238,244,238,1) 0%,rgba(238,244,238,.3) 40%,rgba(238,244,238,.05) 100%);}
+body.light .nl-card::before{opacity:.15;}
+body.light .brand-img::after{background:linear-gradient(to top,var(--bg) 0%,transparent 100%);}
+body.light .logo-wordmark{filter:none;opacity:1;}
+body.light .product-card::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);}
+
+/* theme toggle */
+.theme-toggle{
+  width:32px;height:32px;border-radius:50%;
+  color:var(--w40);font-size:.82rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .22s;
+}
+.theme-toggle:hover{background:var(--w06);color:var(--w80);}
 </style>
 </head>
 <body>
