@@ -338,8 +338,8 @@ img{display:block;max-width:100%;}
   z-index:2;
 }
 .cat-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.3),0 0 0 1px var(--g-border-strong);border-color:var(--g-border-strong);}
-.cat-img{height:108px;overflow:hidden;background:var(--g2);display:flex;align-items:center;justify-content:center;}
-.cat-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.cat-img{height:108px;overflow:hidden;background:transparent;display:flex;align-items:center;justify-content:center;}
+.cat-img img{width:100%;height:100%;object-fit:contain;transition:transform .4s;}
 .cat-card:hover .cat-img img{transform:scale(1.08);}
 .cat-info{padding:10px 12px 13px;backdrop-filter:blur(8px);}
 .cat-name{font-size:.72rem;font-weight:600;color:var(--w70);}
@@ -806,6 +806,7 @@ body.light .product-card::before{background:linear-gradient(90deg,transparent,rg
         <span class="cart-pip" id="cartPip">0</span>
       </button>
       <button class="nav-icon" title="Account"><i class="far fa-user"></i></button>
+      <button class="theme-toggle nav-icon" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
       <button class="hamburger" id="menuToggle"><i class="fas fa-bars"></i></button>
     </div>
   </div>
@@ -872,28 +873,16 @@ body.light .product-card::before{background:linear-gradient(90deg,transparent,rg
   <div class="cat-scroll-wrap">
     <div class="cat-scroll">
       <div class="cat-card reveal" onclick="location.href='shop.html'">
-        <div class="cat-img"><img src="https://www.navneetstore.com/cdn/shop/products/Youva_Spiral_Longbook_2.jpg" onerror="this.src='https://placehold.co/140x108/0d0e18/2ecc71?text=NB';" alt=""/></div>
+        <div class="cat-img"><img src="https://www.navneetstore.com/cdn/shop/files/youva_cat_3.png?format=pjpg" onerror="this.src='https://placehold.co/140x108/0d0e18/2ecc71?text=NB';" alt=""/></div>
         <div class="cat-info"><div class="cat-name">Notebooks</div><div class="cat-count" id="cnt-notebooks">—</div></div>
       </div>
       <div class="cat-card reveal" onclick="location.href='shop.html'">
-        <div class="cat-img"><img src="https://domsindia.com/wp-content/uploads/2023/04/ZOOM-ULTIMATE-DARK-PENCIL-BOX-PACK.png" onerror="this.src='https://placehold.co/140x108/0d0e18/2ecc71?text=Pencils';" alt=""/></div>
+        <div class="cat-img"><img src="https://domsindia.com/wp-content/uploads/2025/06/pencil.jpg" onerror="this.src='https://placehold.co/140x108/0d0e18/2ecc71?text=Pencils';" alt=""/></div>
         <div class="cat-info"><div class="cat-name">Pencils</div><div class="cat-count" id="cnt-pencils">—</div></div>
       </div>
       <div class="cat-card reveal" onclick="location.href='shop.html'">
-        <div class="cat-img"><img src="https://domsindia.com/wp-content/uploads/2023/04/Colour-Pencils-24-Shades.png" onerror="this.src='https://placehold.co/140x108/0d0e18/2ecc71?text=Colours';" alt=""/></div>
+        <div class="cat-img"><img src="https://domsindia.com/wp-content/uploads/2025/06/Art-Range.webp" onerror="this.src='https://placehold.co/140x108/0d0e18/2ecc71?text=Colours';" alt=""/></div>
         <div class="cat-info"><div class="cat-name">Colours</div><div class="cat-count" id="cnt-colours">—</div></div>
-      </div>
-      <div class="cat-card reveal" onclick="location.href='shop.html'">
-        <div class="cat-img"><img src="https://domsindia.com/wp-content/uploads/2023/04/Fun-Fiesta-Kit.png" onerror="this.src='https://placehold.co/140x108/0d0e18/2ecc71?text=Kits';" alt=""/></div>
-        <div class="cat-info"><div class="cat-name">Art Kits</div><div class="cat-count" id="cnt-kits">—</div></div>
-      </div>
-      <div class="cat-card reveal" onclick="location.href='shop.html'">
-        <div class="cat-img"><img src="https://domsindia.com/wp-content/uploads/2023/04/SKETCH-MAX-JUMBO-SKETCH-PEN-12-Shades.png" onerror="this.src='https://placehold.co/140x108/0d0e18/2ecc71?text=Markers';" alt=""/></div>
-        <div class="cat-info"><div class="cat-name">Sketch / Markers</div><div class="cat-count" id="cnt-markers">—</div></div>
-      </div>
-      <div class="cat-card reveal" onclick="location.href='shop.html'">
-        <div class="cat-img"><img src="https://domsindia.com/wp-content/uploads/2023/04/GEOMMY-Mathematical-Drawing-Instrument-Box.png" onerror="this.src='https://placehold.co/140x108/0d0e18/2ecc71?text=Geo';" alt=""/></div>
-        <div class="cat-info"><div class="cat-name">Geometry Box</div><div class="cat-count" id="cnt-geometry_boxes">—</div></div>
       </div>
     </div>
   </div>
@@ -1297,6 +1286,19 @@ function nlSubmit(){
   document.getElementById('nlEmail').value='';
   showToast('Subscribed!');
 }
+
+/* ── THEME TOGGLE ── */
+(function(){
+  const btn=document.getElementById('themeToggle');
+  const icon=btn.querySelector('i');
+  const saved=localStorage.getItem('spp-theme');
+  if(saved==='light'){document.body.classList.add('light');icon.className='fas fa-sun';}
+  btn.addEventListener('click',()=>{
+    const isLight=document.body.classList.toggle('light');
+    icon.className=isLight?'fas fa-sun':'fas fa-moon';
+    localStorage.setItem('spp-theme',isLight?'light':'dark');
+  });
+})();
 </script>
 </body>
 </html>
