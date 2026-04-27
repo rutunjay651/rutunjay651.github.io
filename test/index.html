@@ -722,118 +722,147 @@ footer{border-top:1px solid var(--g-border);background:rgba(5,6,12,.7);backdrop-
 
 /* ═══════════════════════════════════════════════
    LIGHT MODE
+   Strategy: keep --w tokens white (they're used for button backgrounds).
+   Override every text-bearing and background element explicitly.
 ═══════════════════════════════════════════════ */
 body.light{
-  --bg:#eef4ee;
-  --bg-2:#e4ede4;
-  --g1:rgba(0,0,0,0.035);
-  --g2:rgba(0,0,0,0.06);
-  --g3:rgba(0,0,0,0.10);
-  --g-border:rgba(0,0,0,0.10);
-  --g-border-strong:rgba(0,0,0,0.18);
-  --g-shine:rgba(255,255,255,0.85);
-  /* remap ALL text tokens to dark equivalents */
-  --w100:rgba(0,0,0,1.00);
-  --w80:rgba(0,0,0,0.82);
-  --w60:rgba(0,0,0,0.66);
-  --w40:rgba(0,0,0,0.50);
-  --w20:rgba(0,0,0,0.40);  /* bumped up so labels aren't invisible */
-  --w10:rgba(0,0,0,0.15);
-  --w06:rgba(0,0,0,0.06);
-  --green-glow:rgba(46,204,113,0.14);
-  --green-glow-strong:rgba(46,204,113,0.28);
-  color:rgba(0,0,0,0.66);
+  --bg:#f0f6f0;
+  --bg-2:#e6ede6;
+  --g1:rgba(255,255,255,0.52);
+  --g2:rgba(255,255,255,0.70);
+  --g3:rgba(255,255,255,0.88);
+  --g-border:rgba(0,0,0,0.09);
+  --g-border-strong:rgba(0,0,0,0.16);
+  --g-shine:rgba(255,255,255,1.00);
+  --green-glow:rgba(46,204,113,0.15);
+  --green-glow-strong:rgba(46,204,113,0.26);
   background:var(--bg);
+  color:rgba(0,0,0,0.68);
 }
+
+/* ORBS */
+body.light .orb-1{background:radial-gradient(circle,rgba(46,204,113,.30) 0%,transparent 70%);}
+body.light .orb-2{background:radial-gradient(circle,rgba(20,120,70,.22) 0%,transparent 70%);}
+body.light .orb-3{background:radial-gradient(circle,rgba(46,204,113,.18) 0%,transparent 70%);}
 
 /* NAV */
 body.light .nav-wrap{
-  background:rgba(225,238,225,.88);
-  border-color:rgba(0,0,0,.09);
-  box-shadow:0 8px 32px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.80);
+  background:rgba(232,248,232,0.86);
+  border-color:rgba(0,0,0,.08);
+  box-shadow:0 8px 32px rgba(0,0,0,.07),inset 0 1px 0 rgba(255,255,255,.92);
 }
+body.light .logo-wordmark{filter:none;opacity:1;}
 body.light .nav-link{color:rgba(0,0,0,.55);}
 body.light .nav-link:hover{background:rgba(0,0,0,.06);color:rgba(0,0,0,.85);}
-body.light .nav-link.active{background:rgba(0,0,0,.08);color:rgba(0,0,0,1);}
-body.light .logo-wordmark{filter:none;opacity:1;}
+body.light .nav-link.active{background:rgba(0,0,0,.08);color:#000;}
+body.light .nav-icon{color:rgba(0,0,0,.50);}
+body.light .nav-icon:hover{background:rgba(0,0,0,.06);color:rgba(0,0,0,.85);}
+body.light .cart-pip{border-color:var(--bg);}
 
 /* SEARCH */
-body.light .search-box{background:rgba(235,244,235,.96);border-color:rgba(0,0,0,.12);}
+body.light .search-overlay{background:rgba(180,210,180,.35);}
+body.light .search-box{background:rgba(238,250,238,.97);border-color:rgba(0,0,0,.12);}
+body.light .search-row{border-color:rgba(0,0,0,.08);}
+body.light .search-row i{color:rgba(0,0,0,.40);}
 body.light .search-row input{color:#111;}
-body.light .search-row input::placeholder{color:rgba(0,0,0,.35);}
+body.light .search-row input::placeholder{color:rgba(0,0,0,.36);}
+body.light .search-close{color:rgba(0,0,0,.40);}
+body.light .search-close:hover{background:rgba(0,0,0,.06);}
+body.light .sri:hover{background:rgba(0,0,0,.05);}
 body.light .sri-name{color:#111;}
 body.light .sri-sub{color:rgba(0,0,0,.45);}
 body.light .sri-price{color:rgba(0,0,0,.65);}
-body.light .sri:hover{background:rgba(0,0,0,.05);}
-body.light .search-hint{color:rgba(0,0,0,.38);}
+body.light .search-hint{color:rgba(0,0,0,.38);border-color:rgba(0,0,0,.07);}
+body.light .search-empty{color:rgba(0,0,0,.45);}
 
 /* HERO */
-body.light .hero-bg::after{background:linear-gradient(to top,rgba(238,244,238,1) 0%,rgba(238,244,238,.35) 45%,transparent 100%);}
-body.light .hero-title{color:#111;text-shadow:none;}
-body.light .hero-sub{color:rgba(0,0,0,.6);}
-body.light .hero-scroll{color:rgba(0,0,0,.4);}
+body.light .hero-bg::after{background:linear-gradient(to top,rgba(240,246,240,1) 0%,rgba(240,246,240,.40) 45%,transparent 100%);}
+body.light .hero-pill{color:rgba(0,0,0,.62);}
+body.light .hero-title{color:#0a0a0a;text-shadow:none;}
+body.light .hero-title em{color:rgba(0,0,0,.68);}
+body.light .hero-sub{color:rgba(0,0,0,.58);}
+body.light .hero-scroll{color:rgba(0,0,0,.38);}
+body.light .btn-glass{color:rgba(0,0,0,.65);border-color:rgba(0,0,0,.16);background:rgba(255,255,255,.42);}
+body.light .btn-glass:hover{background:rgba(255,255,255,.68);color:#000;border-color:rgba(0,0,0,.22);}
 
-/* ORBS — brighter for light bg */
-body.light .orb-1{background:radial-gradient(circle,rgba(46,204,113,.26) 0%,transparent 70%);}
-body.light .orb-2{background:radial-gradient(circle,rgba(20,120,70,.18) 0%,transparent 70%);}
-body.light .orb-3{background:radial-gradient(circle,rgba(46,204,113,.14) 0%,transparent 70%);}
+/* TRUST BAR */
+body.light .trust-item::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);}
+body.light .trust-title{color:rgba(0,0,0,.80);}
+body.light .trust-sub{color:rgba(0,0,0,.50);}
 
-/* TRUST */
-body.light .trust-item::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);}
+/* SECTION COMMON */
+body.light .sec-title{color:rgba(0,0,0,.82);}
+body.light .sec-sub{color:rgba(0,0,0,.50);}
 
-/* CATEGORY CARDS */
+/* CATEGORIES */
 body.light .cat-name{color:rgba(0,0,0,.75);}
 body.light .cat-count{color:rgba(0,0,0,.45);}
 
-/* BRAND SECTION */
+/* BRANDS */
 body.light .brand-img::after{background:linear-gradient(to top,var(--bg) 0%,transparent 100%);}
-body.light .brand-name{color:#111;}
+body.light .brand-name{color:#0a0a0a;}
 body.light .brand-desc{color:rgba(0,0,0,.55);}
+body.light .brand-tag{color:rgba(0,0,0,.58);background:rgba(255,255,255,.62);border-color:rgba(0,0,0,.09);}
+body.light .btn-brand{color:rgba(0,0,0,.60);background:rgba(255,255,255,.42);border-color:rgba(0,0,0,.14);}
+body.light .btn-brand:hover{background:#111;color:#fff;border-color:#111;}
 
-/* PRODUCTS — sort arrow, card, image bg, badges */
+/* PRODUCTS */
+body.light .ftab{color:rgba(0,0,0,.50);}
+body.light .ftab:hover{background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.10);color:rgba(0,0,0,.80);}
+/* .ftab.active: background:var(--w100)=white + color:#111 — already correct, no override needed */
 body.light .sort-sel{
   color:rgba(0,0,0,.65);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(0,0,0,.45)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
 }
-body.light .sort-sel option{background:#eef4ee;color:#111;}
-body.light .prod-img-wrap{background:rgba(255,255,255,.70);}
-body.light .prod-brand-mark{background:rgba(255,255,255,.88);border-color:rgba(0,0,0,.10);}
-body.light .prod-brand-mark img{filter:none;}
-body.light .prod-wish{background:rgba(255,255,255,.88);border-color:rgba(0,0,0,.10);}
-body.light .btn-view{background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.10);color:rgba(0,0,0,.65);}
-body.light .btn-view:hover{background:#111;color:#fff;border-color:#111;}
-body.light .prod-name{color:rgba(0,0,0,.82);}
-body.light .prod-cat-row{color:var(--green-dim);}
+body.light .sort-sel option{background:#f0f6f0;color:#111;}
+body.light .link-arrow{color:rgba(0,0,0,.48);}
+body.light .link-arrow:hover{color:rgba(0,0,0,.82);}
+body.light .empty-state h3{color:rgba(0,0,0,.68);}
+/* product cards */
+body.light .prod-img-wrap{background:rgba(255,255,255,.78);}
+body.light .prod-brand-mark{background:rgba(255,255,255,.90);border-color:rgba(0,0,0,.09);}
+body.light .prod-wish{background:rgba(255,255,255,.88);border-color:rgba(0,0,0,.09);color:rgba(0,0,0,.44);}
+body.light .prod-cat-row{color:#1a7a42;}
 body.light .prod-code{color:rgba(0,0,0,.35);}
-body.light .badge-hq{background:rgba(0,0,0,.12);color:rgba(0,0,0,.75);border-color:rgba(0,0,0,.15);}
-body.light .product-card::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);}
+body.light .prod-name{color:rgba(0,0,0,.82);}
+body.light .star-count{color:rgba(0,0,0,.40);}
+body.light .prod-price{color:#0a0a0a;}
+body.light .prod-mrp{color:rgba(0,0,0,.38);}
+body.light .prod-na{color:rgba(0,0,0,.45);}
+body.light .badge-hq{background:rgba(0,0,0,.10);color:rgba(0,0,0,.72);border-color:rgba(0,0,0,.14);}
+body.light .product-card::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),transparent);}
+body.light .btn-view{background:rgba(255,255,255,.48);border-color:rgba(0,0,0,.10);color:rgba(0,0,0,.62);}
+body.light .btn-view:hover{background:#111;color:#fff;border-color:#111;}
 
 /* NEWSLETTER */
-body.light .nl-card::before{opacity:.18;}
-body.light .nl-title{color:#111;}
+body.light .nl-card::before{opacity:.20;}
+body.light .nl-title{color:#0a0a0a;}
 body.light .nl-desc{color:rgba(0,0,0,.55);}
-body.light .nl-form input{color:#111;background:rgba(255,255,255,.6);border-color:rgba(0,0,0,.12);}
-body.light .nl-form input::placeholder{color:rgba(0,0,0,.35);}
-body.light .nl-note{color:rgba(0,0,0,.38);}
+body.light .nl-form input{color:#111;background:rgba(255,255,255,.65);border-color:rgba(0,0,0,.12);}
+body.light .nl-form input::placeholder{color:rgba(0,0,0,.36);}
+body.light .nl-note{color:rgba(0,0,0,.40);}
 
 /* FOOTER */
-body.light footer{background:rgba(215,232,215,.80);border-color:rgba(0,0,0,.09);}
-body.light .footer-brand-name{color:#111;}
-body.light .footer-about{color:rgba(0,0,0,.55);}
-body.light .footer-col h4{color:rgba(0,0,0,.50);}
-body.light .footer-links a{color:rgba(0,0,0,.55);}
-body.light .footer-links a:hover{color:#111;}
+body.light footer{background:rgba(218,238,218,.84);border-color:rgba(0,0,0,.09);}
 body.light .footer-logo-icon img{filter:none;}
-body.light .fci-label{color:rgba(0,0,0,.45);}
-body.light .fci-val{color:rgba(0,0,0,.60);}
-body.light .footer-bottom p{color:rgba(0,0,0,.40);}
-body.light .pay-icon{color:rgba(0,0,0,.40);border-color:rgba(0,0,0,.12);}
+body.light .footer-brand-name{color:#0a0a0a;}
+body.light .footer-about{color:rgba(0,0,0,.55);}
+body.light .footer-col h4{color:rgba(0,0,0,.48);}
+body.light .footer-links a{color:rgba(0,0,0,.55);}
+body.light .footer-links a:hover{color:#0a0a0a;}
+body.light .social-btn{color:rgba(0,0,0,.45);border-color:rgba(0,0,0,.10);}
+body.light .social-btn:hover{color:var(--green);border-color:var(--green);}
+body.light .fci-label{color:rgba(0,0,0,.46);}
+body.light .fci-val{color:rgba(0,0,0,.62);}
+body.light .footer-bottom p{color:rgba(0,0,0,.42);}
+body.light .pay-icon{color:rgba(0,0,0,.42);border-color:rgba(0,0,0,.10);}
 
-/* TOAST */
-body.light .toast{background:rgba(225,238,225,.96);color:#111;border-color:rgba(0,0,0,.12);box-shadow:0 12px 40px rgba(0,0,0,.12);}
-body.light .back-top{background:rgba(225,238,225,.88);border-color:rgba(0,0,0,.10);color:rgba(0,0,0,.5);}
+/* TOAST / BACK-TOP */
+body.light .toast{background:rgba(230,246,230,.97);color:#111;border-color:rgba(0,0,0,.12);box-shadow:0 12px 40px rgba(0,0,0,.10);}
+body.light .back-top{background:rgba(230,246,230,.90);border-color:rgba(0,0,0,.10);color:rgba(0,0,0,.50);}
+body.light .back-top:hover{color:rgba(0,0,0,.82);}
 
-/* PROMO / EDITORIAL — overlays are already dark, stay as-is */
+/* PROMO / EDITORIAL overlays are photo-based with dark gradients — they're fine as-is */
 </style>
 </head>
 <body>
@@ -1237,7 +1266,6 @@ function setTab(tab,el){
 }
 function calcOff(p){if(!p.mrp||!p.price||p.mrp<=p.price)return 0;return Math.round(((p.mrp-p.price)/p.mrp)*100);}
 
-/* ── CARD ── */
 function buildCard(p){
   const bl=BRAND_LOGOS[p.brand]||'';
   let bh='';if(p.badge){const bc=p.badge.toLowerCase()==='stellar'?'badge-stellar':p.badge.toLowerCase()==='hq'?'badge-hq':'badge-new';bh=`<span class="prod-badge ${bc}">${p.badge}</span>`;}
@@ -1251,12 +1279,16 @@ function buildCard(p){
   const f=Math.floor(p.rating),h=p.rating%1>=.5?1:0;
   const stars='★'.repeat(f)+(h?'½':'')+'☆'.repeat(5-f-h);
   const cl=CAT_LABELS[p.cat]||p.cat.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
-  const img=p.img||`https://placehold.co/280x200/0d0e18/888?text=${encodeURIComponent(p.name.slice(0,10))}`;
+  const isLight=document.body.classList.contains('light');
+  const pbg=isLight?'f0f6f0':'0d0e18';
+  const pfg=isLight?'999':'666';
+  const img=p.img||`https://placehold.co/280x200/${pbg}/${pfg}?text=${encodeURIComponent(p.name.slice(0,10))}`;
+  const errImg=`https://placehold.co/280x200/${pbg}/${pfg}?text=No+Image`;
   return `<div class="product-card">
     ${bh}
     <div class="prod-brand-mark"><img src="${bl}" alt="" onerror="this.style.display='none'"></div>
     <div class="prod-img-wrap">
-      <img src="${img}" onerror="this.src='https://placehold.co/280x200/0d0e18/888?text=No+Image';" alt="${p.name}" loading="lazy"/>
+      <img src="${img}" onerror="this.src='${errImg}';" alt="${p.name}" loading="lazy"/>
       <button class="prod-wish" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
     </div>
     <div class="prod-body">
@@ -1357,12 +1389,30 @@ function nlSubmit(){
 (function(){
   const btn=document.getElementById('themeToggle');
   const icon=btn.querySelector('i');
-  const saved=localStorage.getItem('spp-theme');
-  if(saved==='light'){document.body.classList.add('light');icon.className='fas fa-sun';}
+
+  function applyTheme(theme){
+    if(theme==='light'){
+      document.body.classList.add('light');
+      // Currently light → icon shows moon (click to switch to dark)
+      icon.className='fas fa-moon';
+    }else{
+      document.body.classList.remove('light');
+      // Currently dark → icon shows sun (click to switch to light)
+      icon.className='fas fa-sun';
+    }
+  }
+
+  // Default = light for first-time visitors; return to last-used theme after
+  const saved=localStorage.getItem('spp-theme')||'light';
+  applyTheme(saved);
+
   btn.addEventListener('click',()=>{
-    const isLight=document.body.classList.toggle('light');
-    icon.className=isLight?'fas fa-sun':'fas fa-moon';
-    localStorage.setItem('spp-theme',isLight?'light':'dark');
+    const nowLight=document.body.classList.contains('light');
+    const next=nowLight?'dark':'light';
+    localStorage.setItem('spp-theme',next);
+    applyTheme(next);
+    // Re-render product cards so placeholder image colours update
+    if(ALL.length)renderGrid();
   });
 })();
 </script>
