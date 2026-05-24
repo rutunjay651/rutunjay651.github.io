@@ -779,8 +779,8 @@ let fState={brands:new Set(),cats:new Set(),priceMax:Infinity,rating:0,inStock:f
 async function loadProducts(){
   try{
     const[r1,r2]=await Promise.all([
-      fetch('https://rutunjay651.github.io/resources/doms.json'),
-      fetch('https://rutunjay651.github.io/resources/youva.json')
+      fetch('https://rutunjay651.github.io/spp/resources/stock/doms.json'),
+      fetch('https://rutunjay651.github.io/spp/resources/stock/youva.json')
     ]);
     const d=await r1.json(),y=await r2.json();
     ALL=[...d.map(p=>norm(p,'doms')),...y.map(p=>norm(p,'youva'))];
