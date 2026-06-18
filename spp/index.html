@@ -1209,9 +1209,10 @@ async function init(){
   navHideOnScroll();
   searchSetup();
   try{
-    const[r1,r2]=await Promise.all([
+    const[r1,r2,r3]=await Promise.all([
       fetch('https://rutunjay651.github.io/spp/resources/stock/doms.json'),
       fetch('https://rutunjay651.github.io/spp/resources/stock/youva.json')
+	  fetch('https://rutunjay651.github.io/spp/resources/stock/pens.json')'
     ]);
     const d=await r1.json(),y=await r2.json();
     ALL=[...d.map(p=>norm(p,'doms')),...y.map(p=>norm(p,'youva'))];
